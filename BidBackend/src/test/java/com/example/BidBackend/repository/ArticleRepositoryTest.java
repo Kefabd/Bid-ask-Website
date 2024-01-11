@@ -2,6 +2,8 @@ package com.example.BidBackend.repository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+import com.example.BidBackend.model.Utilisateur;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,22 +25,10 @@ public class ArticleRepositoryTest {
     @Autowired
     private ArticleRepository articleRepository;
 
-    //@Test
-    /*
-    public void testFindByDescription() {
-        // Insert test data into the database
-        Article article = new Article();
-        article.setDescription("Test Description");
-        articleRepository.save(article);
+    @Autowired
+    private UtilisateurRepository utilisateurRepository;
 
-        // Perform the repository query
-        List<Article> articles = articleRepository.findByDescription("Test Description");
 
-        // Assertions
-        assertEquals(1, articles.size());
-        assertEquals("Test Description", articles.get(0).getDescription());
-        }
-        */
 
     @Test
     public void testFindById() {
@@ -54,14 +44,28 @@ public class ArticleRepositoryTest {
         article.setDate_debut(date_debut);
         article.setDate_fin(date_fin);
         article.setNom_article("article 1");
-        
+
+        //TEST Utilisateur
+        Utilisateur user1= new Utilisateur();
+        user1.setEmail("bouchra@gmail.com");
+        user1.setEst_vendeur(true);
+        user1.setNom_utilisateur("Benghazala");
+        user1.setPrenom_utilisateur("Bouchra");
+
+        utilisateurRepository.save(user1);
+
+        article.setUtilisateur(user1);
+
         article = articleRepository.save(article);
 
         // Perform the repository query
         Optional<Article> result = articleRepository.findById(article.getId_article());
+        Optional<Utilisateur> result2 = utilisateurRepository.findById(user1.getId_utilisateur());
 
         // Assertions
         assertTrue(result.isPresent());
+        assertTrue(result2.isPresent());
         assertEquals("Test Description", result.get().getDescription());
+        assertEquals("bouchra@gmail.com", result2.get().getEmail());
     }
 }

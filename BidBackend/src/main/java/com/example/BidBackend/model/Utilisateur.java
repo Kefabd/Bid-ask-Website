@@ -1,8 +1,15 @@
 package com.example.BidBackend.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
 
 @Entity
 public class Utilisateur {
@@ -19,6 +26,5 @@ public class Utilisateur {
     @OneToMany(mappedBy = "utilisateur")
     private List<Article> articles;  // Add this line
 
-    public Utilisateur() {
-    }
+
 }
