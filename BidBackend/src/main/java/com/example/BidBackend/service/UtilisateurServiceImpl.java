@@ -35,4 +35,30 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         return utilisateurRepository.findAll();
     }
 
+    @Override
+    public Utilisateur updateUtilisateur(int id, Utilisateur utilisateur) {
+        // Vérifiez si l'utilisateur avec l'ID spécifié existe
+        Optional<Utilisateur> existingUtilisateurOptional = utilisateurRepository.findById(id);
+
+        if (existingUtilisateurOptional.isPresent()) {
+            Utilisateur existingUtilisateur = existingUtilisateurOptional.get();
+
+            // Mettez à jour les champs de l'utilisateur existant avec les nouvelles valeurs
+            existingUtilisateur.setEst_vendeur(utilisateur.isEst_vendeur());
+            existingUtilisateur.setEmail(utilisateur.getEmail());
+            existingUtilisateur.setNom_utilisateur(utilisateur.getNom_utilisateur());
+            existingUtilisateur.setPrenom_utilisateur(utilisateur.getPrenom_utilisateur());
+
+            // Enregistrez les modifications dans la base de données
+            return utilisateurRepository.save(existingUtilisateur);
+        } else {
+            return null;  }
+
+
+}
+
+    @Override
+    public void deleteUtilisateur(int id) {
+        utilisateurRepository.deleteById(id);
+    }
 }
