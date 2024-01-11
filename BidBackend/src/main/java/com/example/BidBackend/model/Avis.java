@@ -17,9 +17,11 @@ public class Avis {
     private int id_avis;
     private String text;
 
+    /*
     @OneToOne
-    @JoinColumn(name = "article_id", unique = true)
+    @JoinColumn(name = "id_article")
     private Article article;
 
+     */
 
 }

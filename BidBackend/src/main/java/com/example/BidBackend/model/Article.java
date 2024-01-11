@@ -28,15 +28,21 @@ public class Article {
     private double prixMin;
     private String statut;
 
+    @OneToOne
+    @JoinColumn(name = "id_avis")
+    private Avis avis;
 
+    /*
+    @OneToOne(mappedBy = "article")
+    private Avis avis;
+
+     */
 
     @ManyToOne
     @JoinColumn(name="id_utilisateur")
     private Utilisateur utilisateur;
 
-    @OneToOne(mappedBy = "article")
-    private ContratDeVente contratDeVent;
 
-    @OneToOne(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Avis avis;
+
+
 }
