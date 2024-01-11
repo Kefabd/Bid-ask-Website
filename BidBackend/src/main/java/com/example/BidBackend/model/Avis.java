@@ -1,8 +1,14 @@
 package com.example.BidBackend.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Avis {
     @Id
     @GeneratedValue(
@@ -15,6 +21,5 @@ public class Avis {
     @JoinColumn(name = "article_id", unique = true)
     private Article article;
 
-    public Avis() {
-    }
+
 }
