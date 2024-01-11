@@ -7,6 +7,7 @@ import java.util.List;
 public interface ContratDeVenteService {
 
     ContratDeVente generateSaleContract(int articleId, int buyerId);
+    public ContratDeVente save(ContratDeVente contratDeVente);
 
     ContratDeVente findById(int id);
 

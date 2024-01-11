@@ -1,7 +1,7 @@
 package com.example.BidBackend.repository;
-
 import com.example.BidBackend.model.Article;
 import com.example.BidBackend.model.Avis;
+import com.example.BidBackend.model.ContratDeVente;
 import com.example.BidBackend.repository.AvisRepository;
 import com.example.BidBackend.service.AvisServiceImpl;
 import org.junit.Assert;
@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
@@ -18,21 +19,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class AvisServiceTest {
+public class ContratDeVenteRepositoryTest {
 
     @Autowired
-    private AvisRepository avisRepository;
-
+    private ContratDeVenteRepository contratDeVenteRepository;
 
     @Test
-    public void testSaveAvis() {
-        Avis avis = new Avis();
-        avis.setText("Test Avis Text");
-        avis = avisRepository.save(avis);
-        Optional<Avis> result = avisRepository.findById(avis.getId_avis());
+    public void testSaveContratDeVente() {
+        Article article =new Article();
+        ContratDeVente contratDeVente = new ContratDeVente();
+        contratDeVente.setPrix_final(1000);
+        Date date=new Date();
+        contratDeVente.setContrat(date);
+        contratDeVente = contratDeVenteRepository.save(contratDeVente);
+        Optional<ContratDeVente> result = contratDeVenteRepository.findById(contratDeVente.getId_contrat());
 
         // Assertions
         assertTrue(result.isPresent());
-        Assert.assertEquals("Test Avis Text", result.get().getText());
+        Assert.assertEquals(1000, result.get().getPrix_final(),0.001);
     }
 }

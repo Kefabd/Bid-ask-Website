@@ -14,6 +14,12 @@ public class ContratDeVenteServiceImpl implements ContratDeVenteService {
     @Autowired
     private ContratDeVenteRepository contratDeVenteRepository;
 
+
+    @Override
+    public ContratDeVente save(ContratDeVente contratDeVente) {
+        return contratDeVenteRepository.save(contratDeVente);
+    }
+
     @Override
     public ContratDeVente generateSaleContract(int articleId, int buyerId) {
         // Implémentez la logique pour générer un contrat de vente
@@ -26,6 +32,7 @@ public class ContratDeVenteServiceImpl implements ContratDeVenteService {
         Optional<ContratDeVente> optionalContratDeVente = contratDeVenteRepository.findById(id);
         return optionalContratDeVente.orElse(null);
     }
+
 
     @Override
     public List<ContratDeVente> getContractsForUser(int userId) {
