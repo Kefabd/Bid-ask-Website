@@ -1,9 +1,6 @@
 package com.example.BidBackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class ContratDeVente {
@@ -12,6 +9,10 @@ public class ContratDeVente {
             strategy = GenerationType.IDENTITY
     )
     private int id_contrat;
+
+    @OneToOne
+    @JoinColumn(name="id_article")
+    private Article article;
 
     public ContratDeVente() {
     }

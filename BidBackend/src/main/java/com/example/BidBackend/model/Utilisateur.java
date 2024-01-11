@@ -1,9 +1,8 @@
 package com.example.BidBackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Utilisateur {
@@ -16,6 +15,9 @@ public class Utilisateur {
     private String email;
     private String nom_utilisateur;
     private String prenom_utilisateur;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Article> articles;  // Add this line
 
     public Utilisateur() {
     }

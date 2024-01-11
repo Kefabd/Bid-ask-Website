@@ -1,9 +1,6 @@
 package com.example.BidBackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Avis {
@@ -12,7 +9,9 @@ public class Avis {
             strategy = GenerationType.IDENTITY
     )
     private int id_avis;
-    private Long text;
+    private String text;
+
+
 
     public Avis() {
     }
