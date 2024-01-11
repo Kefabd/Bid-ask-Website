@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ArticleRepository extends JpaRepository<Article,Long> {
     @Query("SELECT a FROM Article a WHERE a.description = :description")
-    List<Article> findByDescription(@Param("description") Long description);
+    List<Article> findByDescription(@Param("description") String description);
 
     Optional<Article> findById(Long id);
 
