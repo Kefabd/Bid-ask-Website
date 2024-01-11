@@ -32,17 +32,13 @@ public class Article {
     @JoinColumn(name = "id_avis")
     private Avis avis;
 
-    /*
-    @OneToOne(mappedBy = "article")
-    private Avis avis;
 
-     */
+    @OneToOne
+    @JoinColumn(name="id_contrat")
+    private ContratDeVente contratDeVente;
 
     @ManyToOne
     @JoinColumn(name="id_utilisateur")
     private Utilisateur utilisateur;
-
-
-
 
 }

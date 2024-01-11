@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.example.BidBackend.model.Avis;
+import com.example.BidBackend.model.ContratDeVente;
 import com.example.BidBackend.model.Utilisateur;
 import org.junit.Assert;
 import org.junit.Test;
@@ -32,6 +33,10 @@ public class ArticleRepositoryTest {
 
     @Autowired
     private AvisRepository avisRepository;
+
+    @Autowired
+    private ContratDeVenteRepository contratDeVenteRepository;
+
 
 
     @Test
@@ -68,19 +73,34 @@ public class ArticleRepositoryTest {
 
         article.setAvis(avis);
 
+
+
+        //Contrat de vente
+        ContratDeVente contratDeVente = new ContratDeVente();
+        contratDeVente.setPrix_final(1000);
+        Date date=new Date();
+        contratDeVente.setContrat(date);
+        contratDeVente = contratDeVenteRepository.save(contratDeVente);
+        article.setContratDeVente(contratDeVente);
+
+
         article = articleRepository.save(article);
 
         // Perform the repository query
         Optional<Article> result = articleRepository.findById(article.getId_article());
         Optional<Utilisateur> result2 = utilisateurRepository.findById(user1.getId_utilisateur());
         Optional<Avis> resultAvis = avisRepository.findById(avis.getId_avis());
+        Optional<ContratDeVente> resultContrat = contratDeVenteRepository.findById(contratDeVente.getId_contrat());
 
 
         // Assertions
         assertTrue(result.isPresent());
         assertTrue(result2.isPresent());
         assertTrue(resultAvis.isPresent());
+        assertTrue(resultContrat.isPresent());
 
+
+        Assert.assertEquals(1000, resultContrat.get().getPrix_final(),0.001);
         assertEquals("Test Description", result.get().getDescription());
         assertEquals("bouchra@gmail.com", result2.get().getEmail());
         assertEquals("Test Avis Text", resultAvis.get().getText());

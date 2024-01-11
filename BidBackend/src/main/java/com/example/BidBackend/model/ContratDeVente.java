@@ -22,7 +22,5 @@ public class ContratDeVente {
     private double prix_final;
 
 
-    @OneToOne
-    @JoinColumn(name="id_article")
-    private Article article;
+
 }
