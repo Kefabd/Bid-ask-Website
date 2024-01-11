@@ -3,7 +3,9 @@ package com.example.BidBackend.repository;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import com.example.BidBackend.model.Avis;
 import com.example.BidBackend.model.Utilisateur;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class ArticleRepositoryTest {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
+    @Autowired
+    private AvisRepository avisRepository;
 
 
     @Test
@@ -56,16 +60,30 @@ public class ArticleRepositoryTest {
 
         article.setUtilisateur(user1);
 
+        //Avis
+
+        Avis avis = new Avis();
+        avis.setText("Test Avis Text");
+        avis = avisRepository.save(avis);
+
+        article.setAvis(avis);
+
         article = articleRepository.save(article);
 
         // Perform the repository query
         Optional<Article> result = articleRepository.findById(article.getId_article());
         Optional<Utilisateur> result2 = utilisateurRepository.findById(user1.getId_utilisateur());
+        Optional<Avis> resultAvis = avisRepository.findById(avis.getId_avis());
+
 
         // Assertions
         assertTrue(result.isPresent());
         assertTrue(result2.isPresent());
+        assertTrue(resultAvis.isPresent());
+
         assertEquals("Test Description", result.get().getDescription());
         assertEquals("bouchra@gmail.com", result2.get().getEmail());
+        assertEquals("Test Avis Text", resultAvis.get().getText());
+
     }
 }

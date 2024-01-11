@@ -10,6 +10,7 @@ public class ContratDeVente {
     )
     private int id_contrat;
 
+
     @OneToOne
     @JoinColumn(name="id_article")
     private Article article;
