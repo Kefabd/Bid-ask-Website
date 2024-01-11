@@ -15,4 +15,7 @@ public interface UtilisateurService {
     List<Utilisateur> getAllUsers();
 
 
+    Utilisateur updateUtilisateur(int id, Utilisateur utilisateur);
+
+    void deleteUtilisateur(int id);
 }
