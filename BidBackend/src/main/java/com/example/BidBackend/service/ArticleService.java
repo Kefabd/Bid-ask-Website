@@ -10,6 +10,10 @@ public interface ArticleService {
     Article save(Article article);
 
 
+    Article update(Article article);
+
+    void deleteById(Long id);
+
     List<Article> getAllArticles();
 
     List<Article> getActiveArticles();

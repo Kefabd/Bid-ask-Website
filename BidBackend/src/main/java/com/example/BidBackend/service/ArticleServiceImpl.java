@@ -25,6 +25,21 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.save(article);
     }
 
+    @Override
+    public Article update(Article article) {
+        // Check if the article with the given ID exists
+        if (articleRepository.existsById(article.getId_article())) {
+            return articleRepository.save(article);
+        }
+        return null; // Or throw an exception if you prefer
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        articleRepository.deleteById(id);
+    }
+
+
 
     @Override
     public List<Article> getAllArticles() {
