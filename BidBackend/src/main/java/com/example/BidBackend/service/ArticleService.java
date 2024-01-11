@@ -2,6 +2,21 @@ package com.example.BidBackend.service;
 
 import com.example.BidBackend.model.Article;
 
+import java.util.List;
+
 public interface ArticleService {
-    public Article save(Article article);
+    public Article findById(Long id);
+
+    Article save(Article article);
+
+
+    List<Article> getAllArticles();
+
+    List<Article> getActiveArticles();
+
+    List<Article> searchArticlesByKeyword(String keyword);
+
+    List<Article> getArticlesBySeller(int sellerId);
+
+    void closeAuction(int articleId);
 }

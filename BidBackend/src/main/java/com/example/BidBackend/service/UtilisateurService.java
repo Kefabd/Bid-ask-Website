@@ -2,7 +2,17 @@ package com.example.BidBackend.service;
 
 import com.example.BidBackend.model.Utilisateur;
 
+import java.util.List;
+
 public interface UtilisateurService {
 
-    public Utilisateur save(Utilisateur utilisateur);
+    Utilisateur save(Utilisateur utilisateur);
+
+    Utilisateur findById(int id);
+
+    Utilisateur findByEmail(String email);
+
+    List<Utilisateur> getAllUsers();
+
+
 }
