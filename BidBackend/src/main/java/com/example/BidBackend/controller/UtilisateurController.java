@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/utilisateurs")
+@CrossOrigin
 public class UtilisateurController {
 
     @Autowired
@@ -24,7 +25,7 @@ public class UtilisateurController {
         return utilisateurService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
         return utilisateurService.save(utilisateur);
     }

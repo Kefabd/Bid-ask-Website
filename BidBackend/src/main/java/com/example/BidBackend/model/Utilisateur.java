@@ -22,6 +22,7 @@ public class Utilisateur {
     private String email;
     private String nom_utilisateur;
     private String prenom_utilisateur;
+    private  String password;
 
     @OneToMany(mappedBy = "utilisateur")
     private List<Article> articles;  // Add this line

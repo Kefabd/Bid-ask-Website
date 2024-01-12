@@ -27,7 +27,17 @@ export default function Header() {
         setShowSign(true);
     }
 
+    useEffect(() => {
+        // Check if the current route is "/authenticate"
 
+        if (location.pathname === "/authenticate") {
+            // Change the body background color here
+            document.body.setAttribute("makeBack", "yes");
+        } else {
+            // Reset the body background color for other routes
+            document.body.removeAttribute("makeBack");
+        }
+    }, [location.pathname]);
     return (
         <div>
             <nav className={`navbar navbar-expand-sm p-3 ${scrolling ? 'bg-change' : ''}`}>
