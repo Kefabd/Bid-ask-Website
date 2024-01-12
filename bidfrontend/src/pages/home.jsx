@@ -3,6 +3,7 @@
 
 import React, { useState } from "react";
 import Header from "../components/header/header";
+import Shop from './shop';
 import CadreInfos from "../components/cadreInfos";
 import AjoutArticle from "./AjoutArticle";
 
@@ -22,6 +23,7 @@ export default function Home() {
         <>
         <div>
     <Header />
+    <AjoutArticle></AjoutArticle>
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }}>
           <Carousel onSelect={handleCarouselSelect}>
