@@ -36,19 +36,20 @@ export default function Authenticate() {
 
     const handleClickSignUp = async (e) => {
         e.preventDefault();
-        
-        console.log(isVendor);
-                const user = { isVendor,email, firstName, lastName,password };
-        console.log(JSON.stringify(user));
+
+        const user = { isVendor, email, firstName, lastName, password };
+
         const response = await fetch("http://localhost:8080/utilisateurs/add", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(user)
         })
+
         const result = await response.text();
-        setLogIn(result === '');
+        setExist(result === '');
 
     }
+
     const handleClickLogIn = async (e) => {
         e.preventDefault();
         const user = { email, password };

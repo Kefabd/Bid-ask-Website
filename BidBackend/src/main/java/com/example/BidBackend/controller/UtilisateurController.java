@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/utilisateurs")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class UtilisateurController {
 
     @Autowired
@@ -46,8 +46,12 @@ public class UtilisateurController {
 
     @PostMapping("/add")
     public String createUtilisateur(@RequestBody Utilisateur utilisateur) {
-        utilisateurService.save(utilisateur);
-        return "New user added";}
+        if (getByEmail(utilisateur.getEmail()) == null) {
+            utilisateurService.save(utilisateur);
+            return "New user added";
+        }
+        return null;
+    }
 
 
 
