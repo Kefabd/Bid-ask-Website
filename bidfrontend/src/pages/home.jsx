@@ -3,6 +3,8 @@
 
 import React, { useState } from "react";
 import Header from "../components/header/header";
+import Cadre from "../components/cadre";
+import CadreInfos from "../components/cadreInfos";
 
 import Carousel from "react-bootstrap/Carousel";
 import image1 from "../dependecies/images/500-2 (1).jpg";
@@ -54,7 +56,8 @@ export default function Home() {
       </div>
       <div>
         <h1 className="Titre1">Récemment publiés</h1>
-        
+        <Cadre></Cadre>
+        <CadreInfos></CadreInfos>
       </div>
             <style>
                 {
@@ -70,3 +73,4 @@ export default function Home() {
         </div>
     );
 }
+

@@ -153,7 +153,7 @@ body[makeback="yes"]{
 }
 
 .authenticate input,
-.authenticate textarea, .authenticate .select {
+.authenticate textarea {
   font-size: 22px;
   display: block;
   width: 100%;
@@ -169,12 +169,9 @@ body[makeback="yes"]{
 }
 
 .authenticate input:focus,
-.authenticate textarea, .authenticate .select:focus {
+.authenticate textarea {
   outline: 0;
   border-color: #1ab188;
-}
-.authenticate .select option{
-  background: #1ab188;
 }
 
 .authenticate textarea {
@@ -316,3 +313,152 @@ p {
   font-weight: bold;
   font-family: 'Georgia', serif;
 }
+
+/*Card component*/
+.cadre {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 300px;
+  max-height: 400px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajout de l'ombre */
+  transition: box-shadow 0.3s ease; /* Transition pour l'effet hover */
+}
+
+.cadre:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Changement de l'ombre au survol */
+}
+
+.cadre-image {
+  width: 100%;
+  height: 200px;
+}
+
+.cadre-content {
+  padding: 20px;
+}
+
+.cadre-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.cadre-prix {
+  color: green;
+  /*color: #DEB887;*/
+}
+
+.cadre-temps {
+  color: blue;
+  /*color: #13232f;*/
+}
+
+
+
+
+
+/*cadre Infos */
+.nouveau-cadre-avec-image {
+  display: flex;
+}
+
+.cadre-image {
+  max-width: 60%;
+  height: auto;
+  border-radius: 5px;
+  margin: 20px; /* Ajoute un espace entre l'image et le cadre */
+}
+
+.nouveau-cadre {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.nouveau-cadre-gris {
+  background-color: #f0f0f0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.cadre-titre {
+  
+  inset: 0px 0px auto;
+    height: 40px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.cadre-titre h2 {
+  margin: 0;
+}
+
+.nouveau-cadre-blanc {
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  flex: 1;
+  padding: 20px;
+  margin: 5px;
+  box-sizing: border-box;
+}
+
+.nouveau-cadre-contenu {
+  text-align: center;
+  color: gray;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+  font-size: small;
+}
+.petit{
+  margin: 13px;
+}
+.bgBlanc{
+  background-color: #fff;
+}
+.bb{
+  color: black;
+}
+
+.textCentrer{
+  text-align: center;
+  font-size: larger;
+}
+
+.nouveau-cadre-boutons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column; /* Met les boutons l'un en dessous de l'autre */
+  align-items: center; /* Centre les boutons horizontalement */
+}
+.nouveau-cadre-boutons button{
+  width: 200px;
+}
+
+.nouveau-cadre-info {
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-basis: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nouveau-cadre-prix {
+  color: green;
+}
+
+.nouveau-cadre-temps {
+  color: blue;
+}
+
