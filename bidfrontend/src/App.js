@@ -1,11 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import Authenticate from './pages/authenticate';
+
 
 function App() {
   return (
-    <div className="App">
-      <h1>Welcome NADIA, BOUCHERA and ME</h1>
-    </div>
+    <Routes>
+      <Route  index element={<Home />} />
+      <Route path='/authenticate' element={<Authenticate />} />
+    </Routes>
   );
 }
 
