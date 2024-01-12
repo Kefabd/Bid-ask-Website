@@ -12,6 +12,8 @@ export default function Authenticate() {
     const [email, setEmail] = useState('');
     const [password, setPwd] = useState('');
     const [isVendor, setIsVendor] = useState();
+    const [exist, setExist] = useState(null);
+    const [login, setLogIn] = useState(null);
     const location = useLocation();
 
     const handleTabClick = (tab) => {
@@ -29,26 +31,25 @@ export default function Authenticate() {
         } else {
             label.classList.add("active", "highlight");
         }
-        console.log(input.target.value === "");
-        console.log(label);
+       
     };
 
-    const handleClick = (e) => {
+    const handleClickSignUp = async (e) => {
         e.preventDefault();
         
-        const user = { isVendor,email, firstName, lastName,password };
+        console.log(isVendor);
+                const user = { isVendor,email, firstName, lastName,password };
         console.log(JSON.stringify(user));
         fetch("http://localhost:8080/utilisateurs/add", {
             method: "POST",
-            headers: {"Content-type": "application/json"},
+            headers: { "Content-type": "application/json" },
             body: JSON.stringify(user)
-        }).then(() => {
-            console.log("New user added");
         })
+        const result = await response.text();
+        setLogIn(result === '');
+
     }
 
-
-    
 
 
     return (
@@ -72,7 +73,7 @@ export default function Authenticate() {
                         <div id="signup" style={{ display: activeTab === "signup" ? "block" : "none" }}>
                             <h1>Sign Up for Free</h1>
 
-                            <form action="/" method="post" onSubmit={handleClick}>
+                            <form action="/" method="post" onSubmit={handleClickSignUp}>
                                 <div className="top-row">
                                     <div className="field-wrap">
                                         <label htmlFor="cc">
@@ -81,7 +82,7 @@ export default function Authenticate() {
                                         <input type="text" required autoComplete="off" onChange={(e) => {
                                             setFirstName(e.target.value);
                                             handleInputChange(e);
-                                        }}/>
+                                        }} />
                                     </div>
 
                                     <div className="field-wrap">
@@ -91,7 +92,7 @@ export default function Authenticate() {
                                         <input type="text" required autoComplete="off" onChange={(e) => {
                                             setLastName(e.target.value);
                                             handleInputChange(e);
-                                        }}/>
+                                        }} />
                                     </div>
                                 </div>
 
@@ -100,9 +101,9 @@ export default function Authenticate() {
                                         Email Address<span className="req">*</span>
                                     </label>
                                     <input type="email" required autoComplete="off" onChange={(e) => {
-                                            setEmail(e.target.value);
-                                            handleInputChange(e);
-                                        }}/>
+                                        setEmail(e.target.value);
+                                        handleInputChange(e);
+                                    }} />
                                 </div>
 
                                 <div className="field-wrap">
@@ -110,25 +111,37 @@ export default function Authenticate() {
                                         Set A Password<span className="req">*</span>
                                     </label>
                                     <input type="password" required autoComplete="off" onChange={(e) => {
-                                            setPwd(e.target.value);
-                                            handleInputChange(e);
-                                        }}/>
+                                        setPwd(e.target.value);
+                                        handleInputChange(e);
+                                    }} />
                                 </div>
 
                                 <div className="field-wrap">
                                     <label>Vendeur / Acheteur</label>
                                     <select name="cars" className="select" defaultValue="" required onChange={(e) => {
-                                           if(e.target.value === "vendeur"){
+                                        if (e.target.value === "vendeur") {
                                             setIsVendor(1);
-                                           }else
+                                        } else
                                             setIsVendor(0);
-                                            handleInputChange(e);
-                                        }}>
+                                        handleInputChange(e);
+                                    }}>
                                         <option value="" disabled hidden></option>
                                         <option value="vendeur">Vendeur</option>
                                         <option value="acheteur">Acheteur</option>
                                     </select>
                                 </div>
+                                {exist === true &&
+                                    <div className="alert alert-danger">
+                                        <strong>User already exist!</strong> Please try another time.
+                                    </div>
+                                }
+
+                                {exist === false &&
+                                    <div className="alert alert-success">
+                                        <strong>Registration succeded</strong> Congrats
+                                    </div>
+                                }
+
 
                                 <button type="submit" className="button button-block" >
                                     Get Started
@@ -139,24 +152,41 @@ export default function Authenticate() {
                         <div id="login" style={{ display: activeTab === "login" ? "block" : "none" }}>
                             <h1>Welcome Back!</h1>
 
-                            <form  method="post">
+                            <form method="post" action="/" onSubmit={handleClickLogIn}>
                                 <div className="field-wrap">
                                     <label>
                                         Email Address<span className="req">*</span>
                                     </label>
-                                    <input type="email" required autoComplete="off" onChange={(e) => handleInputChange(e)} />
+                                    <input type="email" required autoComplete="off" onChange={(e) => {
+                                        setEmail(e.target.value);
+                                        handleInputChange(e);
+                                    }} />
                                 </div>
 
                                 <div className="field-wrap">
                                     <label>
                                         Password<span className="req">*</span>
                                     </label>
-                                    <input type="password" required autoComplete="off" onChange={(e) => handleInputChange(e)} />
+                                    <input type="password" required autoComplete="off" onChange={(e) => {
+                                        setPwd(e.target.value);
+                                        handleInputChange(e);
+                                    }} />
                                 </div>
 
                                 <p className="forgot">
                                     <a href="#">Forgot Password?</a>
                                 </p>
+                                {login == true &&
+                                    <div className="alert alert-danger">
+                                        <strong>User already exist!</strong> Please try another time.
+                                    </div>
+                                }
+
+                                {login === false &&
+                                    <div className="alert alert-success">
+                                        <strong>Registration succeded</strong> Congrats
+                                    </div>
+                                }
 
                                 <button className="button button-block">Log In</button>
                             </form>
