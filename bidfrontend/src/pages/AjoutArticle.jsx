@@ -32,16 +32,26 @@ const AjoutArticle = () => {
     formData.append("prixMin", prixMin);
     formData.append("date_debut", date_debut);
     formData.append("date_fin", date_fin);
+    console.log(formData);
 
     fetch("http://localhost:8080/article/add", {
         method: "POST",
         body: formData,
+        mode: "cors"
     })
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
+
+        // Vérifier si la réponse est une redirection
+        if (response.redirected) {
+            // Effectuer une redirection côté client si nécessaire
+            window.location.href = response.url;
+        } else {
+            // Continuer avec le traitement JSON
+            return response.text().then(console.log);
+        }
     })
     .then(data => {
         console.log("New article added:", data);
@@ -50,6 +60,7 @@ const AjoutArticle = () => {
         console.error('Fetch Error:', error);
     });
 };
+
 
 
   return (
@@ -120,12 +131,9 @@ const AjoutArticle = () => {
                 />
               </div>
               <div className="field-wrap">
-              <label for="image">Image:</label>
-              <input type="file" name="image" accept="image/*" required onChange={(e) => {                                       
-                    handleInputChange(e);
-                    setImage(e.target.value);
-                }} />
-             </div>
+        <label htmlFor="image">Image:</label>
+        <input type="file" name="image" accept="image/*" required onChange={(e) => { handleInputChange(e); setImage(e.target.files[0]); }} />
+    </div>
 
               <div className="field-wrap">
                 <label>

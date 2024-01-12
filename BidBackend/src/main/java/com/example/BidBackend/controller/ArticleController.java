@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpHeaders;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -22,52 +25,49 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(path="/add",consumes = {MULTIPART_FORM_DATA_VALUE})
+    public String createArticle(
+            @RequestPart("image") MultipartFile imageFile,
+            @RequestPart("nom_article") String nom_article,
+            @RequestPart("délai") String délai,
+            @RequestPart("description") String description,
+            @RequestPart("prixMin") String prixMin,
+            @RequestPart("date_debut") String date_debut,
+            @RequestPart("date_fin") String date_fin) {
 
-    @PostMapping("/add")
-    public String createArticle(@RequestPart("image") MultipartFile imageFile,
-                                @RequestPart("nom_article") String nom_article,
-                                @RequestPart("délai") String délai,
-                                @RequestPart("description") String description,
-                                @RequestPart("prixMin") String prixMin,
-                                @RequestPart("date_debut") String date_debut,
-                                @RequestPart("date_fin") String date_fin) {   try {
-        Article article = new Article(); // Assurez-vous de déclarer et initialiser un objet Article
+        try {
+            Article article = new Article();
+            article.setNom_article(nom_article);
+            article.setDélai(LocalTime.parse(délai));
+            article.setDescription(description);
+            article.setPrixMin(Double.parseDouble(prixMin));
+            article.setDate_debut(LocalDate.parse(date_debut));
+            article.setDate_fin(LocalDate.parse(date_fin));
 
-        // ... (votre code pour la gestion du fichier image)
+            // Chemin relatif par rapport à la racine du projet
+            String relativePath = "bidfrontend/public/images";
+            String directoryPath = new File(relativePath).getAbsolutePath();
 
-        // Mise à jour d'autres champs de l'article avec les valeurs reçues
-        article.setNom_article(nom_article);
-        article.setDélai(LocalTime.parse(délai));
-        article.setDescription(description);
-        article.setPrixMin(Double.parseDouble(prixMin));
-        article.setDate_debut(LocalDate.parse(date_debut));
-        article.setDate_fin(LocalDate.parse(date_fin));
-            // Vérifiez si le répertoire existe, sinon créez-le
-            String directoryPath = "C:\\image-directory";
             File directory = new File(directoryPath);
             if (!directory.exists()) {
                 directory.mkdirs();
             }
 
-            // Construction du chemin complet pour le fichier image
             String imagePath = directoryPath + File.separator + imageFile.getOriginalFilename();
-
-            // Transfert du fichier vers le répertoire spécifié
             imageFile.transferTo(new File(imagePath));
 
-            // Mise à jour du champ imagePath de l'article
-            article.setImage(imagePath);
-
-            // Enregistrement de l'article dans la base de données
+            // Utilisez le chemin relatif comme valeur de l'image
+            article.setImage("images/" + imageFile.getOriginalFilename());
             articleService.save(article);
 
+
         } catch (IOException e) {
-            // Gestion des erreurs liées au traitement de l'image
             e.printStackTrace();
         }
-
-        return "redirect:/articles";
+        return null;
     }
+
 
 
 

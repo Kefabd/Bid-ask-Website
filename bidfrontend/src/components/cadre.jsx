@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import 'moment/locale/fr'; // Assurez-vous d'importer la localisation souhaitée
-import image from '../images/cat.jpg';
+import 'moment/locale/fr';
 
 function Cadre({ article }) {
   const calculateTimeLeft = () => {
@@ -29,10 +28,12 @@ function Cadre({ article }) {
 
     return () => clearTimeout(timer);
   });
+  const source = `http://localhost:3000/${article.image}`;
+  console.log(source);
 
   return (
     <div className="cadre">
-      <img className="cadre-image" src={image} alt="Description de l'image" />
+      <img className="cadre-image" src={source} alt="Description de l'image" />
       <div className="cadre-content">
         <p>{article.description}</p>
         <div className="cadre-info">
