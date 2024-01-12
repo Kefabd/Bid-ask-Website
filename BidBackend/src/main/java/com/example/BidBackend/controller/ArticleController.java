@@ -1,6 +1,7 @@
 package com.example.BidBackend.controller;
 
 import com.example.BidBackend.model.Article;
+import com.example.BidBackend.model.Utilisateur;
 import com.example.BidBackend.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class ArticleController {
     private ArticleService articleService;
 
     @PostMapping("/add")
-    public String add(@RequestBody Article article) {
+    public String createArticle(@RequestBody Article article) {
         articleService.save(article);
         return "New article added";
     }
@@ -24,34 +25,21 @@ public class ArticleController {
         return articleService.getAllArticles();
     }
 
-    @DeleteMapping("/delete")
-    public String delete(@RequestBody Article article) {
-        articleService.deleteById(article.getId_article());
+    @GetMapping("/{id}")
+    public Article getArticleById(@PathVariable Long id)
+    {
+        return articleService.findById(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteArticle(@PathVariable Long id) {
+        articleService.deleteArticle(id);
         return "Article deleted";
     }
 
-    @PutMapping("/update")
-    public String update(@RequestBody Article updatedArticle) {
-        Article existingArticle = articleService.findById(updatedArticle.getId_article());
-
-        if (existingArticle != null) {
-            // Update the existing article with the new values
-            existingArticle.setNom_article(updatedArticle.getNom_article());
-            existingArticle.setDate_debut(updatedArticle.getDate_debut());
-            existingArticle.setDate_fin(updatedArticle.getDate_fin());
-            existingArticle.setDélai(updatedArticle.getDélai());
-            existingArticle.setDescription(updatedArticle.getDescription());
-            existingArticle.setPrixMin(updatedArticle.getPrixMin());
-            existingArticle.setStatut(updatedArticle.getStatut());
-
-            // Save the updated article
-            articleService.update(existingArticle);
-
-            return "Article updated";
-        } else {
-            return "Article not found";
-        }
-
-
+    @PutMapping("/update/{id}")
+    public String updateArticle(@PathVariable Long id, @RequestBody Article article) {
+        articleService.updateArticle(id, article);
+        return "Article updated";
     }
 }

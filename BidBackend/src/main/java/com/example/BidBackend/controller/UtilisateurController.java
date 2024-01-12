@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/utilisateurs")
+@RequestMapping("/Utilisateur")
 public class UtilisateurController {
 
     @Autowired
     private UtilisateurService utilisateurService;
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<Utilisateur> getAllUtilisateurs() {
         return utilisateurService.getAllUsers();
     }
@@ -24,20 +24,25 @@ public class UtilisateurController {
         return utilisateurService.findById(id);
     }
 
-    @PostMapping
-    public Utilisateur createUtilisateur(@RequestBody Utilisateur utilisateur) {
-        return utilisateurService.save(utilisateur);
+    @PostMapping("/add")
+    public String createUtilisateur(@RequestBody Utilisateur utilisateur) {
+        utilisateurService.save(utilisateur);
+        return "New user added";
+
     }
 
     // Endpoint pour mettre à jour un utilisateur existant
-    @PutMapping("/{id}")
-    public Utilisateur updateUtilisateur(@PathVariable int id, @RequestBody Utilisateur utilisateur) {
-        return utilisateurService.updateUtilisateur(id, utilisateur);
+    @PutMapping("/update/{id}")
+    public String updateUtilisateur(@PathVariable int id, @RequestBody Utilisateur utilisateur) {
+        utilisateurService.updateUtilisateur(id, utilisateur);
+        return "User updated";
     }
 
     // Endpoint pour supprimer un utilisateur par ID
-    @DeleteMapping("/{id}")
-    public void deleteUtilisateur(@PathVariable int id) {
+    @DeleteMapping("/delete/{id}")
+    public String deleteUtilisateur(@PathVariable int id)
+    {
         utilisateurService.deleteUtilisateur(id);
+        return "User deleted";
     }
 }

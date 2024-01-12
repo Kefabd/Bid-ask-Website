@@ -52,10 +52,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
             // Enregistrez les modifications dans la base de données
             return utilisateurRepository.save(existingUtilisateur);
         } else {
-            return null;  }
-
-
-}
+            return null;
+            }
+        }
 
     @Override
     public void deleteUtilisateur(int id) {
