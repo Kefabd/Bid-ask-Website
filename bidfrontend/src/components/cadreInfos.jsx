@@ -1,14 +1,27 @@
 import React from 'react';
-import imageSrc from '../images/cat.jpg'; // Remplacez le chemin par le chemin réel de votre image
+import { useParams } from 'react-router-dom';
+import { useState,useEffect } from 'react';
+import Header from './header/header';
 
 function CadreInfos() {
+  const { id } = useParams();
+  const [article, setArticle] = useState([]);
+
+useEffect(() => {
+  fetch(`http://localhost:8080/article/${id}`)
+    .then((response) => response.json())
+    .then((data) => setArticle(data))
+    .catch((error) => console.error('Erreur lors de la récupération de l\'article', error));
+}, [id]); 
+  const source = `http://localhost:3000/${article.image}`;
   return (
     <nav>
+      <Header></Header>
       <div className="cadre-titre">
-        <h2>Titre du Cadre</h2>
+        <h2>{article.nom_article}</h2>
       </div>
       <div className="nouveau-cadre-avec-image">
-        <img src={imageSrc} alt="Description de l'image" className="cadre-image" />
+        <img src={source} alt="Description de l'image" className="cadre-image2" />
         <div>
         <div className="nouveau-cadre">
           <div className="nouveau-cadre-gris">
