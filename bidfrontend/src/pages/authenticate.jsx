@@ -49,6 +49,19 @@ export default function Authenticate() {
         setLogIn(result === '');
 
     }
+    const handleClickLogIn = async (e) => {
+        e.preventDefault();
+        const user = { email, password };
+
+        const response = await fetch("http://localhost:8080/utilisateurs/logIn", {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(user)
+        })
+        const result = await response.text();
+        setLogIn(result === '');
+
+    }
 
 
 
