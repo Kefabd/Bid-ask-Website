@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import moment from 'moment';
 import 'moment/locale/fr'; // Assurez-vous d'importer la localisation souhaitée
 import image from '../images/cat.jpg';
 
