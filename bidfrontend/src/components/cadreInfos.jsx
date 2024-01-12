@@ -1,56 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import imageSrc from '../images/cat.jpg'; // Remplacez le chemin par le chemin réel de votre image
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useState,useEffect } from 'react';
+import Header from './header/header';
 
 function CadreInfos() {
-  const [prixPropose, setPrixPropose] = useState('');
-  const [showForm, setShowForm] = useState(false);
-  const [NvPrix, setNvPrix] = useState(localStorage.getItem('NvPrix'));
-  const [nbEnrichisseurs, setNbEnrichisseurs] = useState(
-    parseInt(localStorage.getItem('nbEnrichisseurs')) || 0
-  );
+  const { id } = useParams();
+  const [article, setArticle] = useState([]);
 
-  useEffect(() => {
-    // Mettez à jour les valeurs dans le stockage local à chaque modification
-    localStorage.setItem('NvPrix', NvPrix);
-    localStorage.setItem('nbEnrichisseurs', nbEnrichisseurs.toString());
-  }, [NvPrix, nbEnrichisseurs]);
+useEffect(() => {
+  fetch(`http://localhost:8080/article/${id}`)
+    .then((response) => response.json())
+    .then((data) => setArticle(data))
+    .catch((error) => console.error('Erreur lors de la récupération de l\'article', error));
+}, [id]); 
+  const source = `http://localhost:3000/${article.image}`;
 
-  const handleAcheterClick = () => {
-    setShowForm(true);
-  };
-  const handleConfirmerClick = () => {
-    // Envoyez le prixPropose au backend pour vérification
-    // Vous pouvez utiliser fetch ou axios pour effectuer une requête HTTP
-    // Assurez-vous d'ajuster l'URL et les détails de la requête en fonction de votre backend
-    fetch('http://localhost:8080/article/verifierPrix', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ prixPropose }),
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.accepte) {
-          // Implémentez ici la logique de confirmation (par exemple, rediriger vers une page de confirmation)
-          console.log('Prix accepté');
-          setNvPrix(prixPropose);
-          setNbEnrichisseurs(nbEnrichisseurs+1);
-        } else {
-          alert('Le prix proposé doit être supérieur ou égal au prix minimum.');
-        }
-      })
-      .catch(error => {
-        console.error('Erreur lors de la vérification du prix :', error);
-      });
-  };
   return (
     <nav>
+      <Header></Header>
       <div className="cadre-titre">
-        <h2>Titre du Cadre</h2>
+        <h2>{article.nom_article}</h2>
       </div>
       <div className="nouveau-cadre-avec-image">
-        <img src={imageSrc} alt="Description de l'image" className="cadre-image" />
+        <img src={source} alt="Description de l'image" className="cadre-image2" />
         <div>
         <div className="nouveau-cadre">
           <div className="nouveau-cadre-gris">
