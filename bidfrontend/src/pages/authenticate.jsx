@@ -36,8 +36,7 @@ export default function Authenticate() {
     const handleClick = (e) => {
         e.preventDefault();
         
-        console.log(isVendor);
-                const user = { isVendor,email, firstName, lastName,password };
+        const user = { isVendor,email, firstName, lastName,password };
         console.log(JSON.stringify(user));
         fetch("http://localhost:8080/utilisateurs/add", {
             method: "POST",
