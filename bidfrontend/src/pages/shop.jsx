@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Cadre from '../components/cadre';
-import Header from '../components/header/header';
 
 function Shop() {
   const [articles, setArticles] = useState([]);
@@ -15,7 +14,7 @@ function Shop() {
 
   return (
     <div>
-        <Header/>
+      <h1>Shop</h1>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {articles.map((article) => (
           <Cadre key={article.id_article} article={article} style={{ margin: '10px' }} />

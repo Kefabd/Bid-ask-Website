@@ -59,9 +59,9 @@ export default function Authenticate() {
             body: JSON.stringify(user)
         })
         const result = await response.text();
-        setLogIn(result === '');
+        setLogIn(result === '');
 
-    }
+    }
 
 
 
