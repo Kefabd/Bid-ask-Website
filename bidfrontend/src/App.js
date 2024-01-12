@@ -2,7 +2,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Authenticate from './pages/authenticate';
-import Shop from './pages/shop';
+import Shop from './pages/Shop';
 
 
 function App() {
