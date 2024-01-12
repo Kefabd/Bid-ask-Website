@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import imageSrc from '../images/cat.jpg'; // Remplacez le chemin par le chemin réel de votre image
 
-function CadreInfos({article}) {
+function CadreInfos() {
   const [prixPropose, setPrixPropose] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [NvPrix, setNvPrix] = useState(localStorage.getItem('NvPrix'));

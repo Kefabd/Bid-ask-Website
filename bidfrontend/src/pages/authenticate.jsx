@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import background from '../dependecies/images/antique-1.jpg';
 import * as babelTypes from "@babel/types";
 
+
 // Now you can use babelTypes for AST manipulation
 import { useLocation } from "react-router-dom";
 
@@ -59,9 +60,8 @@ export default function Authenticate() {
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(user)
         })
-        const result = await response.text();
-        setLogIn(result === '');
-
+        // const result = await response.text();
+        // setLogIn(result === '');
     }
 
 
@@ -193,13 +193,11 @@ export default function Authenticate() {
                                 {login == true &&
                                     <div className="alert alert-danger">
                                         <strong>User already exist!</strong> Please try another time.
-                                    </div>
+                                    </div> 
                                 }
-
                                 {login === false &&
                                     <div className="alert alert-success">
                                         <strong>Login succeded</strong> 
-                                        
                                     </div>
                                 }
 
