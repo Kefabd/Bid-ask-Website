@@ -3,21 +3,24 @@
 
 import React, { useState } from "react";
 import Header from "../components/header/header";
-import Cadre from "../components/cadre";
+import Shop from './Shop';
 import CadreInfos from "../components/cadreInfos";
+import AjoutArticle from "./AjoutArticle";
 
 import Carousel from "react-bootstrap/Carousel";
 import image1 from "../dependecies/images/500-2 (1).jpg";
 import image2 from "../dependecies/images/500.jpg";
 import image3 from "../dependecies/images/600.jpg";
+import Cadre from '../components/cadre';
 
 export default function Home() {
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    const handleCarouselSelect = (selectedIndex) => {
-      setCurrentIndex(selectedIndex);
-    };
-    return (
+  const handleCarouselSelect = (selectedIndex) => {
+    setCurrentIndex(selectedIndex);
+  };
+    return(
+        <>
         <div>
     <Header />
       <div style={{ display: "flex" }}>
@@ -56,17 +59,10 @@ export default function Home() {
       </div>
         <h1 className="Titre1">Récemment publiés</h1>
         <div  style={{ display: "flex" }}>
-        <Cadre></Cadre>
-        <Cadre></Cadre>
-        <Cadre></Cadre>
-        <Cadre></Cadre>
+   
       </div >
       <h1 className="Titre1">Plus populaires</h1>
         <div  style={{ display: "flex" }}>
-        <Cadre></Cadre>
-        <Cadre></Cadre>
-        <Cadre></Cadre>
-        <Cadre></Cadre>
       </div >
 
       <div className="avis">
@@ -95,6 +91,9 @@ export default function Home() {
         </div>
       </div>
         </div>
-    );
+        </>
+    )
 }
+
+           
 

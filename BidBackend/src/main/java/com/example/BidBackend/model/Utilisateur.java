@@ -18,6 +18,7 @@ public class Utilisateur {
             strategy = GenerationType.IDENTITY
     )
     private int id_utilisateur;
+    private Boolean est_vendeur;
     @Column(name = "isVendorValue")
     private Boolean isVendor;
     private String email;

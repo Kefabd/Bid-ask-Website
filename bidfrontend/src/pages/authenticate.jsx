@@ -36,20 +36,19 @@ export default function Authenticate() {
 
     const handleClickSignUp = async (e) => {
         e.preventDefault();
-
-        const user = { isVendor, email, firstName, lastName, password };
-
+        
+        console.log(isVendor);
+                const user = { isVendor,email, firstName, lastName,password };
+        console.log(JSON.stringify(user));
         const response = await fetch("http://localhost:8080/utilisateurs/add", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(user)
         })
-
         const result = await response.text();
-        setExist(result === '');
+        setLogIn(result === '');
 
     }
-
     const handleClickLogIn = async (e) => {
         e.preventDefault();
         const user = { email, password };
@@ -60,9 +59,9 @@ export default function Authenticate() {
             body: JSON.stringify(user)
         })
         const result = await response.text();
-        setLogIn(result === '');
+        setLogIn(result === '');
 
-    }
+    }
 
 
 

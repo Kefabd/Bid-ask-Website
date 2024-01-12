@@ -44,6 +44,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
             Utilisateur existingUtilisateur = existingUtilisateurOptional.get();
 
             // Mettez à jour les champs de l'utilisateur existant avec les nouvelles valeurs
+            existingUtilisateur.setEst_vendeur(utilisateur.getEst_vendeur());
             existingUtilisateur.setIsVendor(utilisateur.getIsVendor());
             existingUtilisateur.setEmail(utilisateur.getEmail());
             existingUtilisateur.setLastName(utilisateur.getLastName());

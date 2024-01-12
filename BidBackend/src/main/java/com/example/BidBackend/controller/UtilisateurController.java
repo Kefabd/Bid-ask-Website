@@ -45,14 +45,11 @@ public class UtilisateurController {
     }
 
     @PostMapping("/add")
-
     public String createUtilisateur(@RequestBody Utilisateur utilisateur) {
-        if(getByEmail(utilisateur.getEmail())==null){
-            utilisateurService.save(utilisateur);
-            return "New user added";
-        }
-        return null;
-    }
+        utilisateurService.save(utilisateur);
+        return "New user added";}
+
+
 
     // Endpoint pour mettre à jour un utilisateur existant
     @PutMapping("/update/{id}")
