@@ -198,7 +198,8 @@ export default function Authenticate() {
 
                                 {login === false &&
                                     <div className="alert alert-success">
-                                        <strong>Registration succeded</strong> Congrats
+                                        <strong>Login succeded</strong> 
+                                        
                                     </div>
                                 }
 
