@@ -51,9 +51,7 @@ export default function Header() {
                             <li className="nav-item mx-5 text-center">
                                 <Link to='/' className={`nav-link ${location.pathname == '/' ? 'nav-link-underline' : ''}`}>Home</Link>
                             </li>
-                            <li className="nav-item mx-5 text-center">
-                                <Link to='/' className={`nav-link ${location.pathname == '/shop' ? 'nav-link-underline' : ''}`}>Shop</Link>
-                            </li>
+                                <Link to='/shop' className={`nav-link ${location.pathname === '/shop' ? 'nav-link-underline' : ''}`}>Shop</Link>
                             <li className="nav-item mx-5 text-center">
                                 <Link to='/' className={`nav-link ${location.pathname == '/pages' ? 'nav-link-underline' : ''}`}>Pages</Link>
                             </li>
