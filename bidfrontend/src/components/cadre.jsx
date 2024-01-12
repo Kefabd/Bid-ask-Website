@@ -12,8 +12,8 @@ function Cadre() {
       <div className="cadre-content">
         <p>Texte de l'article...</p>
         <div className="cadre-info">
-          <p className="cadre-prix">Prix : 19,99 €</p>
-          <p className="cadre-temps">Temps estimé : 2 heures</p>
+          <p className="cadre-prix">19,99 €</p>
+          <p className="cadre-temps"> 2 heures</p>
         </div>
       </div>
     </div>
