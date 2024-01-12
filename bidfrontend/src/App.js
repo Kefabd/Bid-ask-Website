@@ -4,7 +4,6 @@ import Home from './pages/home';
 import Authenticate from './pages/authenticate';
 import Shop from './pages/shop';
 
-
 function App() {
   return (
     <Routes>
