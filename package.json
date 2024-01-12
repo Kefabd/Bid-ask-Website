@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@babel/types": "^7.23.6"
+  }
+}

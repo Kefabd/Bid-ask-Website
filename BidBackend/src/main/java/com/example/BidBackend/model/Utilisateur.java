@@ -18,10 +18,11 @@ public class Utilisateur {
             strategy = GenerationType.IDENTITY
     )
     private int id_utilisateur;
-    private boolean est_vendeur;
+    @Column(name = "isVendorValue")
+    private Boolean isVendor;
     private String email;
-    private String nom_utilisateur;
-    private String prenom_utilisateur;
+    private String lastName;
+    private String firstName;
     private  String password;
 
     @OneToMany(mappedBy = "utilisateur")

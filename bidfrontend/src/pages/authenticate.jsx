@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import background from '../dependecies/images/antique-1.jpg';
+import * as babelTypes from "@babel/types";
+
+// Now you can use babelTypes for AST manipulation
 import { useLocation } from "react-router-dom";
 
 export default function Authenticate() {
@@ -7,8 +10,8 @@ export default function Authenticate() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [isVendor, setIsVendor] = useState(false);
+    const [password, setPwd] = useState('');
+    const [isVendor, setIsVendor] = useState();
     const location = useLocation();
 
     const handleTabClick = (tab) => {
@@ -32,8 +35,10 @@ export default function Authenticate() {
 
     const handleClick = (e) => {
         e.preventDefault();
-        const user = { isVendor,email, firstName, lastName,pwd };
-        console.log(user);
+        
+        console.log(isVendor);
+                const user = { isVendor,email, firstName, lastName,password };
+        console.log(JSON.stringify(user));
         fetch("http://localhost:8080/utilisateurs/add", {
             method: "POST",
             headers: {"Content-type": "application/json"},
@@ -44,17 +49,7 @@ export default function Authenticate() {
     }
 
 
-    useEffect(() => {
-        // Check if the current route is "/authenticate"
-
-        if (location.pathname === "/authenticate") {
-            // Change the body background color here
-            document.body.setAttribute("makeBack", "yes");
-        } else {
-            // Reset the body background color for other routes
-            document.body.removeAttribute("makeBack");
-        }
-    }, [location.pathname]);
+    
 
 
     return (
@@ -78,7 +73,7 @@ export default function Authenticate() {
                         <div id="signup" style={{ display: activeTab === "signup" ? "block" : "none" }}>
                             <h1>Sign Up for Free</h1>
 
-                            <form action="/" method="post">
+                            <form action="/" method="post" onSubmit={handleClick}>
                                 <div className="top-row">
                                     <div className="field-wrap">
                                         <label htmlFor="cc">
@@ -124,10 +119,10 @@ export default function Authenticate() {
                                 <div className="field-wrap">
                                     <label>Vendeur / Acheteur</label>
                                     <select name="cars" className="select" defaultValue="" required onChange={(e) => {
-                                           if (e.target.value === "vendeur") {
-                                            setIsVendor(true);
-                                           } else 
-                                                setIsVendor(false);
+                                           if(e.target.value === "vendeur"){
+                                            setIsVendor(1);
+                                           }else
+                                            setIsVendor(0);
                                             handleInputChange(e);
                                         }}>
                                         <option value="" disabled hidden></option>
@@ -136,7 +131,7 @@ export default function Authenticate() {
                                     </select>
                                 </div>
 
-                                <button type="submit" className="button button-block" onClick={handleClick}>
+                                <button type="submit" className="button button-block" >
                                     Get Started
                                 </button>
                             </form>
@@ -145,7 +140,7 @@ export default function Authenticate() {
                         <div id="login" style={{ display: activeTab === "login" ? "block" : "none" }}>
                             <h1>Welcome Back!</h1>
 
-                            <form action="/" method="post">
+                            <form  method="post">
                                 <div className="field-wrap">
                                     <label>
                                         Email Address<span className="req">*</span>
