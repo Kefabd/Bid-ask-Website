@@ -238,3 +238,81 @@ body[makeback="yes"]{
   margin-top: -20px;
   text-align: right;
 }
+
+/* Home */
+h1 {
+  padding-top: 10px;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  align-items: center;
+}
+
+p {
+  font-size: 20px;
+  font-family: 'Georgia', serif;
+  align-items: center;
+  color: #DEB887;
+}
+
+.colr {
+  color: #DEB887;
+}
+
+.image-carousel2 {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.image-carousel2.active {
+  border-color: #DEB887; /* Highlight the active image */
+}
+
+.flex2 {
+  padding: 10px 20px;
+  background-color: rgb(244, 247, 249);
+}
+/* Responsive Styles */
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  .image-carousel2 {
+    width: 100px;
+    height: 100px;
+  }
+
+}
+
+@media (max-width: 820px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 8px;
+  }
+
+  .image-carousel2 {
+    width: 80px;
+    height: 80px;
+  }
+  .image-carousel {
+    width: 200px;
+    height: 200px;
+  }
+}
+.Titre1{
+  padding-top: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+}
