@@ -235,3 +235,36 @@ body[makeback="yes"]{
   margin-top: -20px;
   text-align: right;
 }
+
+
+.cadre {
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.cadre-image {
+  width: 100%;
+  height: auto;
+}
+
+.cadre-content {
+  padding: 20px;
+}
+
+.cadre-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.cadre-prix {
+  color: green;
+}
+
+.cadre-temps {
+  color: blue;
+}
+
