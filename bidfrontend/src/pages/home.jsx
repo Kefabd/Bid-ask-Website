@@ -54,22 +54,46 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div>
         <h1 className="Titre1">Récemment publiés</h1>
+        <div  style={{ display: "flex" }}>
         <Cadre></Cadre>
-        <CadreInfos></CadreInfos>
-      </div>
-            <style>
-                {
-                    `
-                    h2{
-                        padding-top:50px;
-                        align-items: center;
-                    }
-                    `
+        <Cadre></Cadre>
+        <Cadre></Cadre>
+        <Cadre></Cadre>
+      </div >
+      <h1 className="Titre1">Plus populaires</h1>
+        <div  style={{ display: "flex" }}>
+        <Cadre></Cadre>
+        <Cadre></Cadre>
+        <Cadre></Cadre>
+        <Cadre></Cadre>
+      </div >
 
-                }
-            </style>
+      <div className="avis">
+      <h1 className="Titre2">Avis</h1><br/>
+      <p className="davis">Les avis de nos clients parlent d'eux-mêmes. Explorez leurs expériences et découvertes uniques lors de nos enchères. Rejoignez notre communauté et partagez votre propre histoire aujourd'hui.</p>
+        <div style={{ display: "flex" }}>
+        <div class="avis-container">
+            <div class="user-info">
+                <img src={image1} alt="Nom de l'utilisateur" class="user-avatar" />
+                <p class="user-name">Nom de l'utilisateur</p>
+            </div>
+            <p class="avis-texte">
+                "Je suis absolument ravi de mon expérience sur ce site d'enchères. Les sélections uniques et la variété des objets proposés m'ont permis de trouver des trésors que je n'aurais jamais trouvés ailleurs. Les enchères sont excitantes, et le processus est simple et transparent. J'ai remporté plusieurs articles exceptionnels à des prix incroyables. De plus, le service client est réactif et amical. Je recommande vivement cette plateforme à tous les amateurs de découvertes exceptionnelles et d'aventures d'enchères en ligne!"
+            </p>
+            </div>
+
+            <div class="avis-container">
+            <div class="user-info">
+                <img src={image1} alt="Nom de l'utilisateur" class="user-avatar" />
+                <p class="user-name">Nom de l'utilisateur</p>
+            </div>
+            <p class="avis-texte">
+                "Je suis absolument ravi de mon expérience sur ce site d'enchères. Les sélections uniques et la variété des objets proposés m'ont permis de trouver des trésors que je n'aurais jamais trouvés ailleurs. Les enchères sont excitantes, et le processus est simple et transparent. J'ai remporté plusieurs articles exceptionnels à des prix incroyables. De plus, le service client est réactif et amical. Je recommande vivement cette plateforme à tous les amateurs de découvertes exceptionnelles et d'aventures d'enchères en ligne!"
+            </p>
+            </div>
+        </div>
+      </div>
         </div>
     );
 }
