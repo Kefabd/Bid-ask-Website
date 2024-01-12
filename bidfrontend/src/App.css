@@ -153,7 +153,7 @@ body[makeback="yes"]{
 }
 
 .authenticate input,
-.authenticate textarea {
+.authenticate textarea, .authenticate .select{
   font-size: 22px;
   display: block;
   width: 100%;
@@ -169,12 +169,15 @@ body[makeback="yes"]{
 }
 
 .authenticate input:focus,
-.authenticate textarea {
+.authenticate textarea, .authenticate .select:focus{
   outline: 0;
   border-color: #1ab188;
 }
 
-.authenticate textarea {
+.authenticate .select option{
+  background: #1ab188;
+}
+.authenticate textarea, .authenticate .select {
   border: 2px solid #a0b3b0;
   resize: vertical;
 }
@@ -259,7 +262,141 @@ body[makeback="yes"]{
   text-align: right;
 }
 
+/* Home */
+h1 {
+  padding-top: 10px;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  align-items: center;
+}
 
+.SubTitreHome {
+  font-size: 20px;
+  font-family: 'Georgia', serif;
+  align-items: center;
+  color: #DEB887;
+}
+
+.colr {
+  color: #DEB887;
+}
+
+.image-carousel2 {
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.image-carousel2.active {
+  border-color: #DEB887; /* Highlight the active image */
+}
+
+.flex2 {
+  padding: 40px 20px;
+  background-color: rgb(244, 247, 249);
+}
+/* Responsive Styles */
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  .image-carousel2 {
+    width: 100px;
+    height: 100px;
+  }
+
+}
+
+@media (max-width: 820px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 8px;
+  }
+
+  .image-carousel2 {
+    width: 80px;
+    height: 80px;
+  }
+  .image-carousel {
+    width: 200px;
+    height: 200px;
+  }
+}
+.Titre1{
+  padding-top: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  text-align: center;
+}
+
+.avis{
+  background-image: url('./dependecies/images/antique-1.jpg');
+}
+
+.davis{
+  color: white;
+  text-align: center;
+}
+
+.Titre2{
+  padding-top: 10px;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  text-align: center;
+  color: white;
+}
+.avis-container {
+  border: 1px solid #ddd; /* Bordure légère */
+  border-radius: 8px; /* Coins arrondis */
+  padding: 15px;
+  margin: 10px 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out; /* Effet de transition lors du survol */
+}
+
+.avis-container:hover {
+  transform: scale(1.02); /* Effet d'agrandissement au survol */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 40px; /* Ajustez la taille de l'image */
+  height: 40px;
+  border-radius: 50%; /* Rendre l'image ronde */
+  margin-right: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.avis-texte {
+  margin-top: 10px;
+  font-style: italic;
+}
+
+
+
+
+/*Card component*/
 .cadre {
   border: 2px solid #ccc;
   border-radius: 8px;

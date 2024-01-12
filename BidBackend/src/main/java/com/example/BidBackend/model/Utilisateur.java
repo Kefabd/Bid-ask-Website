@@ -19,9 +19,11 @@ public class Utilisateur {
     )
     private int id_utilisateur;
     private Boolean est_vendeur;
+    @Column(name = "isVendorValue")
+    private Boolean isVendor;
     private String email;
-    private String nom_utilisateur;
-    private String prenom_utilisateur;
+    private String lastName;
+    private String firstName;
     private  String password;
 
     @OneToMany(mappedBy = "utilisateur")

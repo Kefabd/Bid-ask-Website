@@ -45,9 +45,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
             // Mettez à jour les champs de l'utilisateur existant avec les nouvelles valeurs
             existingUtilisateur.setEst_vendeur(utilisateur.getEst_vendeur());
+            existingUtilisateur.setIsVendor(utilisateur.getIsVendor());
             existingUtilisateur.setEmail(utilisateur.getEmail());
-            existingUtilisateur.setNom_utilisateur(utilisateur.getNom_utilisateur());
-            existingUtilisateur.setPrenom_utilisateur(utilisateur.getPrenom_utilisateur());
+            existingUtilisateur.setLastName(utilisateur.getLastName());
+            existingUtilisateur.setFirstName(utilisateur.getFirstName());
 
             // Enregistrez les modifications dans la base de données
             return utilisateurRepository.save(existingUtilisateur);
