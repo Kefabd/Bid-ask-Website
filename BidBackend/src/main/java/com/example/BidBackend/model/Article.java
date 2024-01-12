@@ -3,8 +3,8 @@ package com.example.BidBackend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 @Getter
@@ -21,9 +21,10 @@ public class Article {
     )
     private Long id_article;
     private String nom_article;
-    private Date date_debut;
-    private Date date_fin;
-    private Time délai;
+    private String image;
+    private LocalDate date_debut;
+    private LocalDate date_fin;
+    private LocalTime délai;
     private String description;
     private double prixMin;
     private String statut;

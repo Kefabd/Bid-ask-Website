@@ -25,8 +25,7 @@ function CadreInfos() {
                 </div>
               </div>
               <div className="nouveau-cadre-boutons">
-                <button className="cd-signin" type="button">Je me connecte</button><hr />
-                <button className="cd-signin" type="button">Je n'ai pas de compte</button>
+                <button className="cd-signin" type="button">Acheter</button>
               </div>
             </div>
             <div className="nouveau-cadre-info">

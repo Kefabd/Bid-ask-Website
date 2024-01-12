@@ -6,19 +6,71 @@ import com.example.BidBackend.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 @RestController
-@RequestMapping("/Article")
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/article")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+
     @PostMapping("/add")
-    public String createArticle(@RequestBody Article article) {
-        articleService.save(article);
-        return "New article added";
+    public String createArticle(@RequestPart("image") MultipartFile imageFile,
+                                @RequestPart("nom_article") String nom_article,
+                                @RequestPart("délai") String délai,
+                                @RequestPart("description") String description,
+                                @RequestPart("prixMin") String prixMin,
+                                @RequestPart("date_debut") String date_debut,
+                                @RequestPart("date_fin") String date_fin) {   try {
+        Article article = new Article(); // Assurez-vous de déclarer et initialiser un objet Article
+
+        // ... (votre code pour la gestion du fichier image)
+
+        // Mise à jour d'autres champs de l'article avec les valeurs reçues
+        article.setNom_article(nom_article);
+        article.setDélai(LocalTime.parse(délai));
+        article.setDescription(description);
+        article.setPrixMin(Double.parseDouble(prixMin));
+        article.setDate_debut(LocalDate.parse(date_debut));
+        article.setDate_fin(LocalDate.parse(date_fin));
+            // Vérifiez si le répertoire existe, sinon créez-le
+            String directoryPath = "C:\\image-directory";
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            // Construction du chemin complet pour le fichier image
+            String imagePath = directoryPath + File.separator + imageFile.getOriginalFilename();
+
+            // Transfert du fichier vers le répertoire spécifié
+            imageFile.transferTo(new File(imagePath));
+
+            // Mise à jour du champ imagePath de l'article
+            article.setImage(imagePath);
+
+            // Enregistrement de l'article dans la base de données
+            articleService.save(article);
+
+        } catch (IOException e) {
+            // Gestion des erreurs liées au traitement de l'image
+            e.printStackTrace();
+        }
+
+        return "redirect:/articles";
     }
+
+
+
 
     @GetMapping("/getAll")
     public List<Article> getAllArticles() {

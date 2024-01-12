@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "../components/header/header";
-import Cadre from "../components/cadre";
+import Shop from './Shop';
 import CadreInfos from "../components/cadreInfos";
+import AjoutArticle from "./AjoutArticle";
 
 
 export default function Home() {
@@ -9,8 +10,9 @@ export default function Home() {
     return(
         <>
         <Header />
-        <Cadre></Cadre>
         <CadreInfos></CadreInfos>
+        <AjoutArticle></AjoutArticle>
+        <Shop></Shop>
         </>
     )
 }

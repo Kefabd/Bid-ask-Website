@@ -18,7 +18,7 @@ public class Utilisateur {
             strategy = GenerationType.IDENTITY
     )
     private int id_utilisateur;
-    private boolean est_vendeur;
+    private Boolean est_vendeur;
     private String email;
     private String nom_utilisateur;
     private String prenom_utilisateur;
