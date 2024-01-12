@@ -40,7 +40,7 @@ export default function Authenticate() {
         console.log(isVendor);
                 const user = { isVendor,email, firstName, lastName,password };
         console.log(JSON.stringify(user));
-        fetch("http://localhost:8080/utilisateurs/add", {
+        const response = await fetch("http://localhost:8080/utilisateurs/add", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(user)
