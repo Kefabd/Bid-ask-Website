@@ -1,6 +1,7 @@
 package com.example.BidBackend.service;
 
 import com.example.BidBackend.model.Article;
+import com.example.BidBackend.model.Utilisateur;
 
 import java.util.List;
 
@@ -9,6 +10,10 @@ public interface ArticleService {
 
     Article save(Article article);
 
+
+    Article updateArticle(Long id, Article article);
+
+    void deleteArticle(Long id);
 
     List<Article> getAllArticles();
 
