@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import 'moment/locale/fr';
+import 'moment/locale/fr'; 
 
 function Cadre({ article }) {
   const calculateTimeLeft = () => {
