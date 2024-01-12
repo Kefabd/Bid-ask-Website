@@ -1,15 +1,15 @@
 package com.example.BidBackend.service;
 import com.example.BidBackend.model.ContratDeVente;
 import com.example.BidBackend.repository.ContratDeVenteRepository;
-import com.lowagie.text.Document;
-import com.lowagie.text.PageSize;
+import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,34 +36,43 @@ public class ContratDeVenteServiceImpl implements ContratDeVenteService {
         return optionalContratDeVente.orElse(null);
     }
 
-    @Override
-    public List<ContratDeVente> getContractsForUser(int userId) {
-        return null;
-    }
 
-/*
+
     @Override
-    public List<ContratDeVente> getContractsForUser(int userId, HttpServletResponse response) throws IOException {
+    public void getContractsForUser( HttpServletResponse response) throws IOException {
         Document document=new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());
         document.open();
+        Font fontTitle= FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+        fontTitle.setSize(18);
+        Paragraph paragraph=new Paragraph("Contrat De Vente",fontTitle);
+        paragraph.setAlignment(Paragraph.ALIGN_CENTER);
+        Font fontParagraoh=FontFactory.getFont(FontFactory.HELVETICA);
+        fontParagraoh.setSize(12);
+        Paragraph paragraph2=new Paragraph("bla bla",fontParagraoh);
+        paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
 
-        return null;
+        document.add(paragraph);
+        document.add(paragraph2);
+        document.close();
     }
+    @Autowired
+    private JavaMailSender mailSender;
 
 
-    @Override
-    public ContratDeVente generateSaleContract(long articleId, int buyerId) {
-        // Logique pour générer le contrat de vente
-        ContratDeVente contratDeVente = new ContratDeVente();
-        // ... (génération du contrat)
 
-        // Envoi d'e-mails
-        sendBuyerEmail(buyerId, contratDeVente);
-        sendSellerEmail(articleId, contratDeVente);
+    public void sendEmail(String toEmail,String subject,String body){
+        SimpleMailMessage message=new SimpleMailMessage();
+        message.setFrom("nadiahanine19@gmail.com");
+        message.setTo(toEmail);
+        message.setText(body);
+        message.setSubject(subject);
+        mailSender.send(message);
+        System.out.println("mail sent succesfully rorororory");
 
-        return contratDeVente;
     }
+/*
+
 
     private void sendBuyerEmail(int buyerId, ContratDeVente contratDeVente) {
         // Logique pour récupérer les informations de l'acheteur
