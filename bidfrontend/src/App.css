@@ -153,7 +153,7 @@ body[makeback="yes"]{
 }
 
 .authenticate input,
-.authenticate textarea {
+.authenticate textarea, .authenticate .select{
   font-size: 22px;
   display: block;
   width: 100%;
@@ -169,12 +169,15 @@ body[makeback="yes"]{
 }
 
 .authenticate input:focus,
-.authenticate textarea {
+.authenticate textarea, .authenticate .select:focus{
   outline: 0;
   border-color: #1ab188;
 }
 
-.authenticate textarea {
+.authenticate .select option{
+  background: #1ab188;
+}
+.authenticate textarea, .authenticate .select {
   border: 2px solid #a0b3b0;
   resize: vertical;
 }
