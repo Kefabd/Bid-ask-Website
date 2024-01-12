@@ -1,16 +1,52 @@
 package com.example.BidBackend.controller;
 
-import com.example.BidBackend.model.Article;
-import com.example.BidBackend.model.ContratDeVente;
 import com.example.BidBackend.service.ContratDeVenteService;
-import com.example.BidBackend.service.ArticleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/confirmation-vente")
 public class ConfirmationVenteController {
 
+    private final ContratDeVenteService contratDeVenteService;
+
+    public ConfirmationVenteController(ContratDeVenteService contratDeVenteService){
+
+        this.contratDeVenteService = contratDeVenteService;
+    }
+    @GetMapping("pdf/generate")
+    public void generatePDF(HttpServletResponse response) throws IOException {
+        try {
+        response.setContentType("application/pdf");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentDateTime = dateFormat.format(new Date());
+
+
+            String headerKey="Content-Disposition";
+        String headerValue = "attachment;filename=pdf" + currentDateTime + ".pdf";
+        response.setHeader(headerKey,headerValue);
+
+        this.contratDeVenteService.getContractsForUser(response);
+
+
+        } catch (Exception e) {
+             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    @GetMapping("/email")
+    public void sendMail(){
+        contratDeVenteService.sendEmail("ghazalabouchra@gmail.com","test","ahlan wa sahlan");
+    }
+
+
+
+    /*
     @Autowired
     private ArticleService articleService;
 
@@ -37,6 +73,6 @@ public class ConfirmationVenteController {
         articleService.save(article);
 
         return contratDeVente;
-    }
+    }*/
 }
 
