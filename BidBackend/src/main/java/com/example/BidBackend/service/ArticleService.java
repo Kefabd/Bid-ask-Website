@@ -9,6 +9,7 @@ public interface ArticleService {
     public Article findById(Long id);
 
     Article save(Article article);
+    List<Article> getArticlesVendeur(int id_utilisateur);
 
 
     Article updateArticle(Long id, Article article);

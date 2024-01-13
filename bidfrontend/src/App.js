@@ -4,6 +4,7 @@ import Home from './pages/home';
 import Authenticate from './pages/authenticate';
 import Shop from './pages/shop';
 import CadreInfos from './components/cadreInfos';
+import Vendeur from './pages/Vendeur';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path='/authenticate' element={<Authenticate />} />
       <Route path='/shop' element={<Shop />} />
       <Route path="/article/:id" element={<CadreInfos />} />
+      <Route path="/vendeur/:id" element={<Vendeur />} />
     </Routes>
   );
 }

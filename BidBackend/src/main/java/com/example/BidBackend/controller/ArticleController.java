@@ -83,6 +83,9 @@ public class ArticleController {
         return articleService.findById(id);
     }
 
+    @GetMapping("/vendeur/{id}")
+    public List<Article> getArticleByIdVendeur(@PathVariable int id){return articleService.getArticlesVendeur(id);}
+
     @DeleteMapping("/delete/{id}")
     public String deleteArticle(@PathVariable Long id) {
         articleService.deleteArticle(id);

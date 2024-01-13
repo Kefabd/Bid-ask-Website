@@ -60,7 +60,9 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getAllArticles() {
         return articleRepository.findAll();
     }
+    @Override
     public List<Article> getArticlesVendeur(int id_utilisateur){
+        return articleRepository.findByIdVendeur(id_utilisateur);
 
     }
 
