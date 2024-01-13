@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
-
+import {useNavigate } from 'react-router-dom';
 
 const ArticleVendeur = ({ sellerId }) => {
   const [Articles, setArticles] = useState([]);
-
+  const navigate = useNavigate();
   
 
   useEffect(() => {
-<<<<<<< HEAD
     console.log(sessionStorage.getItem('user'));
     // fetch(`http://localhost:8080/article/vendeur?id=${ema}`)
     //   .then((response) => response.json())
     //   .then((data) => setArticles(data))
     //   .catch((error) => console.error('Erreur lors de la récupération des articles', error));
-=======
+
     const user=JSON.parse(sessionStorage.getItem("user"));
+    if (!user || !user.isVendor) {
+      // Redirect to the authentication page or another suitable page
+      navigate('/authenticate'); // Adjust the route as needed
+      return;
+    }
     fetch(`http://localhost:8080/article/vendeur/${user.email}`)
       .then((response) => {
         if (!response.ok) {
@@ -29,7 +33,7 @@ const ArticleVendeur = ({ sellerId }) => {
         }
       })
       .catch((error) => console.error('Erreur lors de la récupération des articles', error));
->>>>>>> e27090f153fdd97374773282339090597a1b42e5
+
   }, []);
   
 

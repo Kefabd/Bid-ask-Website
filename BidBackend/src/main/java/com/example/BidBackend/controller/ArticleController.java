@@ -131,11 +131,14 @@ public class ArticleController {
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 
+    /*
     @GetMapping("/vendeur")
     public List<Article> getArticlesVendeur(@RequestParam String email){
         System.out.println(email);
         return articleService.getArticlesVendeur(email);
     }
+
+     */
     @DeleteMapping("/delete/{id}")
     public String deleteArticle(@PathVariable Long id) {
         articleService.deleteArticle(id);

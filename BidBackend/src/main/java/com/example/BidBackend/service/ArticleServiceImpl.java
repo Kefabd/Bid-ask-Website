@@ -5,8 +5,6 @@ import com.example.BidBackend.model.Utilisateur;
 import com.example.BidBackend.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,13 +27,10 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.save(article);
     }
 
-<<<<<<< HEAD
-=======
     @Override
     public List<Article> getArticlesVendeur(String email) {
         return articleRepository.findByIdVendeur(email);
     }
->>>>>>> e27090f153fdd97374773282339090597a1b42e5
 
     @Override
     public Article updateArticle(Long id,Article article) {
@@ -71,8 +66,26 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
 
-<<<<<<< HEAD
-=======
+    @Override
+    public List<Article> getActiveArticles() {
+        return null;
+    }
+
+    @Override
+    public List<Article> searchArticlesByKeyword(String keyword) {
+        return null;
+    }
+
+    @Override
+    public List<Article> getArticlesBySeller(int sellerId) {
+        return null;
+    }
+
+    @Override
+    public void closeAuction(int articleId) {
+
+    }
+
     /*@Override
 =======
     @Override
@@ -85,11 +98,7 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getArticlesVendeur(int id_utilisateur){
         return articleRepository.findByIdVendeur(id_utilisateur);
 >>>>>>> a6c5b6ec637c0ebae0f774997a25a2472cf704b6
->>>>>>> e27090f153fdd97374773282339090597a1b42e5
 
-
-    public List<Article> getArticlesVendeur(@RequestParam String email){
-        return articleRepository.findByIdVendeur(email);
     }
 
     @Override
@@ -113,5 +122,5 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void closeAuction(int articleId) {
         // Implémentez la logique pour fermer une enchère
-    }*/
+    }*/
 }

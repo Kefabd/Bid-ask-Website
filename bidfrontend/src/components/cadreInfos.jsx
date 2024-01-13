@@ -13,7 +13,7 @@ function CadreInfos() {
   const [article, setArticle] = useState([]);
   const navigate = useNavigate();
   const user=JSON.parse(sessionStorage.getItem("user"));
-console.log(user)
+// console.log(user)
   useEffect(() => {
     fetch(`http://localhost:8080/article/${id}`)
       .then((response) => response.json())
@@ -41,6 +41,45 @@ console.log(user)
     }
   };
 
+
+  
+  const calculateTimeLeft = () => {
+    const difference = new Date(article.date_fin) - new Date();
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((difference % (1000 * 60)) / 1000),
+      };
+    }
+
+    return timeLeft;
+  };
+  const calculateDeadline = () => {
+    const currentTime = new Date();
+    const deadline = article.délai;
+    const difference = deadline - currentTime;
+    console.log("current time: "+currentTime.getHours());
+    console.log("deadline "+currentTime.getHours());
+
+    let timeDiff = {};
+
+    if (difference > 0) {
+      const minutes = Math.floor((difference / 1000) / 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      timeDiff = {
+        minutes,
+        seconds,
+      };
+    }
+
+    return timeDiff;
+  };
+
   const handleConfirmerClick = () => {
     const requestBody = {
       prixPropose,
@@ -61,7 +100,9 @@ console.log(user)
           setNvPrix(prixPropose);
           setNbEnrichisseurs(nbEnrichisseurs + 1);
         } else {
-          if (timeLeft.days <= 0 && timeLeft.hours <= 0 && timeLeft.minutes <= 0 && timeLeft.seconds <= 0) {
+          if ((timeDiff.hours<=0 && timeDiff.minutes<=0 && timeDiff.seconds<=0)||( timeLeft.days <= 0 && timeLeft.hours <= 0 && timeLeft.minutes <= 0 && timeLeft.seconds <= 0)) 
+          {
+            
             // If the time is up, update the article status and disable the button
             fetch(`http://localhost:8080/article/updateStatut/${article.id_article}`, {
               method: 'PUT',
@@ -87,24 +128,8 @@ console.log(user)
         console.error('Erreur lors de la vérification du prix :', error);
       });
   };
-  
-  const calculateTimeLeft = () => {
-    const difference = new Date(article.date_fin) - new Date();
-    let timeLeft = {};
-
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((difference % (1000 * 60)) / 1000),
-      };
-    }
-
-    return timeLeft;
-  };
-
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeDiff, setTimeDiff] = useState(calculateDeadline());
   useEffect(() => {
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
@@ -113,11 +138,19 @@ console.log(user)
     return () => clearTimeout(timer);
   });
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeDiff(calculateDeadline());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  });
+  console.log("time diff: "+timeDiff.minutes)
   return (
     <nav>
       <Header />
       <div className="cadre-titre">
-        <h2>{article.nom_article}</h2>
+        <h2>{article.nom_article} {article.délai}</h2>
       </div>
       <div className="nouveau-cadre-avec-image">
         <img
@@ -131,7 +164,8 @@ console.log(user)
               <div className="nouveau-cadre-blanc">
                 <p className="textCentrer">
                 <p className="cadre-temps">
-            {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+            {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s <br/>
+            {timeDiff.hours}h {timeDiff.minutes}m {timeDiff.seconds}s
           </p>
                 </p>
                 <br />
