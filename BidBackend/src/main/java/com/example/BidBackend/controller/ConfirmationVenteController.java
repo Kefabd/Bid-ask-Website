@@ -2,6 +2,7 @@ package com.example.BidBackend.controller;
 
 import com.example.BidBackend.service.ContratDeVenteService;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class ConfirmationVenteController {
 
         this.contratDeVenteService = contratDeVenteService;
     }
+    /*
     @GetMapping("pdf/generate")
     public void generatePDF(HttpServletResponse response) throws IOException {
         try {
@@ -42,9 +44,23 @@ public class ConfirmationVenteController {
     @GetMapping("/email")
     public void sendMail(){
         contratDeVenteService.sendEmail("ghazalabouchra@gmail.com","test","ahlan wa sahlan");
+    }*/
+/*
+    @Scheduled(fixedRate = 1000)
+    public void checkAndSendEmails() {
+        Date currentDate = new Date();
+        Date targetDate = // your target date;
+
+        if (currentDate.after(targetDate)) {
+            // Trigger the logic to send an email
+            sendEmail();
+        }
     }
 
-
+    private void sendEmail() {
+        // Implement your logic to send an email
+        System.out.println("Sending email...");
+    }*/
 
     /*
     @Autowired

@@ -98,7 +98,7 @@ export default function Authenticate() {
                 console.log("vendeur")
                 console.log(userInfo.firstName);
                 // history.push('/home'); // Redirect to the home page for vendors
-                navigate(`/vendeur/${userInfo.id_utilisateur}`)
+                navigate(`/vendeur`)
 
             } else {
                 console.log("acheteur")

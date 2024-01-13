@@ -4,6 +4,9 @@ import Header from './header/header';
 
 function CadreInfos() {
   const [prixPropose, setPrixPropose] = useState('');
+  const [userFirstName, setUserFirstName] = useState('');
+  const [user2, setUser2] = useState({});
+  
   const [showForm, setShowForm] = useState(false);
   const [NvPrix, setNvPrix] = useState(localStorage.getItem('NvPrix') || article.prixMin);
   const [nbEnrichisseurs, setNbEnrichisseurs] = useState(
@@ -14,18 +17,33 @@ function CadreInfos() {
   const navigate = useNavigate();
   const user=JSON.parse(sessionStorage.getItem("user"));
 // console.log(user)
-  useEffect(() => {
-    fetch(`http://localhost:8080/article/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setArticle(data);
-        setNvPrix(localStorage.getItem(`NvPrix_${data.id_article}`) || data.prixMin);
-        setNbEnrichisseurs(parseInt(localStorage.getItem(`nbEnrichisseurs_${data.id_article}`)) || 0);
-      })
-      .catch((error) =>
-        console.error('Erreur lors de la récupération de l\'article', error)
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      // Fetch article data
+      const articleResponse = await fetch(`http://localhost:8080/article/${id}`);
+      const articleData = await articleResponse.json();
+      setArticle(articleData);
+
+      setNvPrix(localStorage.getItem(`NvPrix_${articleData.id_article}`) || articleData.prixMin);
+      setNbEnrichisseurs(
+        parseInt(localStorage.getItem(`nbEnrichisseurs_${articleData.id_article}`)) || 0
       );
-  }, [id]);
+
+      // Fetch user data using the article ID
+      const userResponse = await fetch(`http://localhost:8080/article/user/${id}`);
+      const userData = await userResponse.json();
+      setUser2(userData);
+    } catch (error) {
+      console.error('Error fetching data:', error.message);
+    }
+  };
+
+  fetchData();
+}, [id]);
+       
+
+  
 
   useEffect(() => {
     localStorage.setItem(`NvPrix_${article.id_article}`, NvPrix);
@@ -40,6 +58,8 @@ function CadreInfos() {
       navigate('/authenticate');
     }
   };
+
+
 
 
   
@@ -79,11 +99,14 @@ function CadreInfos() {
 
     return timeDiff;
   };
+  console.log("id utilisateur : "+user.id_utilisateur)
 
   const handleConfirmerClick = () => {
     const requestBody = {
       prixPropose,
       NvPrix,
+      userId: user.email,
+      articleID:article.id_article
     };
   
     fetch('http://localhost:8080/article/verifierPrix', {
@@ -146,6 +169,10 @@ function CadreInfos() {
     return () => clearTimeout(timer);
   });
   console.log("time diff: "+timeDiff.minutes)
+  useEffect(() => {
+    setUserFirstName(user2.firstName);
+  }, [user2]);
+  
   return (
     <nav>
       <Header />
@@ -213,11 +240,11 @@ function CadreInfos() {
               </div>
               <div className="nouveau-cadre-info">
                 <p className="nouveau-cadre-prix">
-                  {' '}
-                  {/* <b>{NvPrix} €</b> {user.firstName} */}
+                
+                   <b>{prixPropose} €</b> {userFirstName}
           
                 </p>
-                <p className="nouveau-cadre-temps">{article.statut}</p>
+                <p className="nouveau-cadre-temps">{article.date_fin}</p>
               </div>
               <div className="bgBlanc">
                 <p>

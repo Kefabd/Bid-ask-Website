@@ -25,4 +25,7 @@ public interface ArticleService {
     List<Article> getArticlesBySeller(int sellerId);
 
     void closeAuction(int articleId);
+
+    Article getArticleByUserId(String email);
+
 }

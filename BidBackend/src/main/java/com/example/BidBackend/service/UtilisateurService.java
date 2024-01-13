@@ -19,6 +19,7 @@ public interface UtilisateurService {
     Utilisateur updateUtilisateur(int id, Utilisateur utilisateur);
 
     void deleteUtilisateur(int id);
+    public Utilisateur findByArticleId(Long articleId);
 
     String loginUser(LoginDto loginDto);
 }

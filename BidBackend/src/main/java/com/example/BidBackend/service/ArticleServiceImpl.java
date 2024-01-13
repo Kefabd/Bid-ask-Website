@@ -86,6 +86,11 @@ public class ArticleServiceImpl implements ArticleService {
 
     }
 
+    @Override
+    public Article getArticleByUserId(String email) {
+        return articleRepository.findByUtilisateurId_utilisateur(email);
+    }
+
     /*@Override
 =======
     @Override

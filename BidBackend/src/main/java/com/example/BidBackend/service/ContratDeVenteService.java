@@ -1,5 +1,6 @@
 package com.example.BidBackend.service;
 
+import com.example.BidBackend.model.Article;
 import com.example.BidBackend.model.ContratDeVente;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface ContratDeVenteService {
 
-    void getContractsForUser( HttpServletResponse response) throws IOException;
+    byte[] getContractsForUser(Article article ) throws IOException;
 
     ContratDeVente generateSaleContract(long articleId, int buyerId);
     public ContratDeVente save(ContratDeVente contratDeVente);

@@ -28,7 +28,6 @@ export default function Home() {
         <>
         <div>
     <Header />
-    <AjoutArticle></AjoutArticle>
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }}>
           <Carousel onSelect={handleCarouselSelect}>
