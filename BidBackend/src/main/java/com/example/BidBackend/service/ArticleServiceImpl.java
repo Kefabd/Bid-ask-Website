@@ -29,7 +29,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> getArticlesVendeur(String email) {
-        return null;
+        return articleRepository.findByIdVendeur(email);
     }
 
     @Override

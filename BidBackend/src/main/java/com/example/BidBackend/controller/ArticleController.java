@@ -7,12 +7,15 @@ import com.example.BidBackend.service.UtilisateurService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.net.http.HttpHeaders;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -105,8 +108,11 @@ public class ArticleController {
         return articleService.findById(id);
     }
 
-    @GetMapping("/vendeur/{email}")
-    public List<Article> getArticleByIdVendeur(@PathVariable String email){return articleService.getArticlesVendeur(email);}
+    @GetMapping("/vendeur")
+    public ResponseEntity<List<Article>> getArticlesVendeurs(@RequestParam String email) {
+        List<Article> articles = articleService.getArticlesVendeur(email);
+        return new ResponseEntity<>(articles, HttpStatus.OK);
+    }
 
     @DeleteMapping("/delete/{id}")
     public String deleteArticle(@PathVariable Long id) {
