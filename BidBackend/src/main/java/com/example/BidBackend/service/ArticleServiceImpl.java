@@ -29,6 +29,13 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.save(article);
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public List<Article> getArticlesVendeur(String email) {
+        return articleRepository.findByIdVendeur(email);
+    }
+>>>>>>> e27090f153fdd97374773282339090597a1b42e5
 
     @Override
     public Article updateArticle(Long id,Article article) {
@@ -64,6 +71,21 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
 
+<<<<<<< HEAD
+=======
+    /*@Override
+=======
+    @Override
+<<<<<<< HEAD
+    public List<Article> getArticlesVendeur(String email){
+        return articleRepository.findByIdVendeur(email);
+=======
+>>>>>>> 4d4485661cabd98419fd0ed96be173438ca5f064
+>>>>>>> 64b09ea16fec3e1eb69204e7d2a2130a75b88c56
+    public List<Article> getArticlesVendeur(int id_utilisateur){
+        return articleRepository.findByIdVendeur(id_utilisateur);
+>>>>>>> a6c5b6ec637c0ebae0f774997a25a2472cf704b6
+>>>>>>> e27090f153fdd97374773282339090597a1b42e5
 
 
     public List<Article> getArticlesVendeur(@RequestParam String email){
@@ -91,5 +113,5 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void closeAuction(int articleId) {
         // Implémentez la logique pour fermer une enchère
-    }
+    }*/
 }

@@ -43,6 +43,7 @@ public class Article {
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name="id_utilisateur")
+    @JsonBackReference
     private Utilisateur utilisateur;
 
 }
