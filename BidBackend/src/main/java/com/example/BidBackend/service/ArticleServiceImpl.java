@@ -27,13 +27,11 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.save(article);
     }
 
-<<<<<<< HEAD
-=======
+
     @Override
     public List<Article> getArticlesVendeur(String email) {
         return articleRepository.findByIdVendeur(email);
     }
->>>>>>> 4fb10d5174bb0492ba0943bb7e7c9b0984e023bb
 
     @Override
     public Article updateArticle(Long id,Article article) {
@@ -69,12 +67,8 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
 
-<<<<<<< HEAD
 
-    @Override
-    public List<Article> getArticlesVendeur(String email) {
-        return articleRepository.findByIdVendeur(email);
-=======
+
     @Override
     public List<Article> getActiveArticles() {
         return null;
@@ -141,7 +135,5 @@ public class ArticleServiceImpl implements ArticleService {
 <<<<<<< HEAD
     }
 }
-=======
-    }*/
+}*/
 }
->>>>>>> 4fb10d5174bb0492ba0943bb7e7c9b0984e023bb

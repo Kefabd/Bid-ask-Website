@@ -203,13 +203,11 @@ public class ArticleController {
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 
-<<<<<<< HEAD
     /*@GetMapping("/vendeur")
     public List<Article> getArticlesVendeur(@RequestParam String email){
         System.out.println(email);
         return articleService.getArticlesVendeur(email);
     }*/
-=======
     /*
     @GetMapping("/vendeur")
     public List<Article> getArticlesVendeur(@RequestParam String email){
@@ -218,7 +216,6 @@ public class ArticleController {
     }
 
      */
->>>>>>> 4fb10d5174bb0492ba0943bb7e7c9b0984e023bb
     @DeleteMapping("/delete/{id}")
     public String deleteArticle(@PathVariable Long id) {
         articleService.deleteArticle(id);
