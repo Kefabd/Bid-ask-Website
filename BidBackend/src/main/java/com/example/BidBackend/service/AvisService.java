@@ -10,7 +10,7 @@ public interface AvisService {
 
     Avis findById(int id);
 
-    List<Avis> getAvisForUser(int userId);
+    //List<Avis> getAvisForUser(int userId);
 
     // Ajoutez d'autres méthodes spécifiques aux avis selon vos besoins
 }

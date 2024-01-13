@@ -122,5 +122,5 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void closeAuction(int articleId) {
         // Implémentez la logique pour fermer une enchère
-    }*/
+    }*/
 }
