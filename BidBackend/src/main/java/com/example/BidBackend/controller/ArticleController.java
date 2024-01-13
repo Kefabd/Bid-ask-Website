@@ -3,6 +3,9 @@ package com.example.BidBackend.controller;
 import com.example.BidBackend.model.Article;
 import com.example.BidBackend.model.Utilisateur;
 import com.example.BidBackend.service.ArticleService;
+import com.example.BidBackend.service.UtilisateurService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +29,11 @@ import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private UtilisateurService utilisateurService;
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(path="/add",consumes = {MULTIPART_FORM_DATA_VALUE})
+    @PostMapping(path="/add", consumes = {MULTIPART_FORM_DATA_VALUE})
     public String createArticle(
             @RequestPart("image") MultipartFile imageFile,
             @RequestPart("nom_article") String nom_article,
@@ -36,9 +41,21 @@ public class ArticleController {
             @RequestPart("description") String description,
             @RequestPart("prixMin") String prixMin,
             @RequestPart("date_debut") String date_debut,
-            @RequestPart("date_fin") String date_fin) {
+            @RequestPart("date_fin") String date_fin,
+            HttpServletRequest request) {
 
         try {
+            HttpSession session = request.getSession();
+            Object userId = session.getAttribute("userId");
+            System.out.println(userId);
+            System.out.println(userId.getClass().getSimpleName());
+            System.out.println((int)userId);
+
+            if (userId == null) {
+
+                return "User not logged in";
+            }
+
             Article article = new Article();
             article.setNom_article(nom_article);
             article.setDélai(LocalTime.parse(délai));
@@ -47,7 +64,6 @@ public class ArticleController {
             article.setDate_debut(LocalDate.parse(date_debut));
             article.setDate_fin(LocalDate.parse(date_fin));
 
-            // Chemin relatif par rapport à la racine du projet
             String relativePath = "bidfrontend/public/images";
             String directoryPath = new File(relativePath).getAbsolutePath();
 
@@ -59,16 +75,21 @@ public class ArticleController {
             String imagePath = directoryPath + File.separator + imageFile.getOriginalFilename();
             imageFile.transferTo(new File(imagePath));
 
-            // Utilisez le chemin relatif comme valeur de l'image
             article.setImage("images/" + imageFile.getOriginalFilename());
-            articleService.save(article);
 
+            /*Utilisateur user = utilisateurService.findById((Integer) userId);
+            article.setUtilisateur(user);*/
+
+            articleService.save(article);
 
         } catch (IOException e) {
             e.printStackTrace();
+            return "Error processing/saving the article";
         }
-        return null;
+        return "Article created successfully";
     }
+
+
     @PostMapping("/verifierPrix")
     public ResponseEntity<?> verifierPrix(@RequestBody Map<String, Double> data) {
         Double prixPropose = data.get("prixPropose");

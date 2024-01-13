@@ -11,6 +11,7 @@ const AjoutArticle = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    const user=JSON.parse(sessionStorage.getItem("user"));
 
     const label = e.target.previousElementSibling;
 
@@ -43,8 +44,6 @@ const AjoutArticle = () => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        // Vérifier si la réponse est une redirection
         if (response.redirected) {
             // Effectuer une redirection côté client si nécessaire
             window.location.href = response.url;
@@ -60,8 +59,6 @@ const AjoutArticle = () => {
         console.error('Fetch Error:', error);
     });
 };
-
-
 
   return (
     <div className="authenticate">
