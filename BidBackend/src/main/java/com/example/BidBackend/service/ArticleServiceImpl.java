@@ -61,8 +61,8 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
     @Override
-    public List<Article> getArticlesVendeur(int id_utilisateur){
-        return articleRepository.findByIdVendeur(id_utilisateur);
+    public List<Article> getArticlesVendeur(String email){
+        return articleRepository.findByIdVendeur(email);
 
     }
 
