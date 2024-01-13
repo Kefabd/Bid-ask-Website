@@ -42,19 +42,9 @@ public class ArticleController {
             @RequestPart("prixMin") String prixMin,
             @RequestPart("date_debut") String date_debut,
             @RequestPart("date_fin") String date_fin,
-            HttpServletRequest request) {
+            @RequestPart("email") String email) {
 
         try {
-            HttpSession session = request.getSession();
-            Object userId = session.getAttribute("userId");
-            System.out.println(userId);
-            System.out.println(userId.getClass().getSimpleName());
-            System.out.println((int)userId);
-
-            if (userId == null) {
-
-                return "User not logged in";
-            }
 
             Article article = new Article();
             article.setNom_article(nom_article);
@@ -77,8 +67,8 @@ public class ArticleController {
 
             article.setImage("images/" + imageFile.getOriginalFilename());
 
-            /*Utilisateur user = utilisateurService.findById((Integer) userId);
-            article.setUtilisateur(user);*/
+            Utilisateur user = utilisateurService.findByEmail(email);
+            article.setUtilisateur(user);
 
             articleService.save(article);
 
@@ -115,8 +105,8 @@ public class ArticleController {
         return articleService.findById(id);
     }
 
-    @GetMapping("/vendeur/{id}")
-    public List<Article> getArticleByIdVendeur(@PathVariable int id){return articleService.getArticlesVendeur(id);}
+    @GetMapping("/vendeur/{email}")
+    public List<Article> getArticleByIdVendeur(@PathVariable String email){return articleService.getArticlesVendeur(email);}
 
     @DeleteMapping("/delete/{id}")
     public String deleteArticle(@PathVariable Long id) {

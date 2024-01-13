@@ -5,7 +5,7 @@ const ArticleVendeur = ({ sellerId }) => {
   const [Articles, setArticles] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/article/vendeur/1`)
+    fetch(`http://localhost:8080/article/vendeur/hanine.nadia@ensam-casa.ma`)
       .then((response) => response.json())
       .then((data) => setArticles(data))
       .catch((error) => console.error('Erreur lors de la récupération des articles', error));

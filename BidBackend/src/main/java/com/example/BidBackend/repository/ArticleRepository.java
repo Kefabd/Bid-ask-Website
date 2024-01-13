@@ -13,8 +13,18 @@ public interface ArticleRepository extends JpaRepository<Article,Long> {
     List<Article> findByDescription(@Param("description") String description);
 
     Optional<Article> findById(Long id);
+<<<<<<< HEAD
     @Query("SELECT a FROM Article a WHERE a.utilisateur.id_utilisateur = :id")
     List<Article> findByIdVendeur(@Param("id") int id);
 
+=======
+
+    @Query("SELECT a FROM Article a WHERE a.utilisateur.email = :email")
+    List<Article> findByIdVendeur(@Param("email") String email);
+
+>>>>>>> 64b09ea16fec3e1eb69204e7d2a2130a75b88c56
 
 }
+
+
+
