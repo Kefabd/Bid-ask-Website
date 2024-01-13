@@ -1,9 +1,10 @@
 package com.example.BidBackend.controller;
 
-import com.example.BidBackend.model.LoginRequest;
+import com.example.BidBackend.dto.LoginDto;
 import com.example.BidBackend.model.Utilisateur;
 import com.example.BidBackend.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,9 @@ public class UtilisateurController {
     @Autowired
     private UtilisateurService utilisateurService;
 
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @GetMapping("/getAll")
     public List<Utilisateur> getAllUtilisateurs() {
         return utilisateurService.getAllUsers();
@@ -31,11 +35,8 @@ public class UtilisateurController {
 
     }
     @PostMapping("/logIn")
-    public String logIn(@RequestBody LoginRequest loginRequest) {
-        Utilisateur utilisateur =  utilisateurService.findByEmail(loginRequest.getEmail());
-        if(utilisateur != null && utilisateur.getPassword().equals(loginRequest.getPassword()) )
-            return "user log";
-        return null;
+    public String logIn(@RequestBody LoginDto loginDto) {
+        return utilisateurService.loginUser(loginDto);
     }
 
 

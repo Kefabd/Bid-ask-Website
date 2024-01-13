@@ -1,4 +1,4 @@
-package com.example.BidBackend.model;
+package com.example.BidBackend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class LoginRequest {
+public class LoginDto {
     private String email;
     private String password;
 

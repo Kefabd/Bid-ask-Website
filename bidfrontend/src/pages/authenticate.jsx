@@ -61,7 +61,6 @@ export default function Authenticate() {
         })
         const result = await response.text();
         setLogIn(result === '');
-
     }
 
 
@@ -190,7 +189,7 @@ export default function Authenticate() {
                                 <p className="forgot">
                                     <a href="#">Forgot Password?</a>
                                 </p>
-                                {login == true &&
+                                {login === true &&
                                     <div className="alert alert-danger">
                                         <strong>User already exist!</strong> Please try another time.
                                     </div>
