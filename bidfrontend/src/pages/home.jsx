@@ -28,7 +28,6 @@ export default function Home() {
         <>
         <div>
     <Header />
-    <ArticleVendeur></ArticleVendeur>
     <AjoutArticle></AjoutArticle>
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }}>

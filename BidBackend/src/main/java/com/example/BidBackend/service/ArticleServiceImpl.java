@@ -66,6 +66,26 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
 
+    @Override
+    public List<Article> getActiveArticles() {
+        return null;
+    }
+
+    @Override
+    public List<Article> searchArticlesByKeyword(String keyword) {
+        return null;
+    }
+
+    @Override
+    public List<Article> getArticlesBySeller(int sellerId) {
+        return null;
+    }
+
+    @Override
+    public void closeAuction(int articleId) {
+
+    }
+
     /*@Override
 =======
     @Override

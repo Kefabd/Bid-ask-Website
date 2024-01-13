@@ -5,6 +5,8 @@ import Authenticate from './pages/authenticate';
 import Shop from './pages/shop';
 import CadreInfos from './components/cadreInfos';
 import Vendeur from './pages/Vendeur';
+import ArticleEdit from './pages/ArticleEdit';
+import AjoutArticle from './pages/AjoutArticle';
 
 
 function App() {
@@ -14,9 +16,12 @@ function App() {
       <Route path='/authenticate' element={<Authenticate />} />
       <Route path='/shop' element={<Shop />} />
 
-      <Route path='/vendeur/:id' element={<Vendeur />} />
+      <Route path='/vendeur' element={<Vendeur />} />
 
       <Route path="/article/:id" element={<CadreInfos />} />
+      <Route path="/edit-article/:id" element={<ArticleEdit />} />
+      <Route path='/ajouter-article' element={<AjoutArticle />} />
+
 
     </Routes>
   );

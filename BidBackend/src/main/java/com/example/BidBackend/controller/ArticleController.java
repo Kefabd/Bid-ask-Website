@@ -59,6 +59,56 @@ public class ArticleController {
 
             String relativePath = "bidfrontend/public/images";
             String directoryPath = new File(relativePath).getAbsolutePath();
+            System.out.println(directoryPath);
+
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            String imagePath = directoryPath + File.separator + imageFile.getOriginalFilename();
+            imageFile.transferTo(new File(imagePath));
+
+            article.setImage("images/" + imageFile.getOriginalFilename());
+
+            Utilisateur user = utilisateurService.findByEmail(email);
+            article.setUtilisateur(user);
+
+            articleService.save(article);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error processing/saving the article";
+        }
+        return "Article created successfully";
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping(path="/edit/{id}", consumes = {MULTIPART_FORM_DATA_VALUE})
+    public String editArticle(
+            @PathVariable Long id,
+            @RequestPart("image") MultipartFile imageFile,
+            @RequestPart("nom_article") String nom_article,
+            @RequestPart("délai") String délai,
+            @RequestPart("description") String description,
+            @RequestPart("prixMin") String prixMin,
+            @RequestPart("date_debut") String date_debut,
+            @RequestPart("date_fin") String date_fin,
+            @RequestPart("email") String email
+    ) {
+        try {
+
+            Article article = new Article();
+            article.setId_article(id);
+            article.setNom_article(nom_article);
+            article.setDélai(LocalTime.parse(délai));
+            article.setDescription(description);
+            article.setPrixMin(Double.parseDouble(prixMin));
+            article.setDate_debut(LocalDate.parse(date_debut));
+            article.setDate_fin(LocalDate.parse(date_fin));
+
+            String relativePath = "bidfrontend/public/images";
+            String directoryPath = new File(relativePath).getAbsolutePath();
 
             File directory = new File(directoryPath);
             if (!directory.exists()) {

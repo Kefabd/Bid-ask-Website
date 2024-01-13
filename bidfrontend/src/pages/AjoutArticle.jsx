@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "../components/header/header";
 
 const AjoutArticle = () => {
   const [nom_article, setNom_article] = useState('');
