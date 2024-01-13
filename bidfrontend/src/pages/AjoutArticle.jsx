@@ -54,7 +54,7 @@ const AjoutArticle = () => {
             return response.text().then(console.log);
         }
     })
-    .then(data => {
+    .then((data) => {
         console.log("New article added:", data);
     })
     .catch(error => {

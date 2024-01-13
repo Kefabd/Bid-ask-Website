@@ -5,6 +5,8 @@ import com.example.BidBackend.model.Utilisateur;
 import com.example.BidBackend.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,10 +29,6 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.save(article);
     }
 
-    @Override
-    public List<Article> getArticlesVendeur(String email) {
-        return null;
-    }
 
     @Override
     public Article updateArticle(Long id,Article article) {
@@ -66,22 +64,10 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
 
-<<<<<<< HEAD
-    @Override
-=======
-    /*@Override
-=======
-    @Override
-<<<<<<< HEAD
-    public List<Article> getArticlesVendeur(String email){
-        return articleRepository.findByIdVendeur(email);
-=======
->>>>>>> 4d4485661cabd98419fd0ed96be173438ca5f064
->>>>>>> 64b09ea16fec3e1eb69204e7d2a2130a75b88c56
-    public List<Article> getArticlesVendeur(int id_utilisateur){
-        return articleRepository.findByIdVendeur(id_utilisateur);
->>>>>>> a6c5b6ec637c0ebae0f774997a25a2472cf704b6
 
+
+    public List<Article> getArticlesVendeur(@RequestParam String email){
+        return articleRepository.findByIdVendeur(email);
     }
 
     @Override

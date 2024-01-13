@@ -105,9 +105,14 @@ public class ArticleController {
         return articleService.findById(id);
     }
 
-    @GetMapping("/vendeur/{email}")
-    public List<Article> getArticleByIdVendeur(@PathVariable String email){return articleService.getArticlesVendeur(email);}
+    /*@GetMapping("/vendeur/{email}")
+    public List<Article> getArticleByIdVendeur(@PathVariable String email){return articleService.getArticlesVendeur(email);}*/
 
+    @GetMapping("/vendeur")
+    public List<Article> getArticlesVendeur(@RequestParam String email){
+        System.out.println(email);
+        return articleService.getArticlesVendeur(email);
+    }
     @DeleteMapping("/delete/{id}")
     public String deleteArticle(@PathVariable Long id) {
         articleService.deleteArticle(id);
