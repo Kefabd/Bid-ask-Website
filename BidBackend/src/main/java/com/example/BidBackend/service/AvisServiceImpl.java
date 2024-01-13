@@ -25,12 +25,10 @@ public class AvisServiceImpl implements AvisService {
         return optionalAvis.orElse(null);
     }
 
-<<<<<<< HEAD
     public List<Avis> getAll(){
         return avisRepository.findAll();
     }
 
-=======
     /*
 >>>>>>> 4fb10d5174bb0492ba0943bb7e7c9b0984e023bb
     @Override
