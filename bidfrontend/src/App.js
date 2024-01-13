@@ -14,7 +14,7 @@ function App() {
       <Route path='/authenticate' element={<Authenticate />} />
       <Route path='/shop' element={<Shop />} />
 
-      <Route path='/vendeur' element={<Vendeur />} />
+      <Route path='/vendeur/:id' element={<Vendeur />} />
 
       <Route path="/article/:id" element={<CadreInfos />} />
 

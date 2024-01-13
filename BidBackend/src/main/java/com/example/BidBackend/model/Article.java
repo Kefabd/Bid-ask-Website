@@ -1,5 +1,6 @@
 package com.example.BidBackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,8 +40,10 @@ public class Article {
     @JoinColumn(name="id_contrat")
     private ContratDeVente contratDeVente;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="id_utilisateur")
+    @JsonBackReference
     private Utilisateur utilisateur;
 
 }

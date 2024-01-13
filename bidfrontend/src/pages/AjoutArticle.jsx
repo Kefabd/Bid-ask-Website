@@ -11,6 +11,7 @@ const AjoutArticle = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    
 
     const label = e.target.previousElementSibling;
 
@@ -23,7 +24,8 @@ const AjoutArticle = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-
+    const user=JSON.parse(sessionStorage.getItem("user"));
+    console.log("User ID:", user.email);
     const formData = new FormData();
     formData.append("image", image); 
     formData.append("nom_article", nom_article);
@@ -32,6 +34,7 @@ const AjoutArticle = () => {
     formData.append("prixMin", prixMin);
     formData.append("date_debut", date_debut);
     formData.append("date_fin", date_fin);
+    formData.append("email",user.email);
     console.log(formData);
 
     fetch("http://localhost:8080/article/add", {
@@ -43,8 +46,6 @@ const AjoutArticle = () => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        // Vérifier si la réponse est une redirection
         if (response.redirected) {
             // Effectuer une redirection côté client si nécessaire
             window.location.href = response.url;
@@ -53,15 +54,13 @@ const AjoutArticle = () => {
             return response.text().then(console.log);
         }
     })
-    .then(data => {
+    .then((data) => {
         console.log("New article added:", data);
     })
     .catch(error => {
         console.error('Fetch Error:', error);
     });
 };
-
-
 
   return (
     <div className="authenticate">

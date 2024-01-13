@@ -81,6 +81,7 @@ export default function Authenticate() {
         });
     
         const result = await response.text();
+        console.log(result);
         setLogIn(result === '');
         
         if (result === 'user log') {
@@ -97,7 +98,7 @@ export default function Authenticate() {
                 console.log("vendeur")
                 console.log(userInfo.firstName);
                 // history.push('/home'); // Redirect to the home page for vendors
-                navigate('/vendeur')
+                navigate(`/vendeur/${userInfo.id_utilisateur}`)
 
             } else {
                 console.log("acheteur")

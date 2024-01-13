@@ -3,14 +3,13 @@
 
 import React, { useState } from "react";
 import Header from "../components/header/header";
-import Shop from './shop';
-import CadreInfos from "../components/cadreInfos";
 import AjoutArticle from "./AjoutArticle";
 
 import Carousel from "react-bootstrap/Carousel";
 import image1 from "../dependecies/images/500-2 (1).jpg";
 import image2 from "../dependecies/images/500.jpg";
 import image3 from "../dependecies/images/600.jpg";
+import ArticleVendeur from "../components/ArticleVendeur";
 import Cadre from '../components/cadre';
 
 
@@ -29,6 +28,7 @@ export default function Home() {
         <>
         <div>
     <Header />
+    <ArticleVendeur></ArticleVendeur>
     <AjoutArticle></AjoutArticle>
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }}>
