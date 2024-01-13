@@ -23,5 +23,8 @@ public class Avis {
     private Article article;
 
      */
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Utilisateur utilisateur;
 
 }

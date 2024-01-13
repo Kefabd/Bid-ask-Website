@@ -40,7 +40,6 @@ public class Article {
     @JoinColumn(name="id_contrat")
     private ContratDeVente contratDeVente;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="id_utilisateur")
     @JsonBackReference

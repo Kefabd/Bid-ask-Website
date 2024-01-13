@@ -12,5 +12,7 @@ public interface AvisService {
 
     List<Avis> getAvisForUser(int userId);
 
+    List<Avis> getAll();
+
     // Ajoutez d'autres méthodes spécifiques aux avis selon vos besoins
 }

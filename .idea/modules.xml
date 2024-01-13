@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Bid-ask-Website.iml" filepath="$PROJECT_DIR$/.idea/Bid-ask-Website.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BidBackend/BidBackend.iml" filepath="$PROJECT_DIR$/BidBackend/BidBackend.iml" />
     </modules>
   </component>
 </project>

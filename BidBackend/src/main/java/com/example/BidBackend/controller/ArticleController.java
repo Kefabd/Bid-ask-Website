@@ -59,7 +59,7 @@ public class ArticleController {
 
             String relativePath = "bidfrontend/public/images";
             String directoryPath = new File(relativePath).getAbsolutePath();
-
+            System.out.println(directoryPath);
             File directory = new File(directoryPath);
             if (!directory.exists()) {
                 directory.mkdirs();
@@ -67,7 +67,7 @@ public class ArticleController {
 
             String imagePath = directoryPath + File.separator + imageFile.getOriginalFilename();
             imageFile.transferTo(new File(imagePath));
-
+            System.out.println(imagePath);
             article.setImage("images/" + imageFile.getOriginalFilename());
 
             Utilisateur user = utilisateurService.findByEmail(email);
@@ -116,11 +116,11 @@ public class ArticleController {
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 
-    @GetMapping("/vendeur")
+    /*@GetMapping("/vendeur")
     public List<Article> getArticlesVendeur(@RequestParam String email){
         System.out.println(email);
         return articleService.getArticlesVendeur(email);
-    }
+    }*/
     @DeleteMapping("/delete/{id}")
     public String deleteArticle(@PathVariable Long id) {
         articleService.deleteArticle(id);

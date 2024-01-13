@@ -25,6 +25,10 @@ public class AvisServiceImpl implements AvisService {
         return optionalAvis.orElse(null);
     }
 
+    public List<Avis> getAll(){
+        return avisRepository.findAll();
+    }
+
     @Override
     public List<Avis> getAvisForUser(int userId) {
         // Implémentez la logique pour récupérer les avis pour un utilisateur spécifique

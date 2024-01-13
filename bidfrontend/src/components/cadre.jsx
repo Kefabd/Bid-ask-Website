@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import 'moment/locale/fr';
-import 'moment/locale/fr'; 
+import 'moment/locale/fr';
 import { Link } from 'react-router-dom';
 
 function Cadre({ article }) {
@@ -36,17 +36,18 @@ function Cadre({ article }) {
   return (
     <div className="cadre">
       <Link to={`/article/${article.id_article}`}>
-      <img className="cadre-image" src={source} alt="Description de l'image" />
-      </Link>
-      <div className="cadre-content">
-        <p>{article.description}</p>
-        <div className="cadre-info">
-          <p className="cadre-prix">{article.prixMin} €</p>
-          <p className="cadre-temps">
-            {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
-          </p>
+        <img className="cadre-image" src={source} alt="Description de l'image" />
+
+        <div className="cadre-content">
+          <p>{article.description}</p>
+          <div className="cadre-info">
+            <p className="cadre-prix">{article.prixMin} €</p>
+            <p className="cadre-temps">
+              {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+            </p>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }
