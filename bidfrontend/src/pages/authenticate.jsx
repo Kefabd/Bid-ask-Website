@@ -81,6 +81,7 @@ export default function Authenticate() {
         });
     
         const result = await response.text();
+        console.log(result);
         setLogIn(result === '');
 
     }
