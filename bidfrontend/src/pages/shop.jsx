@@ -12,11 +12,12 @@ function Shop() {
       .then((data) => setArticles(data))
       .catch((error) => console.error('Erreur lors de la récupération des articles', error));
   }, []);
+  console.log(articles);
 
   return (
     <div>
-      <h1>Shop</h1>
         <Header/>
+        <h1>Shop</h1>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {articles.map((article) => (
           <Cadre key={article.id_article} article={article} style={{ margin: '10px' }} />
@@ -26,4 +27,4 @@ function Shop() {
   );
 }
 
-export default Shop;
+export default Shop;
