@@ -4,7 +4,9 @@ import Header from '../components/header/header'
 function Vendeur() {
   return (
     <>
-    <Header></Header>
+    <Header>
+      Vendeur
+    </Header>
     </>
   )
 }

@@ -13,12 +13,18 @@ import image2 from "../dependecies/images/500.jpg";
 import image3 from "../dependecies/images/600.jpg";
 import Cadre from '../components/cadre';
 
+
+
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+
   const handleCarouselSelect = (selectedIndex) => {
     setCurrentIndex(selectedIndex);
+
   };
+
+  const user=JSON.parse(sessionStorage.getItem("user"));
     return(
         <>
         <div>
@@ -41,6 +47,7 @@ export default function Home() {
         <div style={{ flex: 1 }} className="flex2">
           <h1 className="TitreHome">
             Explorez l'Exclusivité: Enchères en Ligne Exceptionnelles
+    
           </h1>
           <p className="SubTitreHome">
             Rejoignez notre communauté passionnée et plongez dans le frisson des

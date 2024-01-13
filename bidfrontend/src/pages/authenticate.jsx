@@ -5,6 +5,8 @@ import * as babelTypes from "@babel/types";
 
 // Now you can use babelTypes for AST manipulation
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Authenticate() {
     const [activeTab, setActiveTab] = useState("signup");
@@ -16,6 +18,7 @@ export default function Authenticate() {
     const [exist, setExist] = useState(null);
     const [login, setLogIn] = useState(null);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -51,6 +54,22 @@ export default function Authenticate() {
 
     }
 
+    // const handleClickLogIn = async (e) => {
+    //     e.preventDefault();
+    //     const user = { email, password };
+
+    //     const response = await fetch("http://localhost:8080/utilisateurs/logIn", {
+    //         method: "POST",
+    //         headers: { "Content-type": "application/json" },
+    //         body: JSON.stringify(user)
+    //     })
+    //     // const result = await response.text();
+    //     // setLogIn(result === '');
+    // }
+
+
+    
+
     const handleClickLogIn = async (e) => {
         e.preventDefault();
         const user = { email, password };
@@ -59,11 +78,35 @@ export default function Authenticate() {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(user)
-        })
-        // const result = await response.text();
-        // setLogIn(result === '');
-    }
+        });
+    
+        const result = await response.text();
+        
+        if (result === 'user log') {
+            // User logged in successfully, create a session
+            const userData = await fetch("http://localhost:8080/utilisateurs/getByEmail?email=" + email);
+            const userInfo = await userData.json();
+    
+            // Store user information in sessionStorage
+            sessionStorage.setItem('user', JSON.stringify(userInfo));
 
+
+            // Redirect based on user role
+            if (userInfo.isVendor) {
+                console.log("vendeur")
+                console.log(userInfo.firstName);
+                // history.push('/home'); // Redirect to the home page for vendors
+                navigate('/vendeur')
+
+            } else {
+                console.log("acheteur")
+                navigate('/')
+            }
+        } else {
+            setLogIn(false);
+        }
+    };
+    
 
 
     return (
