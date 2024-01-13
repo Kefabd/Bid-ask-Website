@@ -7,7 +7,6 @@ export default function Header() {
     const [showSign, setShowSign] = useState(false);
     const location = useLocation();
     console.log(location.pathname);
-
     useEffect(function () {
 
         const handleScroll = () => {

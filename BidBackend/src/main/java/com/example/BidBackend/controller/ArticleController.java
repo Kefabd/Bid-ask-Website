@@ -4,6 +4,7 @@ import com.example.BidBackend.model.Article;
 import com.example.BidBackend.model.Utilisateur;
 import com.example.BidBackend.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
@@ -12,6 +13,7 @@ import java.net.http.HttpHeaders;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,8 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/article")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
@@ -67,8 +69,17 @@ public class ArticleController {
         }
         return null;
     }
+    @PostMapping("/verifierPrix")
+    public ResponseEntity<?> verifierPrix(@RequestBody Map<String, Double> data) {
+        Double prixPropose = data.get("prixPropose");
+        Double prixMinUtilisateur = 100.00; // Remplacez par la logique pour obtenir le prix minimum de la table utilisateur
 
-
+        if (prixPropose >= prixMinUtilisateur) {
+            return ResponseEntity.ok(Map.of("accepte", true));
+        } else {
+            return ResponseEntity.ok(Map.of("accepte", false));
+        }
+    }
 
 
 

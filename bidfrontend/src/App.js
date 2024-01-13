@@ -6,14 +6,18 @@ import Shop from './pages/shop';
 import CadreInfos from './components/cadreInfos';
 import Vendeur from './pages/Vendeur';
 
+
 function App() {
   return (
     <Routes>
       <Route  index element={<Home />} />
       <Route path='/authenticate' element={<Authenticate />} />
       <Route path='/shop' element={<Shop />} />
+
+      <Route path='/vendeur' element={<Vendeur />} />
+
       <Route path="/article/:id" element={<CadreInfos />} />
-      <Route path="/vendeur/:id" element={<Vendeur />} />
+
     </Routes>
   );
 }
