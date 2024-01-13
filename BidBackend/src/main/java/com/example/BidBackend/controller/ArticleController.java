@@ -72,14 +72,29 @@ public class ArticleController {
     @PostMapping("/verifierPrix")
     public ResponseEntity<?> verifierPrix(@RequestBody Map<String, Double> data) {
         Double prixPropose = data.get("prixPropose");
-        Double prixMinUtilisateur = 100.00; // Remplacez par la logique pour obtenir le prix minimum de la table utilisateur
+        Double NvPrix = data.get("NvPrix"); // Retrieve NvPrix from the request body
 
-        if (prixPropose >= prixMinUtilisateur) {
+        if ( prixPropose > NvPrix) {
             return ResponseEntity.ok(Map.of("accepte", true));
         } else {
             return ResponseEntity.ok(Map.of("accepte", false));
         }
     }
+
+    @PutMapping("/updateStatut/{id}")
+    public ResponseEntity<?> updateArticleStatut(@PathVariable Long id, @RequestBody Map<String, String> data) {
+        String statut = data.get("statut");
+
+        try {
+            Article article = articleService.findById(id);
+            article.setStatut(statut);
+            articleService.save(article);
+            return ResponseEntity.ok(Map.of("message", "Statut de l'article mis à jour avec succès."));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of("error", "Erreur lors de la mise à jour du statut de l'article."));
+        }
+    }
+
 
 
 
