@@ -81,6 +81,7 @@ export default function Authenticate() {
         });
     
         const result = await response.text();
+        setLogIn(result === '');
         
         if (result === 'user log') {
             // User logged in successfully, create a session
@@ -102,9 +103,7 @@ export default function Authenticate() {
                 console.log("acheteur")
                 navigate('/')
             }
-        } else {
-            setLogIn(false);
-        }
+        } 
     };
     
 
