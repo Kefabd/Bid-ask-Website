@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "../components/header/header";
 
 const AjoutArticle = () => {
   const [nom_article, setNom_article] = useState('');
@@ -90,7 +91,7 @@ const AjoutArticle = () => {
                   Start Date<span className="req">*</span>
                 </label>
                 <input
-                  type="date"
+                  type="datetime-local"
                   name="date_debut"
                   required
                   onChange={(e) => {                                       
@@ -105,7 +106,7 @@ const AjoutArticle = () => {
                   End Date<span className="req">*</span>
                 </label>
                 <input
-                  type="date"
+                  type="datetime-local"
                   name="date_fin"
                   required
                   onChange={(e) => {                                       

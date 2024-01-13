@@ -3,6 +3,7 @@ import Cadre from '../components/cadre';
 import Header from '../components/header/header';
 import AjoutArticle from './AjoutArticle';
 import { useParams, useNavigate } from 'react-router-dom';
+import ArticleVendeur from '../components/ArticleVendeur';
 
 function Vendeur() {
     const user = JSON.parse(sessionStorage.getItem("user"));
@@ -73,18 +74,13 @@ function Vendeur() {
         fetchData();
 
     }, [id, navigate]);
+    // console.log(articles);
 
     return (
         <div>
             <Header />
-            <h1>Articles</h1>
-            <AjoutArticle></AjoutArticle>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                {articles.map((article) => (
-                    <Cadre key={article.id_article} article={article} style={{ margin: '10px' }} />
-                ))}
-            </div>
-
+            <ArticleVendeur></ArticleVendeur>
+ 
         </div>
     );
 }

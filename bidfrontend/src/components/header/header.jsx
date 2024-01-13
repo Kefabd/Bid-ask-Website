@@ -39,7 +39,10 @@ export default function Header() {
     }, [location.pathname]);
 
     // Check if the user is authenticated
-    const isAuthenticated = !!sessionStorage.getItem('user');
+    const user = JSON.parse(sessionStorage.getItem('user'));
+const isAuthenticated = !!user;
+const isVendor = user?.isVendor;
+
 
     return (
         <div>
@@ -60,6 +63,17 @@ export default function Header() {
                             <li className="nav-item mx-5 text-center">
                                 <Link to='/' className={`nav-link ${location.pathname === '/pages' ? 'nav-link-underline' : ''}`}>Pages</Link>
                             </li>
+                            {isAuthenticated && isVendor && (
+                                <li className="nav-item mx-5 text-center">
+                                    <Link to='/ajouter-article' className={`nav-link ${location.pathname === '/ajouter-article' ? 'nav-link-underline' : ''}`}>Ajouter Article</Link>
+                                </li>
+                            )}
+                            {isAuthenticated && isVendor && (
+                                <li className="nav-item mx-5 text-center">
+                                    <Link to='/vendeur' className={`nav-link ${location.pathname === '/ajouter-article' ? 'nav-link-underline' : ''}`}>Mes Articles</Link>
+                                </li>
+                            )}
+                            
                         </ul>
                         {isAuthenticated ? (
                             <button className="cd-signin" type="button" onClick={handleLogout}>

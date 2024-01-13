@@ -17,7 +17,9 @@ import java.net.URLEncoder;
 import java.net.http.HttpHeaders;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -54,8 +56,59 @@ public class ArticleController {
             article.setDélai(LocalTime.parse(délai));
             article.setDescription(description);
             article.setPrixMin(Double.parseDouble(prixMin));
-            article.setDate_debut(LocalDate.parse(date_debut));
-            article.setDate_fin(LocalDate.parse(date_fin));
+            article.setDate_debut(LocalDateTime.parse(date_debut, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            article.setDate_fin(LocalDateTime.parse(date_fin, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+
+            String relativePath = "bidfrontend/public/images";
+            String directoryPath = new File(relativePath).getAbsolutePath();
+            System.out.println(directoryPath);
+
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            String imagePath = directoryPath + File.separator + imageFile.getOriginalFilename();
+            imageFile.transferTo(new File(imagePath));
+
+            article.setImage("images/" + imageFile.getOriginalFilename());
+
+            Utilisateur user = utilisateurService.findByEmail(email);
+            article.setUtilisateur(user);
+
+            articleService.save(article);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error processing/saving the article";
+        }
+        return "Article created successfully";
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping(path="/edit/{id}", consumes = {MULTIPART_FORM_DATA_VALUE})
+    public String editArticle(
+            @PathVariable Long id,
+            @RequestPart("image") MultipartFile imageFile,
+            @RequestPart("nom_article") String nom_article,
+            @RequestPart("délai") String délai,
+            @RequestPart("description") String description,
+            @RequestPart("prixMin") String prixMin,
+            @RequestPart("date_debut") String date_debut,
+            @RequestPart("date_fin") String date_fin,
+            @RequestPart("email") String email
+    ) {
+        try {
+
+            Article article = new Article();
+            article.setId_article(id);
+            article.setNom_article(nom_article);
+            article.setDélai(LocalTime.parse(délai));
+            article.setDescription(description);
+            article.setPrixMin(Double.parseDouble(prixMin));
+            article.setDate_debut(LocalDateTime.parse(date_debut, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            article.setDate_fin(LocalDateTime.parse(date_fin, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+
 
             String relativePath = "bidfrontend/public/images";
             String directoryPath = new File(relativePath).getAbsolutePath();
@@ -84,11 +137,23 @@ public class ArticleController {
 
 
     @PostMapping("/verifierPrix")
-    public ResponseEntity<?> verifierPrix(@RequestBody Map<String, Double> data) {
-        Double prixPropose = data.get("prixPropose");
-        Double prixMinUtilisateur = 100.00; // Remplacez par la logique pour obtenir le prix minimum de la table utilisateur
+    public ResponseEntity<?> verifierPrix(@RequestBody Map<String, Object> data) {
+        String userEmail = (String) data.get("userId");
+        Double prixPropose = Double.valueOf(data.get("prixPropose").toString());
+        Double NvPrix = Double.valueOf(data.get("NvPrix").toString());
+        Long articleID = ((Integer) data.get("articleID")).longValue();
+        // Récupérez l'article de la base de données en fonction de l'ID de l'utilisateur
+        Article article = articleService.findById(articleID);
 
-        if (prixPropose >= prixMinUtilisateur) {
+        if (prixPropose > NvPrix) {
+            article.setDateWithTime(LocalDateTime.now());
+            article.setPrixMin(prixPropose);
+            System.out.println("email : "+userEmail);
+            Utilisateur user=utilisateurService.findByEmail(userEmail);
+             article.setUtilisateur2(user);
+            // Enregistrez l'article mis à jour dans la base de données
+            articleService.save(article);
+
             return ResponseEntity.ok(Map.of("accepte", true));
         } else {
             return ResponseEntity.ok(Map.of("accepte", false));
@@ -96,10 +161,32 @@ public class ArticleController {
     }
 
 
+    @PutMapping("/updateStatut/{id}")
+    public ResponseEntity<?> updateArticleStatut(@PathVariable Long id, @RequestBody Map<String, String> data) {
+        String statut = data.get("statut");
+
+        try {
+            Article article = articleService.findById(id);
+            article.setStatut(statut);
+            articleService.save(article);
+            return ResponseEntity.ok(Map.of("message", "Statut de l'article mis à jour avec succès."));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of("error", "Erreur lors de la mise à jour du statut de l'article."));
+        }
+    }
+
+
+
 
     @GetMapping("/getAll")
     public List<Article> getAllArticles() {
         return articleService.getAllArticles();
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/user/{id}")
+    public Utilisateur getUserArticle(@PathVariable Long id){
+        return utilisateurService.findByArticleId(id);
     }
 
     @GetMapping("/{id}")
@@ -116,11 +203,22 @@ public class ArticleController {
         return new ResponseEntity<>(articles, HttpStatus.OK);
     }
 
+<<<<<<< HEAD
     /*@GetMapping("/vendeur")
     public List<Article> getArticlesVendeur(@RequestParam String email){
         System.out.println(email);
         return articleService.getArticlesVendeur(email);
     }*/
+=======
+    /*
+    @GetMapping("/vendeur")
+    public List<Article> getArticlesVendeur(@RequestParam String email){
+        System.out.println(email);
+        return articleService.getArticlesVendeur(email);
+    }
+
+     */
+>>>>>>> 4fb10d5174bb0492ba0943bb7e7c9b0984e023bb
     @DeleteMapping("/delete/{id}")
     public String deleteArticle(@PathVariable Long id) {
         articleService.deleteArticle(id);

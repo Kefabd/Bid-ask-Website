@@ -40,7 +40,7 @@ export default function Home() {
         .then(console.log("Avis Added successefly"))
 
     } else
-    navigate('/authenticate');
+      navigate('/authenticate');
   }
 
   useEffect(() => {
@@ -61,12 +61,50 @@ export default function Home() {
 
 
 
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  // const user = JSON.parse(sessionStorage.getItem("user"));
+  // return (
+  //   <>
+  //     <div>
+  //       <Header />
+
+  //       <div style={{ display: "flex" }}>
+  //         <div style={{ flex: 1 }}>
+  //           <Carousel onSelect={handleCarouselSelect}>
+  //             <Carousel.Item>
+  //               <img src={image1} alt="Image 1" className="image-carousel" />
+  //             </Carousel.Item>
+  //             <Carousel.Item>
+  //               <img src={image2} alt="Image 2" className="image-carousel" />
+  //             </Carousel.Item>
+  //             <Carousel.Item>
+  //               <img src={image3} alt="Image 3" className="image-carousel" />
+  //             </Carousel.Item>
+  //           </Carousel>
+  //         </div>
+  //         <div style={{ flex: 1 }} className="flex2">
+  //           <h1 className="TitreHome">
+  //             Explorez l'Exclusivité: Enchères en Ligne Exceptionnelles
+  //             {/* {user.id_utilisateur} */}
+  //           </h1>
+  //           <p className="SubTitreHome">
+  //             Rejoignez notre communauté passionnée et plongez dans le frisson des
+  //             enchères en ligne pour des acquisitions inoubliables.
+  //           </p>
+  //           <div style={{ display: "flex" }}>
+  //             {[image1, image2, image3].map((image, index) => (
+  //               <img
+  //                 key={index}
+  //                 src={image}
+  //                 alt={`Small Image ${index + 1}`}
+  //                 className={`image-carousel2 ${currentIndex === index ? 'active' : ''}`}
+  //               />
+  //             ))}
+  //           </div>
+  // const user=JSON.parse(sessionStorage.getItem("user"));
   return (
     <>
       <div>
         <Header />
-
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }}>
             <Carousel onSelect={handleCarouselSelect}>
@@ -101,16 +139,15 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </div>
-        <h1 className="Titre1">Récemment publiés</h1>
-        <div style={{ display: "flex" }}>
+          <h1 className="Titre1">Récemment publiés</h1>
+          <div style={{ display: "flex" }}>
 
-        </div >
-        <h1 className="Titre1">Plus populaires</h1>
-        <div style={{ display: "flex" }}>
-        </div >
+          </div >
+          <h1 className="Titre1">Plus populaires</h1>
+          <div style={{ display: "flex" }}>
+          </div >
 
-        {/* <div className="avis">
+          {/* <div className="avis">
           <h1 className="Titre2">Avis</h1><br />
           <p className="davis">Les avis de nos clients parlent d'eux-mêmes. Explorez leurs expériences et découvertes uniques lors de nos enchères. Rejoignez notre communauté et partagez votre propre histoire aujourd'hui.</p>
           <div style={{ display: "flex" }}>
@@ -135,24 +172,24 @@ export default function Home() {
             </div>
           </div>
         </div> */}
+        </div>
+        <div>
+          <form action="POST" onSubmit={handleSumit}>
+            <label>Donner avis</label>
+            <textarea
+              name="description"
+              required
+              onChange={(e) => {
+                //handleInputChange(e);
+                setAvis(e.target.value);
+              }}
+            ></textarea>
+            <input type="submit" value="Submit Avis" />
+          </form>
+          <Reviews avis={reviews} />
+
+        </div>
       </div>
-      <div>
-        <form action="POST" onSubmit={handleSumit}>
-          <label>Donner avis</label>
-          <textarea
-            name="description"
-            required
-            onChange={(e) => {
-              //handleInputChange(e);
-              setAvis(e.target.value);
-            }}
-          ></textarea>
-          <input type="submit" value="Submit Avis" />
-        </form>
-        <Reviews avis={reviews}/>
-       
-      </div>
-      
     </>
   )
 }

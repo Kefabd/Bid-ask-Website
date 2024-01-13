@@ -32,8 +32,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
         if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) ){
             addToSession("userId", utilisateur.getId_utilisateur());
-        //System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
-        if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) )
             return "user log";
         }
         return null;
@@ -42,6 +40,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         HttpSession session = attr.getRequest().getSession(true);
         session.setAttribute(attributeName, attributeValue);
+    }
+
+    public Utilisateur findByArticleId(Long articleId) {
+        return utilisateurRepository.findByArticle(articleId);
     }
 
     @Override

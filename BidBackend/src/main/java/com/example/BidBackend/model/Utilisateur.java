@@ -26,7 +26,12 @@ public class Utilisateur {
     private  String password;
 
     @OneToMany(mappedBy = "utilisateur")
-    private List<Article> articles;  // Add this line
+    private List<Article> articles;
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Article> articles2;
 
 
+    public String getFullName() {
+        return this.lastName+" "+this.firstName;
+    }
 }

@@ -5,8 +5,6 @@ import com.example.BidBackend.model.Utilisateur;
 import com.example.BidBackend.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +27,13 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.save(article);
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public List<Article> getArticlesVendeur(String email) {
+        return articleRepository.findByIdVendeur(email);
+    }
+>>>>>>> 4fb10d5174bb0492ba0943bb7e7c9b0984e023bb
 
     @Override
     public Article updateArticle(Long id,Article article) {
@@ -64,10 +69,51 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll();
     }
 
+<<<<<<< HEAD
 
     @Override
     public List<Article> getArticlesVendeur(String email) {
         return articleRepository.findByIdVendeur(email);
+=======
+    @Override
+    public List<Article> getActiveArticles() {
+        return null;
+    }
+
+    @Override
+    public List<Article> searchArticlesByKeyword(String keyword) {
+        return null;
+    }
+
+    @Override
+    public List<Article> getArticlesBySeller(int sellerId) {
+        return null;
+    }
+
+    @Override
+    public void closeAuction(int articleId) {
+
+    }
+
+    @Override
+    public Article getArticleByUserId(String email) {
+        return articleRepository.findByUtilisateurId_utilisateur(email);
+    }
+
+    /*@Override
+=======
+    @Override
+<<<<<<< HEAD
+    public List<Article> getArticlesVendeur(String email){
+        return articleRepository.findByIdVendeur(email);
+=======
+>>>>>>> 4d4485661cabd98419fd0ed96be173438ca5f064
+>>>>>>> 64b09ea16fec3e1eb69204e7d2a2130a75b88c56
+    public List<Article> getArticlesVendeur(int id_utilisateur){
+        return articleRepository.findByIdVendeur(id_utilisateur);
+>>>>>>> a6c5b6ec637c0ebae0f774997a25a2472cf704b6
+
+>>>>>>> 4fb10d5174bb0492ba0943bb7e7c9b0984e023bb
     }
 
 
@@ -92,5 +138,10 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void closeAuction(int articleId) {
         // Implémentez la logique pour fermer une enchère
+<<<<<<< HEAD
     }
 }
+=======
+    }*/
+}
+>>>>>>> 4fb10d5174bb0492ba0943bb7e7c9b0984e023bb
