@@ -9,6 +9,7 @@ import Carousel from "react-bootstrap/Carousel";
 import image1 from "../dependecies/images/500-2 (1).jpg";
 import image2 from "../dependecies/images/500.jpg";
 import image3 from "../dependecies/images/600.jpg";
+import ArticleVendeur from "../components/ArticleVendeur";
 
 
 
@@ -24,6 +25,7 @@ export default function Home() {
         <>
         <div>
     <Header />
+    <ArticleVendeur></ArticleVendeur>
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1 }}>
           <Carousel onSelect={handleCarouselSelect}>
