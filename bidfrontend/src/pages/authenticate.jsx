@@ -2,8 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import background from '../dependecies/images/antique-1.jpg';
 import * as babelTypes from "@babel/types";
 
+
 // Now you can use babelTypes for AST manipulation
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Authenticate() {
     const [activeTab, setActiveTab] = useState("signup");
@@ -15,6 +18,7 @@ export default function Authenticate() {
     const [exist, setExist] = useState(null);
     const [login, setLogIn] = useState(null);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
@@ -50,6 +54,22 @@ export default function Authenticate() {
 
     }
 
+    // const handleClickLogIn = async (e) => {
+    //     e.preventDefault();
+    //     const user = { email, password };
+
+    //     const response = await fetch("http://localhost:8080/utilisateurs/logIn", {
+    //         method: "POST",
+    //         headers: { "Content-type": "application/json" },
+    //         body: JSON.stringify(user)
+    //     })
+    //     // const result = await response.text();
+    //     // setLogIn(result === '');
+    // }
+
+
+    
+
     const handleClickLogIn = async (e) => {
         e.preventDefault();
         const user = { email, password };
@@ -58,9 +78,11 @@ export default function Authenticate() {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(user)
-        })
+        });
+    
         const result = await response.text();
         setLogIn(result === '');
+
     }
 
 
@@ -192,12 +214,11 @@ export default function Authenticate() {
                                 {login === true &&
                                     <div className="alert alert-danger">
                                         <strong>User already exist!</strong> Please try another time.
-                                    </div>
+                                    </div> 
                                 }
-
                                 {login === false &&
                                     <div className="alert alert-success">
-                                        <strong>Registration succeded</strong> Congrats
+                                        <strong>Login succeded</strong> 
                                     </div>
                                 }
 

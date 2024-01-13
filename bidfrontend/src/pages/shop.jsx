@@ -15,6 +15,7 @@ function Shop() {
 
   return (
     <div>
+      <h1>Shop</h1>
         <Header/>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {articles.map((article) => (
@@ -25,4 +26,4 @@ function Shop() {
   );
 }
 
-export default Shop;
+export default Shop;

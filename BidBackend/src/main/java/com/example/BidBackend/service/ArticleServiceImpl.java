@@ -21,6 +21,7 @@ public class ArticleServiceImpl implements ArticleService {
         return optionalArticle.orElse(null);
     }
 
+
     @Override
     public Article save(Article article) {
         return articleRepository.save(article);
@@ -58,6 +59,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getAllArticles() {
         return articleRepository.findAll();
+    }
+    public List<Article> getArticlesVendeur(int id_utilisateur){
+
     }
 
     @Override
