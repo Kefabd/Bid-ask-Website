@@ -74,11 +74,12 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findByIdVendeur(email);
 =======
 >>>>>>> 4d4485661cabd98419fd0ed96be173438ca5f064
+>>>>>>> 64b09ea16fec3e1eb69204e7d2a2130a75b88c56
     public List<Article> getArticlesVendeur(int id_utilisateur){
         return articleRepository.findByIdVendeur(id_utilisateur);
 >>>>>>> a6c5b6ec637c0ebae0f774997a25a2472cf704b6
 
-    }*/
+    }
 
     @Override
     public List<Article> getActiveArticles() {
@@ -101,5 +102,5 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void closeAuction(int articleId) {
         // Implémentez la logique pour fermer une enchère
-    }
+    }*/
 }

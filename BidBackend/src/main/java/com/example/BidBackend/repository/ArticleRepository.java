@@ -14,6 +14,7 @@ public interface ArticleRepository extends JpaRepository<Article,Long> {
 
     Optional<Article> findById(Long id);
 
+
     @Query("SELECT a FROM Article a WHERE a.utilisateur.email = :email")
     List<Article> findByIdVendeur(@Param("email") String email);
 

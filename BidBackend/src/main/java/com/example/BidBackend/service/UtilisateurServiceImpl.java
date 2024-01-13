@@ -32,6 +32,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
         if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) ){
             addToSession("userId", utilisateur.getId_utilisateur());
+<<<<<<< HEAD
+        //System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
+        if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) )
+=======
+>>>>>>> 64b09ea16fec3e1eb69204e7d2a2130a75b88c56
             return "user log";
         }
         return null;
