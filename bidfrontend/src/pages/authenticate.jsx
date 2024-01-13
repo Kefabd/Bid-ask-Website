@@ -83,9 +83,30 @@ export default function Authenticate() {
         const result = await response.text();
         console.log(result);
         setLogIn(result === '');
+        
+        if (result === 'user log') {
+            // User logged in successfully, create a session
+            const userData = await fetch("http://localhost:8080/utilisateurs/getByEmail?email=" + email);
+            const userInfo = await userData.json();
+    
+            // Store user information in sessionStorage
+            sessionStorage.setItem('user', JSON.stringify(userInfo));
 
-    }
 
+            // Redirect based on user role
+            if (userInfo.isVendor) {
+                console.log("vendeur")
+                console.log(userInfo.firstName);
+                // history.push('/home'); // Redirect to the home page for vendors
+                navigate(`/vendeur/${userInfo.id_utilisateur}`)
+
+            } else {
+                console.log("acheteur")
+                navigate('/')
+            }
+        } 
+    };
+    
 
 
     return (
@@ -212,7 +233,7 @@ export default function Authenticate() {
                                 <p className="forgot">
                                     <a href="#">Forgot Password?</a>
                                 </p>
-                                {login === true &&
+                                {login == true &&
                                     <div className="alert alert-danger">
                                         <strong>User already exist!</strong> Please try another time.
                                     </div> 

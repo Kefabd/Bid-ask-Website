@@ -3,10 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import Authenticate from './pages/authenticate';
 import Shop from './pages/shop';
-
-import Vendeur from './pages/Vendeur';
-
 import CadreInfos from './components/cadreInfos';
+import Vendeur from './pages/Vendeur';
 
 
 function App() {
@@ -16,7 +14,7 @@ function App() {
       <Route path='/authenticate' element={<Authenticate />} />
       <Route path='/shop' element={<Shop />} />
 
-      <Route path='/vendeur' element={<Vendeur />} />
+      <Route path='/vendeur/:id' element={<Vendeur />} />
 
       <Route path="/article/:id" element={<CadreInfos />} />
 

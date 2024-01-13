@@ -3,9 +3,12 @@ package com.example.BidBackend.service;
 import com.example.BidBackend.dto.LoginDto;
 import com.example.BidBackend.model.Utilisateur;
 import com.example.BidBackend.repository.UtilisateurRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,10 +29,26 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     public String loginUser(LoginDto loginDto){
         Utilisateur utilisateur =  findByEmail(loginDto.getEmail());
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
+        if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) ){
+            addToSession("userId", utilisateur.getId_utilisateur());
+=======
+>>>>>>> 4d4485661cabd98419fd0ed96be173438ca5f064
         //System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
         if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) )
+>>>>>>> 477f4c6ce4aae6a8ea673c0e82af02535d9fa9de
             return "user log";
+
+        }
         return null;
+    }
+    private void addToSession(String attributeName, int attributeValue) {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        HttpSession session = attr.getRequest().getSession(true);
+        session.setAttribute(attributeName, attributeValue);
     }
 
     @Override
