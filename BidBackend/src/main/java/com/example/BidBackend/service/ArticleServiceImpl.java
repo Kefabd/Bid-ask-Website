@@ -60,15 +60,12 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getAllArticles() {
         return articleRepository.findAll();
     }
-<<<<<<< HEAD
-    /*@Override
-=======
+
     @Override
->>>>>>> 4d4485661cabd98419fd0ed96be173438ca5f064
     public List<Article> getArticlesVendeur(int id_utilisateur){
         return articleRepository.findByIdVendeur(id_utilisateur);
 
-    }*/
+    }
 
     @Override
     public List<Article> getActiveArticles() {

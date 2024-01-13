@@ -29,17 +29,11 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     public String loginUser(LoginDto loginDto){
         Utilisateur utilisateur =  findByEmail(loginDto.getEmail());
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
         System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
         if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) ){
             addToSession("userId", utilisateur.getId_utilisateur());
-=======
->>>>>>> 4d4485661cabd98419fd0ed96be173438ca5f064
         //System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
         if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) )
->>>>>>> 477f4c6ce4aae6a8ea673c0e82af02535d9fa9de
             return "user log";
 
         }
