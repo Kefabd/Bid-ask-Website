@@ -1,5 +1,6 @@
 package com.example.BidBackend.service;
 
+import com.example.BidBackend.dto.LoginDto;
 import com.example.BidBackend.model.Utilisateur;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface UtilisateurService {
     Utilisateur updateUtilisateur(int id, Utilisateur utilisateur);
 
     void deleteUtilisateur(int id);
+
+    String loginUser(LoginDto loginDto);
 }

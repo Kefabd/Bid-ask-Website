@@ -1,8 +1,10 @@
 package com.example.BidBackend.service;
 
+import com.example.BidBackend.dto.LoginDto;
 import com.example.BidBackend.model.Utilisateur;
 import com.example.BidBackend.repository.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +16,20 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Override
     public Utilisateur save(Utilisateur utilisateur) {
+        utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
         return utilisateurRepository.save(utilisateur);
+    }
+
+    public String loginUser(LoginDto loginDto){
+        Utilisateur utilisateur =  findByEmail(loginDto.getEmail());
+        System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
+        if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) )
+            return "user log";
+        return null;
     }
 
     @Override
