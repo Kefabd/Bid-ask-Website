@@ -1,5 +1,5 @@
 import React from "react";
-import antique from '../../dependecies/images/120x80-0.jpg'
+import inconnu from '../../dependecies/images/inconnu.png'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 // Default theme
 import '@splidejs/react-splide/css';
@@ -25,11 +25,13 @@ export default function Reviews({ avis }) {
                 </div>
                 <Splide
                     options={{
-                        type: 'loop',
+                        type: 'slide',
                         perPage: 2,
                         perMove: 1,
                         pagination: false,
-                        focus: 'center'
+                        focus: 'center',
+                        arrows: false,
+                        start: 3,
                     }}
                     style={{width: "100%"}}
                 >
@@ -37,20 +39,21 @@ export default function Reviews({ avis }) {
                         <SplideSlide key={index}>
                             <>
                                 <div className="my-5" key={index}  >
-                                    <div className="cards" style={{ overflow: 'visible' }}>
-                                        <article className="review">
+                                    {/* <div className="cards" style={{ overflow: 'visible' }}> */}
+                                        <article className="review mx-3">
                                             <div className="img-container">
-                                                <img src={antique} id="person-img" alt={`Review ${index}`} />
+                                                <img src={inconnu} id="person-img" alt={`Review ${index}`} />
                                             </div>
-                                            <h4 id="author">sra jones</h4>
-                                            <p id="job">UX Designer</p>
+                                            <h4 id="author">{avisItem.utilisateur.firstName} {avisItem.utilisateur.lastName}</h4>
+                                            <p id="job">{avisItem.utilisateur.isVendor === true ? "Vendeur" : "Acheteur"}</p>
                                             <p id="info">
                                                 {avisItem.text}
                                             </p>
                                         </article>
+                                    
 
                                     </div>
-                                </div >
+                                {/* </div > */}
                             </>
                         </SplideSlide>
                     ))}

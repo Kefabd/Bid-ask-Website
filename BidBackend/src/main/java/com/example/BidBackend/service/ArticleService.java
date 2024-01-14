@@ -3,7 +3,10 @@ package com.example.BidBackend.service;
 import com.example.BidBackend.model.Article;
 import com.example.BidBackend.model.Utilisateur;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 public interface ArticleService {
     public Article findById(Long id);
@@ -27,5 +30,7 @@ public interface ArticleService {
     void closeAuction(int articleId);
 
     Article getArticleByUserId(String email);
+
+    List<Article> getArticlesByDate(LocalDateTime localDate);
 
 }

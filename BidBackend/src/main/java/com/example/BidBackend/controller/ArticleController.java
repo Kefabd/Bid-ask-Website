@@ -227,4 +227,16 @@ public class ArticleController {
         articleService.updateArticle(id, article);
         return "Article updated";
     }
+
+    @GetMapping("/recent")
+    public List<Article> getRecentArticles() {
+        // Calculate the date 3 days ago from today
+        LocalDateTime threeDaysAgo = LocalDateTime.now().minusDays(1);
+        System.out.println(threeDaysAgo);
+
+        // Retrieve articles published in the last 3 days
+         List<Article> recentArticles = articleService.getArticlesByDate(threeDaysAgo);
+
+        return recentArticles;
+    }
 }

@@ -43,10 +43,7 @@ public class Article {
     @JoinColumn(name="id_contrat")
     private ContratDeVente contratDeVente;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 4fb10d5174bb0492ba0943bb7e7c9b0984e023bb
     @ManyToOne
     @JoinColumn(name="id_utilisateur")
     @JsonBackReference

@@ -344,6 +344,7 @@ h1 {
 
 .avis{
   background-image: url('./dependecies/images/antique-1.jpg');
+  background-size: cover; /* Ensure the background image covers the entire element */
 }
 
 .davis{
@@ -606,7 +607,8 @@ h1 {
   text-transform: capitalize;
   line-height: 1.25;
   margin-bottom: 0.75rem;
-  font-size: 2rem;
+  font-size: 3rem;
+  color: #fff;
 }
 .title {
   text-align: center;
@@ -621,18 +623,16 @@ h1 {
 }
 .Container {
   width: 100vw;
-  /* max-width:  620px; */
-  
+  padding: 2%;
 }
 .review {
   background: #fff;
-  /* padding: 1.5rem 2rem; */
+  padding: 1.5rem 2rem;
   border-radius: 0.25rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition:  all 0.3s linear;
   text-align: center;
-  /* max-width: 600px; */
-  /* margin: auto; */
+  
 }
 .review:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);

@@ -40,13 +40,12 @@ export default function Header() {
 
     // Check if the user is authenticated
     const user = JSON.parse(sessionStorage.getItem('user'));
-const isAuthenticated = !!user;
-const isVendor = user?.isVendor;
-
+    const isAuthenticated = !!user;
+    const isVendor = user?.isVendor;
 
     return (
         <div>
-            <nav className={`navbar navbar-expand-sm p-3 ${scrolling ? 'bg-change' : ''}`}>
+            <nav className={`navbar navbar-expand-sm p-3  ${scrolling ? 'bg-change fixed-top' : ''}`}>
                 <div className="container-fluid">
                     <a className="navbar-brand mx-auto" href="javascript:void(0)">Logo</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" style={{ border: '2px solid #DEB887' }}>
