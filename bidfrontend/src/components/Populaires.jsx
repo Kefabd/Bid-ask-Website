@@ -12,7 +12,7 @@ function Populaires() {
       .then((data) => setArticles(data))
       .catch((error) => console.error('Erreur lors de la récupération des articles', error));
   }, []);
-  console.log(articles);
+  // console.log(articles);
 
   return (
     <div>

@@ -17,7 +17,7 @@ public class AvisController {
     @Autowired
     private AvisService avisService;
 
-    @PostMapping("/add")
+    @PostMapping(path = "/add", consumes = "application/json")
     public Avis addAvis(@RequestBody Avis avis){
         return avisService.save(avis);
     }

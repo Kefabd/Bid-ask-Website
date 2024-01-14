@@ -362,8 +362,12 @@ h1 {
 }
 
 .avis{
-  background-image: url('./dependecies/images/antique-1.jpg');
+  background-image: url('./dependecies/images/antique.jpg');
   background-size: cover; /* Ensure the background image covers the entire element */
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  width: 100%;
 }
 
 .davis{
@@ -689,8 +693,8 @@ h1 {
   margin-right: auto;
 }
 .Container {
-  width: 100vw;
-  padding: 2%;
+  width: 100%;
+  padding: 1%;
 }
 .review {
   background: #fff;
@@ -870,4 +874,8 @@ h1 {
 /* Style facultatif pour mettre en surbrillance les champs requis */
 .avis-form input:required {
   border-color: #ff6347;
+}
+
+.recent::-webkit-scrollbar{
+  display: none;
 }

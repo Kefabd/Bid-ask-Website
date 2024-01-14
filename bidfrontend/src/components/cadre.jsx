@@ -31,7 +31,6 @@ function Cadre({ article }) {
     return () => clearTimeout(timer);
   });
   const source = `http://localhost:3000/${article.image}`;
-  console.log(source);
 
   return (
     <div className="cadre">

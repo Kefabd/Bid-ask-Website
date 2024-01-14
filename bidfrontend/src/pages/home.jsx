@@ -39,7 +39,7 @@ export default function Home() {
       console.log(avis);
       const response = await fetch("http://localhost:8080/avis/add", {
         method: "POST",
-        headers: { "Content-type": "application/json", 'mode': 'cors' },
+        headers: { "Content-type": "application/json" },
         body: JSON.stringify(avis)
       })
         .then(console.log("Avis Added successefly"))
@@ -48,20 +48,6 @@ export default function Home() {
       navigate('/authenticate');
   }
 
-  useEffect(() => {
-    const fetchDataFromServer = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/avis/getAll");
-        const result = await response.json();
-        console.log(result);
-        setReviews(result);
-
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchDataFromServer();
-  }, []);
 
 
   useEffect(() => {
@@ -79,7 +65,7 @@ export default function Home() {
 
     fetchDataFromServer();
   }, []);
-  console.log(reviews)
+  // console.log(reviews)
 
   return (
     <>
@@ -132,10 +118,13 @@ export default function Home() {
         </div>
         <div>
           <h1 className="Titre1">Récemment publiés</h1>
-          <div style={{ display: "flex" }}>
-            {recent.map((articlee, index) => {
-              <Cadre article={articlee} />
-            })}
+
+          <div style={{ display: "flex", overflowX: 'scroll', scrollbarWidth:'none' }} className="recent">
+            {recent.map((articlee, index) => (
+              <div key={index} style={{ flex: '0 0 auto' }} className="mx-2">
+                <Cadre article={articlee} />
+              </div>
+            ))}
           </div >
           <h1 className="Titre1">Plus populaires</h1>
           <Populaires></Populaires>

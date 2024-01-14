@@ -25,7 +25,7 @@ public class Avis {
     private Article article;
 
      */
-    @JsonBackReference
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Utilisateur utilisateur;

@@ -25,10 +25,10 @@ public class Utilisateur {
     private String firstName;
     private  String password;
 
-    @OneToMany(mappedBy = "utilisateur")
+    /*@OneToMany(mappedBy = "utilisateur")
     private List<Article> articles;
     @OneToMany(mappedBy = "utilisateur")
-    private List<Article> articles2;
+    private List<Article> articles2;*/
 
 
     public String getFullName() {

@@ -9,7 +9,7 @@ export default function Avis() {
           try {
             const response = await fetch("http://localhost:8080/avis/getAll");
             const result = await response.json();
-            console.log(result);
+            //console.log(result);
             setReviews(result);
     
           } catch (error) {

@@ -39,17 +39,10 @@ export default function Header() {
     }, [location.pathname]);
 
     // Check if the user is authenticated
-<<<<<<< HEAD
     const user = JSON.parse(sessionStorage.getItem('user'));
-    console.log(user);
     const isAuthenticated = !!user;
     const isVendor = user?.isVendor;
-=======
-const user = JSON.parse(sessionStorage.getItem('user'));
-const isAuthenticated = !!user;
-const isVendor = user?.isVendor;
 
->>>>>>> 94b3473a47ae15b3a88f9e84ec69a7ebeacd0d0e
 
     return (
         <div>
