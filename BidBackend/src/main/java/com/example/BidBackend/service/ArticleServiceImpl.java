@@ -31,6 +31,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
 
+    @Override
+    public List<Article> getArticlesVendeur(String email) {
+        return articleRepository.findByIdVendeur(email);
+    }
 
     @Override
     public Article updateArticle(Long id,Article article) {
@@ -67,10 +71,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
 
+
+
     @Override
-    public List<Article> getArticlesVendeur(String email) {
-        return articleRepository.findByIdVendeur(email);
-    }
     public List<Article> getActiveArticles() {
         return null;
     }
@@ -141,3 +144,4 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findArticlesByDateDebutAfter(localDate);
     }
 }
+

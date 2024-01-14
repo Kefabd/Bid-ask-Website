@@ -9,6 +9,7 @@ const AjoutArticle = () => {
     const [description, setDescription] = useState('');
     const [prixMin, setPrixMin] = useState(0);
     const [image,setImage]=useState(0);
+    const [exist, setExist] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -24,6 +25,7 @@ const AjoutArticle = () => {
   };
 
   const handleClick = (e) => {
+    setExist(true);
     e.preventDefault();
     const user=JSON.parse(sessionStorage.getItem("user"));
     console.log("User ID:", user.email);
@@ -60,7 +62,10 @@ const AjoutArticle = () => {
     })
     .catch(error => {
         console.error('Fetch Error:', error);
+
+        
     });
+    
 };
 
   return (
@@ -163,6 +168,17 @@ const AjoutArticle = () => {
                 }}
                 />
               </div>
+              {exist === true &&
+                                    <div className="alert alert-danger">
+                                        <strong>Article Non Ajoute</strong> Please try another time.
+                                    </div>
+                                }
+
+                                {exist === false &&
+                                    <div className="alert alert-success">
+                                        <strong>Article Ajoute succeded</strong> felicitation!
+                                    </div>
+                                }
 
               <button
                 type="submit"

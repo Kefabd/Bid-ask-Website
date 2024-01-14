@@ -11,6 +11,9 @@ import { useNavigate } from "react-router-dom";
 import Reviews from "../components/home/reviews";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import Cadre from "../components/cadre";
+import Footer from "../components/Footer";
+import Populaires from "../components/Populaires";
+import Avis from "../components/home/Avis";
 
 
 
@@ -36,7 +39,7 @@ export default function Home() {
       console.log(avis);
       const response = await fetch("http://localhost:8080/avis/add", {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-type": "application/json", 'mode': 'cors' },
         body: JSON.stringify(avis)
       })
         .then(console.log("Avis Added successefly"))
@@ -57,7 +60,6 @@ export default function Home() {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchDataFromServer();
   }, []);
 
@@ -77,7 +79,7 @@ export default function Home() {
 
     fetchDataFromServer();
   }, []);
-
+  console.log(reviews)
 
   return (
     <>
@@ -117,7 +119,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <h1 className="Titre1">Récemment publiés</h1>
+          {/* <h1 className="Titre1">Récemment publiés</h1>
           <div style={{ display: "flex", overflow: 'scroll' }}>
                 {recent.map((articlee, index) => {
                   <Cadre article={articlee} />
@@ -125,26 +127,40 @@ export default function Home() {
           </div >
           <h1 className="Titre1">Plus populaires</h1>
           <div style={{ display: "flex" }}>
-          </div >
+          </div > */}
 
         </div>
         <div>
-          <form action="POST" onSubmit={handleSumit}>
-            <label>Donner avis</label>
+          <h1 className="Titre1">Récemment publiés</h1>
+          <div style={{ display: "flex" }}>
+            {recent.map((articlee, index) => {
+              <Cadre article={articlee} />
+            })}
+          </div >
+          <h1 className="Titre1">Plus populaires</h1>
+          <Populaires></Populaires>
+        </div>
+        <div>
+          <form className="avis-form" action="POST" onSubmit={handleSumit}>
+            <label htmlFor="avis-text">Donner avis</label>
             <textarea
+              id="avis-text"
+              className="avis-textarea"
               name="description"
               required
               onChange={(e) => {
-                //handleInputChange(e);
                 setAvis(e.target.value);
               }}
             ></textarea>
-            <input type="submit" value="Submit Avis" />
+            <input type="submit" className="cd-signin" value="Submit Avis" />
           </form>
-          <Reviews avis={reviews} />
+          <br></br>
+
+          <Avis />
 
         </div>
       </div>
+      <Footer></Footer>
     </>
   )
 }

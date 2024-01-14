@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Cadre from '../components/cadre';
 import Header from '../components/header/header';
 
-function Shop() {
+function Populaires() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
@@ -16,15 +16,13 @@ function Shop() {
 
   return (
     <div>
-        <Header/>
-        <h1 style={{textAlign:'center'}}>Shop</h1>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {articles.map((article) => (
-          <Cadre key={article.id_article} article={article} style={{ margin: '10px' }} />
-        ))}
+      {articles.slice(0, 3).map((article) => (
+  <Cadre key={article.id_article} article={article} style={{ margin: '10px' }} />
+))}
       </div>
     </div>
   );
 }
 
-export default Shop;
+export default Populaires;

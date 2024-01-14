@@ -24,7 +24,6 @@ public class AvisServiceImpl implements AvisService {
         Optional<Avis> optionalAvis = avisRepository.findById(id);
         return optionalAvis.orElse(null);
     }
-
     public List<Avis> getAll(){
         return avisRepository.findAll();
     }

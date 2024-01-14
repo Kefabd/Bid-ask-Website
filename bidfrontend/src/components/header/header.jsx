@@ -40,6 +40,7 @@ export default function Header() {
 
     // Check if the user is authenticated
     const user = JSON.parse(sessionStorage.getItem('user'));
+    console.log(user);
     const isAuthenticated = !!user;
     const isVendor = user?.isVendor;
 
@@ -47,7 +48,9 @@ export default function Header() {
         <div>
             <nav className={`navbar navbar-expand-sm p-3  ${scrolling ? 'bg-change fixed-top' : ''}`}>
                 <div className="container-fluid">
-                    <a className="navbar-brand mx-auto" href="javascript:void(0)">Logo</a>
+                    <Link to='/' className="navbar-brand mx-auto">
+                        RIBAKHA
+                    </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" style={{ border: '2px solid #DEB887' }}>
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -60,7 +63,7 @@ export default function Header() {
                                 <Link to='/shop' className={`nav-link ${location.pathname === '/shop' ? 'nav-link-underline' : ''}`}>Shop</Link>
                             </li>
                             <li className="nav-item mx-5 text-center">
-                                <Link to='/' className={`nav-link ${location.pathname === '/pages' ? 'nav-link-underline' : ''}`}>Pages</Link>
+                                <Link to='/Avis' className={`nav-link ${location.pathname === '/Avis' ? 'nav-link-underline' : ''}`}>Avis</Link>
                             </li>
                             {isAuthenticated && isVendor && (
                                 <li className="nav-item mx-5 text-center">
