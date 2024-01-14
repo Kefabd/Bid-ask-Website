@@ -1,5 +1,6 @@
 package com.example.BidBackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,6 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class Avis {
     @Id
     @GeneratedValue(
@@ -23,6 +25,7 @@ public class Avis {
     private Article article;
 
      */
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Utilisateur utilisateur;

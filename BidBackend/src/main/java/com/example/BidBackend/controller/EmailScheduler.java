@@ -118,7 +118,7 @@ public class EmailScheduler {
                 // Set the emailSent flag to true to indicate that emails have been sent for this article
                 article.setIsEmailSent(true);
                 // Save the updated article in the database
-                articleService.save(article);
+                articleService.deleteArticle(article.getId_article());
 
         }}
     }

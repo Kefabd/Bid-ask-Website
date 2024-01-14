@@ -37,6 +37,25 @@ nav .cd-signup:hover {
   background: none;
   transition: background 0.7s ease-in-out, color 0.6s ease-in-out;
 }
+ .cd-signin,
+ .cd-signup {
+  padding: 0.6em 1em;
+  border: 2px solid #DEB887;
+  background: #2f889a;
+  border-radius: 50em;
+  /* margin-right: 1%; */
+  font-weight: normal;
+  color: white;
+  transition: background 0.7s ease-in-out, color 0.6s ease-in-out;
+}
+
+ .cd-signin:hover,
+ .cd-signup:hover {
+  border: 2px solid #000000;
+  color: #000000;
+  background: none;
+  transition: background 0.7s ease-in-out, color 0.6s ease-in-out;
+}
 
 .nav-link-underline,
 .nav-link:hover {
@@ -429,14 +448,62 @@ h1 {
 }
 
 .cadre-prix {
-  color: green;
+  color: #2f889a;
   /*color: #DEB887;*/
 }
 
 .cadre-temps {
-  color: blue;
+  color: rgb(241, 58, 58);
   /*color: #13232f;*/
 }
+
+
+/*footer*/
+/* Footer.css */
+
+.footer-container {
+  background-color: #2f889a;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  
+  width: 100%;
+}
+.footer-section ul a {
+  list-style: none;
+  color: #DEB887;
+  padding: 0;
+  margin: 0;
+}
+.footer-section ul  {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-section ul li {
+  margin-bottom: 8px; 
+}
+
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Ajoutez cette ligne pour gérer le cas où les éléments dépassent la largeur */
+}
+
+.footer-section {
+  flex: 1; /* Permet à chaque section d'occuper une partie égale de l'espace disponible */
+  margin: 0 10px; /* Ajoutez une marge entre les sections pour un meilleur espacement */
+}
+
+.footer-bottom {
+  width: 100%;
+  margin-top: 20px; /* Ajoutez une marge au-dessus pour séparer du reste du contenu */
+}
+
+
 
 
 
@@ -722,3 +789,85 @@ h1 {
 }
 
 
+/*fotmulaire avis */
+.avis-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #DEB887;
+  display: flex;
+  flex-direction: column; /* Aligne les éléments en colonne par défaut */
+}
+
+.avis-form label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.avis-textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Style facultatif pour mettre en surbrillance les champs requis */
+.avis-form input:required {
+  border-color: #ff6347;
+}
+
+
+.avis-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.avis-textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Style facultatif pour mettre en surbrillance les champs requis */
+.avis-form input:required {
+  border-color: #ff6347;
+}

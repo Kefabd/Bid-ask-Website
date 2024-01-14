@@ -48,7 +48,7 @@ const isVendor = user?.isVendor;
         <div>
             <nav className={`navbar navbar-expand-sm p-3 ${scrolling ? 'bg-change' : ''}`}>
                 <div className="container-fluid">
-                    <a className="navbar-brand mx-auto" href="javascript:void(0)">Logo</a>
+                    <a className="navbar-brand mx-auto" href="javascript:void(0)">RIBAKHA</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" style={{ border: '2px solid #DEB887' }}>
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -61,7 +61,7 @@ const isVendor = user?.isVendor;
                                 <Link to='/shop' className={`nav-link ${location.pathname === '/shop' ? 'nav-link-underline' : ''}`}>Shop</Link>
                             </li>
                             <li className="nav-item mx-5 text-center">
-                                <Link to='/' className={`nav-link ${location.pathname === '/pages' ? 'nav-link-underline' : ''}`}>Pages</Link>
+                                <Link to='/Avis' className={`nav-link ${location.pathname === '/Avis' ? 'nav-link-underline' : ''}`}>Avis</Link>
                             </li>
                             {isAuthenticated && isVendor && (
                                 <li className="nav-item mx-5 text-center">

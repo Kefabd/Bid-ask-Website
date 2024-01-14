@@ -10,6 +10,8 @@ import image3 from "../dependecies/images/600.jpg";
 import { useNavigate } from "react-router-dom";
 import Reviews from "../components/home/reviews";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import Footer from "../components/Footer";
+import Populaires from "../components/Populaires";
 
 
 
@@ -34,7 +36,7 @@ export default function Home() {
       console.log(avis);
       const response = await fetch("http://localhost:8080/avis/add", {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-type": "application/json",'mode': 'cors' },
         body: JSON.stringify(avis)
       })
         .then(console.log("Avis Added successefly"))
@@ -139,13 +141,6 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <h1 className="Titre1">Récemment publiés</h1>
-          <div style={{ display: "flex" }}>
-
-          </div >
-          <h1 className="Titre1">Plus populaires</h1>
-          <div style={{ display: "flex" }}>
-          </div >
 
           {/* <div className="avis">
           <h1 className="Titre2">Avis</h1><br />
@@ -174,22 +169,34 @@ export default function Home() {
         </div> */}
         </div>
         <div>
-          <form action="POST" onSubmit={handleSumit}>
-            <label>Donner avis</label>
-            <textarea
-              name="description"
-              required
-              onChange={(e) => {
-                //handleInputChange(e);
-                setAvis(e.target.value);
-              }}
-            ></textarea>
-            <input type="submit" value="Submit Avis" />
-          </form>
+          <h1 className="Titre1">Récemment publiés</h1>
+          <div style={{ display: "flex" }}>
+
+          </div >
+          <h1 className="Titre1">Plus populaires</h1>
+            <Populaires></Populaires>
+          </div>
+        <div>
+        <form className="avis-form" action="POST" onSubmit={handleSumit}>
+  <label htmlFor="avis-text">Donner avis</label>
+  <textarea
+    id="avis-text"
+    className="avis-textarea"
+    name="description"
+    required
+    onChange={(e) => {
+      setAvis(e.target.value);
+    }}
+  ></textarea>
+  <input type="submit" className="cd-signin" value="Submit Avis" />
+</form>
+<br></br>
+
           <Reviews avis={reviews} />
 
         </div>
       </div>
+      <Footer></Footer>
     </>
   )
 }

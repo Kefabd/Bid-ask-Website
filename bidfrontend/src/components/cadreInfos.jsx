@@ -5,6 +5,7 @@ import Header from './header/header';
 function CadreInfos() {
   const [prixPropose, setPrixPropose] = useState('');
   const [userFirstName, setUserFirstName] = useState('');
+  const[userPrix,setUserPrix]=useState('');
   const [user2, setUser2] = useState({});
   
   const [showForm, setShowForm] = useState(false);
@@ -172,12 +173,15 @@ useEffect(() => {
   useEffect(() => {
     setUserFirstName(user2.firstName);
   }, [user2]);
+  useEffect(() => {
+    setUserPrix(article.prixMin);
+  }, [user2]);
   
   return (
     <nav>
       <Header />
       <div className="cadre-titre">
-        <h2>{article.nom_article} {article.délai}</h2>
+        <h2>{article.nom_article}</h2>
       </div>
       <div className="nouveau-cadre-avec-image">
         <img
@@ -191,8 +195,7 @@ useEffect(() => {
               <div className="nouveau-cadre-blanc">
                 <p className="textCentrer">
                 <p className="cadre-temps">
-            {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s <br/>
-            {timeDiff.hours}h {timeDiff.minutes}m {timeDiff.seconds}s
+            {timeLeft.days}d {timeLeft.hours}: {timeLeft.minutes}: {timeLeft.seconds} <br/>
           </p>
                 </p>
                 <br />
@@ -210,15 +213,17 @@ useEffect(() => {
                     </p>
                   </div>
                 </div>
-                <div className="nouveau-cadre-boutons">
-                  <button
-                    className="cd-signin"
-                    type="button"
-                    onClick={handleAcheterClick}
-                  >
-                    Acheter
-                  </button>
-                </div>
+                {!showForm && (
+  <div className="nouveau-cadre-boutons">
+    <button
+      className="cd-signin"
+      type="button"
+      onClick={handleAcheterClick}
+    >
+      Acheter
+    </button>
+  </div>
+)}
                 {showForm && (
                   <div>
                     <label>
@@ -231,6 +236,7 @@ useEffect(() => {
                     </label>
                     <button
                       type="button"
+                      className="cd-signin"
                       onClick={handleConfirmerClick}
                     >
                       Confirmer
@@ -241,7 +247,7 @@ useEffect(() => {
               <div className="nouveau-cadre-info">
                 <p className="nouveau-cadre-prix">
                 
-                   <b>{prixPropose} €</b> {userFirstName}
+                   <b>{NvPrix} €</b> {userFirstName}
           
                 </p>
                 <p className="nouveau-cadre-temps">{article.date_fin}</p>

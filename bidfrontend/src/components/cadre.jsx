@@ -37,17 +37,17 @@ function Cadre({ article }) {
     <div className="cadre">
       <Link to={`/article/${article.id_article}`}>
         <img className="cadre-image" src={source} alt="Description de l'image" />
-
+        </Link>
         <div className="cadre-content">
           <p>{article.description}</p>
           <div className="cadre-info">
             <p className="cadre-prix">{article.prixMin} €</p>
             <p className="cadre-temps">
-              {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+              {timeLeft.days}d {timeLeft.hours}: {timeLeft.minutes}: {timeLeft.seconds}
             </p>
           </div>
         </div>
-      </Link>
+      
     </div>
   );
 }
