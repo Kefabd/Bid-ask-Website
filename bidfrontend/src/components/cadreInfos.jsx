@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from './header/header';
+import Footer from './Footer';
 
 function CadreInfos() {
   const [prixPropose, setPrixPropose] = useState('');
@@ -100,7 +101,6 @@ useEffect(() => {
 
     return timeDiff;
   };
-  console.log("id utilisateur : "+user.id_utilisateur)
 
   const handleConfirmerClick = () => {
     const requestBody = {
@@ -121,6 +121,7 @@ useEffect(() => {
       .then((data) => {
         if (data.accepte) {
           console.log('Prix accepté');
+          setUserFirstName(user.firstName);
           setNvPrix(prixPropose);
           setNbEnrichisseurs(nbEnrichisseurs + 1);
         } else {
@@ -169,16 +170,24 @@ useEffect(() => {
 
     return () => clearTimeout(timer);
   });
-  console.log("time diff: "+timeDiff.minutes)
   useEffect(() => {
     setUserFirstName(user2.firstName);
-  }, [user2]);
-  useEffect(() => {
     setUserPrix(article.prixMin);
-  }, [user2]);
+  }, [user2, article]);
+
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const zoomIn = () => {
+    setIsZoomed(true);
+  };
+
+  const zoomOut = () => {
+    setIsZoomed(false);
+  };
+  
   
   return (
-    <nav>
+    <>
       <Header />
       <div className="cadre-titre">
         <h2>{article.nom_article}</h2>
@@ -187,7 +196,9 @@ useEffect(() => {
         <img
           src={`http://localhost:3000/${article.image}`}
           alt="Description de l'image"
-          className="cadre-image2"
+          className={isZoomed ? 'cadre-image2 zoomed' : 'cadre-image2'}
+          onMouseOver={zoomIn}
+          onMouseOut={zoomOut}
         />
         <div>
           <div className="nouveau-cadre">
@@ -195,7 +206,7 @@ useEffect(() => {
               <div className="nouveau-cadre-blanc">
                 <p className="textCentrer">
                 <p className="cadre-temps">
-            {timeLeft.days}d {timeLeft.hours}: {timeLeft.minutes}: {timeLeft.seconds} <br/>
+            {timeLeft.days}d {timeLeft.hours}h: {timeLeft.minutes}m: {timeLeft.seconds}s <br/>
           </p>
                 </p>
                 <br />
@@ -225,23 +236,28 @@ useEffect(() => {
   </div>
 )}
                 {showForm && (
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <div>
                     <label>
-                      Prix proposé :
+                      <b>Prix proposé :</b>
                       <input
                         type="number"
                         value={prixPropose}
                         onChange={(e) => setPrixPropose(e.target.value)}
+                        style={{ margin: '10px', }} // Ajoutez cette ligne pour définir la marge à droite
                       />
                     </label>
                     <button
                       type="button"
-                      className="cd-signin"
+                      className="cd-signin2"
                       onClick={handleConfirmerClick}
                     >
                       Confirmer
                     </button>
                   </div>
+                </div>
+                
+                
                 )}
               </div>
               <div className="nouveau-cadre-info">
@@ -267,8 +283,10 @@ useEffect(() => {
             </div>
           </div>
         </div>
+        
       </div>
-    </nav>
+      <Footer />
+    </>
   );
 }
 

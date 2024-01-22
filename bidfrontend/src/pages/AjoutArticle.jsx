@@ -168,15 +168,10 @@ const AjoutArticle = () => {
                 }}
                 />
               </div>
-              {exist === true &&
-                                    <div className="alert alert-danger">
-                                        <strong>Article Non Ajoute</strong> Please try another time.
-                                    </div>
-                                }
 
-                                {exist === false &&
+                                {exist === true &&
                                     <div className="alert alert-success">
-                                        <strong>Article Ajoute succeded</strong> felicitation!
+                                        <strong>Article Ajoute </strong> felicitation!
                                     </div>
                                 }
 

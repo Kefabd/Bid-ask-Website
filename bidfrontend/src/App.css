@@ -9,6 +9,11 @@ nav {
   
 }
 
+
+.zoomed {
+  transform: scale(1.2); /* Vous pouvez ajuster le facteur de zoom selon vos besoins */
+}
+
 .bg-change {
   background: #DEB887;
   transition: background 0.7s ease-in-out;
@@ -28,6 +33,12 @@ nav .cd-signup {
   font-weight: normal;
   color: white;
   transition: background 0.7s ease-in-out, color 0.6s ease-in-out;
+}
+.cd-signin2{
+  border: 2px solid #DEB887;
+  background: #2f889a;
+  border-radius: 3px;
+
 }
 
 nav .cd-signin:hover,
@@ -444,6 +455,7 @@ h1 {
 
 .cadre-content {
   padding: 20px;
+  background-color:  #DCDCDC;
 }
 
 .cadre-info {
@@ -459,6 +471,7 @@ h1 {
 
 .cadre-temps {
   color: rgb(241, 58, 58);
+  font-size: 25px;
   /*color: #13232f;*/
 }
 
@@ -467,11 +480,11 @@ h1 {
 /* Footer.css */
 
 .footer-container {
-  background-color: #2f889a;
+  background-image: url('https://e0.pxfuel.com/wallpapers/1011/675/desktop-wallpaper-continents-black-background-world-map-continents.jpg');
   color: white;
+  background-position: center;
   padding: 20px 0;
   text-align: center;
-  
   width: 100%;
 }
 .footer-section ul a {
@@ -495,17 +508,27 @@ h1 {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap; /* Ajoutez cette ligne pour gérer le cas où les éléments dépassent la largeur */
+  flex-wrap: wrap;}            
+.bb2{
+  color: white;
+}
+.point{
+  font-size: 40px;
+  color: #2f889a;
 }
 
 .footer-section {
-  flex: 1; /* Permet à chaque section d'occuper une partie égale de l'espace disponible */
-  margin: 0 10px; /* Ajoutez une marge entre les sections pour un meilleur espacement */
+  flex: 1; 
+  margin: 0 10px; 
 }
 
 .footer-bottom {
+  background-color: #000000;
   width: 100%;
-  margin-top: 20px; /* Ajoutez une marge au-dessus pour séparer du reste du contenu */
+  height: 50px;
+  color: rgba(255, 255, 255, 0.74);
+  
+  /* Ajoutez une marge au-dessus pour séparer du reste du contenu */
 }
 
 
@@ -523,6 +546,9 @@ h1 {
   max-width: 60%;
   height: auto;
   border-radius: 5px;
+  transition: transform 0.3s;
+  padding:30px;
+  transform-origin: center center; /* Définit le point d'origine au centre de l'image */
   margin: 20px; /* Ajoute un espace entre l'image et le cadre */
 }
 
@@ -571,12 +597,13 @@ h1 {
   text-align: center;
   color: gray;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 10px 10px;
   font-size: small;
 }
 .petit{
   margin: 13px;
+  font-size: 25px;
 }
 .bgBlanc{
   background-color: #fff;
@@ -605,6 +632,7 @@ h1 {
   padding: 20px;
   box-sizing: border-box;
   flex-basis: 30%;
+  font-size: 22px;
   display: flex;
   justify-content: space-between;
 }
@@ -857,19 +885,7 @@ h1 {
   resize: vertical;
 }
 
-.submit-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
 
-.submit-button:hover {
-  background-color: #45a049;
-}
 
 /* Style facultatif pour mettre en surbrillance les champs requis */
 .avis-form input:required {
@@ -879,3 +895,30 @@ h1 {
 .recent::-webkit-scrollbar{
   display: none;
 }
+
+
+.text-link-items {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ajustez selon vos besoins */
+}
+
+.text-link-item {
+  width: calc(33.33% - 20px); /* Ajustez selon vos besoins */
+  height: 100px;
+  margin-bottom: 20px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid #DEB887;
+  padding: 10px !important;
+}
+.text-link-item:hover{
+  border: 5px solid #DEB887;
+}
+

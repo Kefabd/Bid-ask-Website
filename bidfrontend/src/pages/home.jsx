@@ -144,10 +144,25 @@ export default function Home() {
             <input type="submit" className="cd-signin" value="Submit Avis" />
           </form>
           <br></br>
-
-          <Avis />
-
         </div>
+        <div className="text-link-items">
+  {/* Premier lien */}
+  <div className="text-link-item" onClick={() => window.location.href = "/premier-lien"}>
+    <p >Visiteur </p>
+  </div>
+
+  {/* Deuxième lien */}
+  <div className="text-link-item" onClick={() => window.location.href = "/deuxieme-lien"}>
+    <p >Participation A L'Enchere </p>
+  </div>
+
+  {/* Troisième lien */}
+  <div className="text-link-item" onClick={() => window.location.href = "/troisieme-lien"}>
+    <p >Consulter Avis </p>
+  </div>
+</div>
+
+        
       </div>
       <Footer></Footer>
     </>

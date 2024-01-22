@@ -107,7 +107,7 @@ const ArticleEdit = () => {
                 <div className="field-wrap">
                   <label className='highlight active'>Start Date</label>
                   <input
-                    type="date"
+                    type="datetime-local"
                     name="date_debut"
                     required
                     value={date_debut}
@@ -121,7 +121,7 @@ const ArticleEdit = () => {
                 <div className="field-wrap">
                   <label className='highlight active'>End Date</label>
                   <input
-                    type="date"
+                    type="datetime-local"
                     name="date_fin"
                     required
                     value={date_fin}

@@ -1,5 +1,7 @@
 package com.example.BidBackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +14,7 @@ import java.util.List;
 
 
 @Entity
+@JsonIgnoreProperties("avisList")
 public class Utilisateur {
     @Id
     @GeneratedValue(
@@ -29,6 +32,8 @@ public class Utilisateur {
     private List<Article> articles;
     @OneToMany(mappedBy = "utilisateur")
     private List<Article> articles2;*/
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Avis> avisList;
 
 
     public String getFullName() {

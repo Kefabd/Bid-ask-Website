@@ -64,7 +64,7 @@ public class EmailScheduler {
     }
     @Autowired
     private JavaMailSender javaMailSender;
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 30000)
     public void checkAndSendEmails2() throws MessagingException, IOException {
         List<Article> articles = articleService.getAllArticles();
 
@@ -72,7 +72,7 @@ public class EmailScheduler {
             LocalDateTime scheduledDate = article.getDate_fin();
             LocalDateTime currentDate = LocalDateTime.now();
 
-           if (!article.getIsEmailSent() && !currentDate.isBefore(scheduledDate) && article.getUtilisateur2() != null) {
+           if ( !currentDate.isBefore(scheduledDate) && article.getUtilisateur2() != null) {
                 // Generate PDF content
                 byte[] pdfContent = this.contratDeVenteService.getContractsForUser(article);
 
@@ -90,7 +90,7 @@ public class EmailScheduler {
                 helper.setText(text);
 
                 // Attach the PDF
-                helper.addAttachment("pdfAttachment.pdf", new ByteArrayResource(pdfContent));
+                helper.addAttachment("ConfirmationDeVente.pdf", new ByteArrayResource(pdfContent));
 
                 // Send the email
                 javaMailSender.send(mimeMessage);
@@ -110,15 +110,15 @@ public class EmailScheduler {
                 helper2.setText(text2);
 
                 // Attach the PDF to the second email
-                helper2.addAttachment("pdfAttachment.pdf", new ByteArrayResource(pdfContent));
+                helper2.addAttachment("ConfirmationDeVente.pdf", new ByteArrayResource(pdfContent));
 
                 // Send the second email
                 javaMailSender.send(mimeMessage2);
 
                 // Set the emailSent flag to true to indicate that emails have been sent for this article
                 article.setIsEmailSent(true);
-                // Save the updated article in the database
                 articleService.deleteArticle(article.getId_article());
+                System.out.println("id = " + article.getId_article());
 
         }}
     }
