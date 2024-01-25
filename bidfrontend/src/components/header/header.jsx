@@ -56,15 +56,19 @@ export default function Header() {
                     </button>
                     <div className="collapse navbar-collapse" id="mynavbar">
                         <ul className="navbar-nav mx-auto">
-                            <li className="nav-item mx-5 text-center">
-                                <Link to='/' className={`nav-link ${location.pathname === '/' ? 'nav-link-underline' : ''}`}>Home</Link>
-                            </li>
+                        {!isVendor && (
+              <li className="nav-item mx-5 text-center">
+                <Link to='/' className={`nav-link ${location.pathname === '/' ? 'nav-link-underline' : ''}`}>Home</Link>
+              </li>
+            )}
                             <li className="nav-item mx-5 text-center">
                                 <Link to='/shop' className={`nav-link ${location.pathname === '/shop' ? 'nav-link-underline' : ''}`}>Shop</Link>
                             </li>
-                            <li className="nav-item mx-5 text-center">
-                                <Link to='/Avis' className={`nav-link ${location.pathname === '/Avis' ? 'nav-link-underline' : ''}`}>Avis</Link>
-                            </li>
+                            {!isVendor && (
+              <li className="nav-item mx-5 text-center">
+                <Link to='/Avis' className={`nav-link ${location.pathname === '/Avis' ? 'nav-link-underline' : ''}`}>Avis</Link>
+              </li>
+            )}
                             {isAuthenticated && isVendor && (
                                 <li className="nav-item mx-5 text-center">
                                     <Link to='/ajouter-article' className={`nav-link ${location.pathname === '/ajouter-article' ? 'nav-link-underline' : ''}`}>Ajouter Article</Link>
