@@ -17,14 +17,11 @@ function App() {
       <Route  index element={<Home />} />
       <Route path='/authenticate' element={<Authenticate />} />
       <Route path='/shop' element={<Shop />} />
-
       <Route path='/vendeur' element={<Vendeur />} />
-
       <Route path="/article/:id" element={<CadreInfos />} />
       <Route path="/edit-article/:id" element={<ArticleEdit />} />
       <Route path='/ajouter-article' element={<AjoutArticle />} />
       <Route path='/Avis' element={<Avis></Avis>}></Route>
-
 
     </Routes>
   );

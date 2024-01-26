@@ -69,6 +69,8 @@ const AjoutArticle = () => {
 };
 
   return (
+    <>
+    <Header></Header>
     <div className="authenticate">
       <div className="form">
         <div className="tab-content">
@@ -187,6 +189,8 @@ const AjoutArticle = () => {
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 

@@ -10,7 +10,7 @@ function CadreInfos() {
   const [user2, setUser2] = useState({});
   
   const [showForm, setShowForm] = useState(false);
-  const [NvPrix, setNvPrix] = useState(localStorage.getItem('NvPrix') || article.prixMin);
+  const [NvPrix, setNvPrix] = useState();
   const [nbEnrichisseurs, setNbEnrichisseurs] = useState(
     parseInt(localStorage.getItem('nbEnrichisseurs')) || 0
   );
@@ -26,7 +26,7 @@ useEffect(() => {
       const articleResponse = await fetch(`http://localhost:8080/article/${id}`);
       const articleData = await articleResponse.json();
       setArticle(articleData);
-
+      console.log(article);
       setNvPrix(localStorage.getItem(`NvPrix_${articleData.id_article}`) || articleData.prixMin);
       setNbEnrichisseurs(
         parseInt(localStorage.getItem(`nbEnrichisseurs_${articleData.id_article}`)) || 0

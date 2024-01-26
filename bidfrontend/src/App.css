@@ -86,22 +86,22 @@ body[makeback="yes"]{
 }
 .authenticate a {
   text-decoration: none;
-  color: #1ab188;
+  color: #DEB887;
   transition: .5s ease;
 
 }
 
 .authenticate a:hover {
-  color: #1ab188;
+  color: #DEB887;
 }
 
 .form {
-  background: #13232f;
+  background: #f7ede3;
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
   border-radius: 4px;
-  box-shadow: 0 4px 10px 4px #13232f;
+  box-shadow: 0 4px 10px 4px #f7ede3;
 }
 
 .tab-group {
@@ -120,7 +120,7 @@ body[makeback="yes"]{
   display: block;
   text-decoration: none;
   padding: 15px;
-  background: rgb(148, 172, 168, .25);
+  background: rgba(172, 166, 148, 0.25);
   color: #a0b3b0;
   font-size: 20px;
   float: left;
@@ -137,7 +137,7 @@ body[makeback="yes"]{
 }
 
 .authenticate .active a {
-  background: #1ab188;
+  background: #DEB887;
   color: white;
 }
 
@@ -147,7 +147,7 @@ body[makeback="yes"]{
 
 .authenticate h1 {
   text-align: center;
-  color: white;
+  color: #13232f;
   font-weight: 300;
   margin: 0 0 40px;
 }
@@ -156,7 +156,7 @@ body[makeback="yes"]{
   position: absolute;
   transform: translateY(6px);
   left: 13px;
-  color: rgb(255, 255, 255, .5);
+  color: rgba(21, 20, 20, 0.5);
   transition: all 0.25s ease;
   /* -webkit-backface-visibility: hidden; */
   pointer-events: none;
@@ -166,7 +166,7 @@ body[makeback="yes"]{
 
 .authenticate label .req {
   margin: 2px;
-  color: #1ab188;
+  color: #DEB887;
 }
 
 .authenticate label.active{
@@ -180,7 +180,7 @@ body[makeback="yes"]{
 }
 
 .authenticate label.highlight {
-  color: white;
+  color: black;
 }
 
 .authenticate input,
@@ -192,8 +192,8 @@ body[makeback="yes"]{
   padding: 5px 10px;
   background: none;
   background-image: none;
-  border: 1px solid #a0b3b0;
-  color: white;
+  border: 1px solid #DEB887;
+  color: black;
   border-radius: 0;
   transition: border-color .25s ease, box-shadow .25s ease;
 
@@ -202,16 +202,16 @@ body[makeback="yes"]{
 .authenticate input:focus,
 .authenticate textarea, .authenticate .select:focus{
   outline: 0;
-  border-color: #1ab188;
+  border: 3px solid #DEB887;
 }
 
 .authenticate .select option{
-  background: #1ab188;
+  background: #DEB887;
 }
-.authenticate textarea, .authenticate .select {
-  border: 2px solid #a0b3b0;
+/* .authenticate textarea, .authenticate .select {
+  border: 2px solid #DEB887;
   resize: vertical;
-}
+} */
 
 .field-wrap {
   position: relative;
@@ -271,7 +271,7 @@ body[makeback="yes"]{
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #1ab188;
+  background: #edd4b5;
   color: white;
   transition: all.5s ease;
   /* -webkit-appearance: none; */
@@ -280,7 +280,7 @@ body[makeback="yes"]{
 
 .button:hover,
 .button:focus {
-  background: #1ab188;
+  background: #DEB887;
 }
 
 .button-block {
@@ -455,7 +455,7 @@ h1 {
 
 .cadre-content {
   padding: 20px;
-  background-color:  #DCDCDC;
+  background-color:  #DEB887;
 }
 
 .cadre-info {
@@ -903,12 +903,15 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; /* Ajustez selon vos besoins */
+  
 }
 
 .text-link-item {
-  width: calc(33.33% - 20px); /* Ajustez selon vos besoins */
-  height: 100px;
+  /* width: calc(33.33% - 20px);  */
+  width: 40%;
+  height: 300px;
   margin-bottom: 20px;
+  margin-top: 20px;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -917,8 +920,46 @@ h1 {
   position: relative;
   border: 2px solid #DEB887;
   padding: 10px !important;
+  background-size: cover;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
 }
 .text-link-item:hover{
   border: 5px solid #DEB887;
 }
+.back{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  object-fit: cover;
+}
+.authenticate + div {
+  /* background-image: url('../../../assets/ensamSchool.png'); */
+  /* background-size: cover; */
+  /* height: 100%; */
+  /* width: 100%; */
+  background: rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 1;
+}
+.authenticate {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    /* background: rgba(255, 255, 255, 0.8); */
+    /* padding: 9.55%; */
+}
 
+.section-recent{
+  background: rgb(226, 235, 241);
+}
+.section-go{
+  margin-left: 50px;
+  margin-right: 50px;
+  background: rgb(226, 235, 241);
+  margin-bottom: 30px;
+}

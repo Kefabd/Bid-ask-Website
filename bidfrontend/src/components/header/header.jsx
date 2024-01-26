@@ -76,7 +76,7 @@ export default function Header() {
                             )}
                             {isAuthenticated && isVendor && (
                                 <li className="nav-item mx-5 text-center">
-                                    <Link to='/vendeur' className={`nav-link ${location.pathname === '/ajouter-article' ? 'nav-link-underline' : ''}`}>Mes Articles</Link>
+                                    <Link to='/vendeur' className={`nav-link ${location.pathname === '/vendeur' ? 'nav-link-underline' : ''}`}>Mes Articles</Link>
                                 </li>
                             )}
                             

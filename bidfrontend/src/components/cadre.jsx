@@ -32,8 +32,12 @@ function Cadre({ article }) {
   });
   const source = `http://localhost:3000/${article.image}`;
 
+  useEffect(() => {
+    console.log(article);
+  }, [])
+
   return (
-    <div className="cadre">
+    <div className="cadre ">
       <Link to={`/article/${article.id_article}`}>
         <img className="cadre-image" src={source} alt="Description de l'image" />
         </Link>

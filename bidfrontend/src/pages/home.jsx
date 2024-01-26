@@ -14,6 +14,8 @@ import Cadre from "../components/cadre";
 import Footer from "../components/Footer";
 import Populaires from "../components/Populaires";
 import Avis from "../components/home/Avis";
+import review from '../dependecies/images/reviews.jpg'
+import enchere from '../dependecies/images/enchere.jpg'
 
 
 
@@ -23,6 +25,7 @@ export default function Home() {
   const [text, setAvis] = useState('');
   const [reviews, setReviews] = useState([]);
   const [recent, setRecent] = useState([]);
+  const [isVendor, setIsVendor] = useState(false);
   const navigate = useNavigate();
 
   const handleCarouselSelect = (selectedIndex) => {
@@ -46,6 +49,8 @@ export default function Home() {
 
     } else
       navigate('/authenticate');
+    
+    setAvis('');
   }
 
 
@@ -66,6 +71,14 @@ export default function Home() {
     fetchDataFromServer();
   }, []);
   // console.log(reviews)
+
+  useEffect(() => {
+    if (JSON.parse(sessionStorage.getItem('user')) !== null)
+      setIsVendor(JSON.parse(sessionStorage.getItem('user')).isVendor);
+
+
+    console.log(isVendor);
+  })
 
   return (
     <>
@@ -116,21 +129,53 @@ export default function Home() {
           </div > */}
 
         </div>
-        <div>
-          <h1 className="Titre1">Récemment publiés</h1>
 
-          <div style={{ display: "flex", overflowX: 'scroll', scrollbarWidth:'none' }} className="recent">
+        {/* section recent */}
+        <div className="mt-4 section-recent py-3">
+          <h1 className="Titre1 my-4">Récemment publiés</h1>
+          <div className="underline"></div>
+          <div style={{ display: "flex", overflowX: 'scroll', scrollbarWidth: 'none' }} className="recent">
             {recent.map((articlee, index) => (
               <div key={index} style={{ flex: '0 0 auto' }} className="mx-2">
                 <Cadre article={articlee} />
               </div>
             ))}
           </div >
-          <h1 className="Titre1">Plus populaires</h1>
+        </div>
+
+        {/* section Plus populaire */}
+        <div className="mt-4  py-3">
+          <h1 className="Titre1  my-4">Plus populaires</h1>
+          <div className="underline"></div>
           <Populaires></Populaires>
         </div>
+
+
+        <div className="section-go p-4 text-center">
+          <h1 className="Titre1  my-3">Go To</h1>
+          <div className="underline my-3"></div>
+          <div className="text-link-items row">
+            {/* 1 lien */}
+            {!isVendor && isVendor !== null ?
+              <div className="text-link-item col-md-6 col-lg-6" onClick={() => window.location.href = "/shop"} style={{ backgroundImage: `url(${enchere})` }}>
+                <p >Participation A L'Enchere </p>
+              </div>
+              :
+              <></>
+            }
+
+            {/* 2 lien */}
+            <div className={`text-link-item  ${!isVendor && isVendor !== null ? 'col-md-6 col-lg-6' : 'mx-auto col-md-12 col-lg-12'}`} onClick={() => window.location.href = "/Avis"} style={{ backgroundImage: `url(${review})` }}>
+              <p >Consulter Avis </p>
+            </div>
+          </div>
+        </div>
+
+
         <div>
-          <form className="avis-form" action="POST" onSubmit={handleSumit}>
+          <h1 className="Titre1 my-3">Donner votre avis sur le site</h1>
+          <div className="underline"></div>
+          <form className="avis-form mt-4" action="POST" onSubmit={handleSumit}>
             <label htmlFor="avis-text">Donner avis</label>
             <textarea
               id="avis-text"
@@ -140,29 +185,14 @@ export default function Home() {
               onChange={(e) => {
                 setAvis(e.target.value);
               }}
+              value={text}
             ></textarea>
             <input type="submit" className="cd-signin" value="Submit Avis" />
           </form>
           <br></br>
         </div>
-        <div className="text-link-items">
-  {/* Premier lien */}
-  <div className="text-link-item" onClick={() => window.location.href = "/premier-lien"}>
-    <p >Visiteur </p>
-  </div>
 
-  {/* Deuxième lien */}
-  <div className="text-link-item" onClick={() => window.location.href = "/deuxieme-lien"}>
-    <p >Participation A L'Enchere </p>
-  </div>
 
-  {/* Troisième lien */}
-  <div className="text-link-item" onClick={() => window.location.href = "/troisieme-lien"}>
-    <p >Consulter Avis </p>
-  </div>
-</div>
-
-        
       </div>
       <Footer></Footer>
     </>

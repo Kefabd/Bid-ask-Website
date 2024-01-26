@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import background from '../dependecies/images/antique-1.jpg';
 import * as babelTypes from "@babel/types";
+import back from '../dependecies/images/back.jpg'
 
 
 // Now you can use babelTypes for AST manipulation
@@ -104,13 +105,15 @@ export default function Authenticate() {
                 console.log("acheteur")
                 navigate('/')
             }
-        } 
+        }
     };
     
 
 
     return (
         <>
+            <img src={back} alt="" className="back"/>
+
             <div className="authenticate">
                 <div className="form">
                     <ul className="tab-group">
@@ -128,7 +131,7 @@ export default function Authenticate() {
 
                     <div className="tab-content">
                         <div id="signup" style={{ display: activeTab === "signup" ? "block" : "none" }}>
-                            <h1>Sign Up for Free</h1>
+                            <h1>Sign Up </h1>
 
                             <form action="/" method="post" onSubmit={handleClickSignUp}>
                                 <div className="top-row">
@@ -201,13 +204,13 @@ export default function Authenticate() {
 
 
                                 <button type="submit" className="button button-block" >
-                                    Get Started
+                                    Sign Up
                                 </button>
                             </form>
                         </div>
 
                         <div id="login" style={{ display: activeTab === "login" ? "block" : "none" }}>
-                            <h1>Welcome Back!</h1>
+                            <h1>Log In </h1>
 
                             <form method="post" action="/" onSubmit={handleClickLogIn}>
                                 <div className="field-wrap">
@@ -233,9 +236,9 @@ export default function Authenticate() {
                                 <p className="forgot">
                                     <a href="#">Forgot Password?</a>
                                 </p>
-                                {login == true &&
+                                {login === true &&
                                     <div className="alert alert-danger">
-                                        <strong>User already exist!</strong> Please try another time.
+                                        <strong>Email or Password not correct</strong> Please try another time.
                                     </div> 
                                 }
                                 {login === false &&

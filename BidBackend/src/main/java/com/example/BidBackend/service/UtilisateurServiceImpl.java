@@ -29,7 +29,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     public String loginUser(LoginDto loginDto){
         Utilisateur utilisateur =  findByEmail(loginDto.getEmail());
-        System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
+        //System.out.println(passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()));
         if(utilisateur != null && passwordEncoder.matches(loginDto.getPassword(), utilisateur.getPassword()) ){
             addToSession("userId", utilisateur.getId_utilisateur());
             return "user log";

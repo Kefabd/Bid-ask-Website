@@ -18,7 +18,8 @@ function Shop() {
     <div>
         <Header/>
         <h1 style={{textAlign:'center'}}>Shop</h1>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div className="underline"></div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
         {articles.map((article) => (
           <Cadre key={article.id_article} article={article} style={{ margin: '10px' }} />
         ))}

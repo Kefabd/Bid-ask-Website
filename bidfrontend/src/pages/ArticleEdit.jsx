@@ -42,25 +42,25 @@ const ArticleEdit = () => {
 
 
     if (input.target.value === "") {
-        label.classList.remove("active", "highlight");
+      label.classList.remove("active", "highlight");
     } else {
-        label.classList.add("active", "highlight");
+      label.classList.add("active", "highlight");
     }
-   
-};
+
+  };
 
   const handleEdit = (e) => {
     e.preventDefault();
-    const user=JSON.parse(sessionStorage.getItem("user"));
+    const user = JSON.parse(sessionStorage.getItem("user"));
     const formData = new FormData();
-    formData.append("image", image); 
+    formData.append("image", image);
     formData.append("nom_article", nom_article);
     formData.append("délai", délai);
     formData.append("description", description);
     formData.append("prixMin", prixMin);
     formData.append("date_debut", date_debut);
     formData.append("date_fin", date_fin);
-    formData.append("email",user.email);
+    formData.append("email", user.email);
 
     fetch(`http://localhost:8080/article/edit/${id}`, {
       method: "PUT",
@@ -83,121 +83,125 @@ const ArticleEdit = () => {
   };
 
   return (
-    <div className="authenticate">
-      <div className="form">
-        <div className="tab-content">
-          <div id="signup" style={{ display: "block"}}>
-            <h1>Edit Article</h1>
-            {article ? (
-              <form action="/" method="post" enctype="multipart/form-data">
-                <div className="field-wrap">
-                  <label className='highlight active'>Article Name</label>
-                  <input
-                    type="text"
-                    name="nom_article"
-                    required
-                    value={nom_article}
-                    onChange={(e) => {
-                      handleInputChange(e);
-                      setNom_article(e.target.value);
-                    }}
-                  />
-                </div>
+    <>
+    <Header></Header>
+      <div className="authenticate">
+        <div className="form">
+          <div className="tab-content">
+            <div id="signup" style={{ display: "block" }}>
+              <h1>Edit Article</h1>
+              {article ? (
+                <form action="/" method="post" enctype="multipart/form-data">
+                  <div className="field-wrap">
+                    <label className='highlight active'>Article Name</label>
+                    <input
+                      type="text"
+                      name="nom_article"
+                      required
+                      value={nom_article}
+                      onChange={(e) => {
+                        handleInputChange(e);
+                        setNom_article(e.target.value);
+                      }}
+                    />
+                  </div>
 
-                <div className="field-wrap">
-                  <label className='highlight active'>Start Date</label>
-                  <input
-                    type="datetime-local"
-                    name="date_debut"
-                    required
-                    value={date_debut}
-                    onChange={(e) => {
-                      handleInputChange(e);
-                      setDate_debut(e.target.value);
-                    }}
-                  />
-                </div>
+                  <div className="field-wrap">
+                    <label className='highlight active'>Start Date</label>
+                    <input
+                      type="datetime-local"
+                      name="date_debut"
+                      required
+                      value={date_debut}
+                      onChange={(e) => {
+                        handleInputChange(e);
+                        setDate_debut(e.target.value);
+                      }}
+                    />
+                  </div>
 
-                <div className="field-wrap">
-                  <label className='highlight active'>End Date</label>
-                  <input
-                    type="datetime-local"
-                    name="date_fin"
-                    required
-                    value={date_fin}
-                    onChange={(e) => {
-                      handleInputChange(e);
-                      setDate_fin(e.target.value);
-                    }}
-                  />
-                </div>
+                  <div className="field-wrap">
+                    <label className='highlight active'>End Date</label>
+                    <input
+                      type="datetime-local"
+                      name="date_fin"
+                      required
+                      value={date_fin}
+                      onChange={(e) => {
+                        handleInputChange(e);
+                        setDate_fin(e.target.value);
+                      }}
+                    />
+                  </div>
 
-                <div className="field-wrap">
-                  <label className='highlight active'>Deadline Time</label>
-                  <input
-                    type="time"
-                    name="délai"
-                    required
-                    value={délai}
-                    onChange={(e) => {
-                      handleInputChange(e);
-                      setDelai(e.target.value);
-                    }}
-                  />
-                </div>
+                  <div className="field-wrap">
+                    <label className='highlight active'>Deadline Time</label>
+                    <input
+                      type="time"
+                      name="délai"
+                      required
+                      value={délai}
+                      onChange={(e) => {
+                        handleInputChange(e);
+                        setDelai(e.target.value);
+                      }}
+                    />
+                  </div>
 
-                <div className="field-wrap">
-                  <label htmlFor="image" className='highlight active'>Image:</label>
-                  <input
-                    type="file"
-                    name="image"
-                    accept="image/*"
-                    required
-                    onChange={(e) => {
-                      handleInputChange(e);
-                      setImage(e.target.files[0]);
-                    }}
-                  />
-                </div>
+                  <div className="field-wrap">
+                    <label htmlFor="image" className='highlight active'>Image:</label>
+                    <input
+                      type="file"
+                      name="image"
+                      accept="image/*"
+                      required
+                      onChange={(e) => {
+                        handleInputChange(e);
+                        setImage(e.target.files[0]);
+                      }}
+                    />
+                  </div>
 
-                <div className="field-wrap">
-                  <label className='highlight active'>Description</label>
-                  <textarea
-                    name="description"
-                    required
-                    value={description}
-                    onChange={(e) => {
-                      handleInputChange(e);
-                      setDescription(e.target.value);
-                    }}
-                  ></textarea>
-                </div>
+                  <div className="field-wrap">
+                    <label className='highlight active'>Description</label>
+                    <textarea
+                      name="description"
+                      required
+                      value={description}
+                      onChange={(e) => {
+                        handleInputChange(e);
+                        setDescription(e.target.value);
+                      }}
+                    ></textarea>
+                  </div>
 
-                <div className="field-wrap">
-                  <label className='highlight active'>Minimum Price</label>
-                  <input
-                    type="number"
-                    name="prixMin"
-                    required
-                    value={prixMin}
-                    onChange={(e) => {
-                      handleInputChange(e);
-                      setPrixMin(e.target.value);
-                    }}
-                  />
-                </div>
+                  <div className="field-wrap">
+                    <label className='highlight active'>Minimum Price</label>
+                    <input
+                      type="number"
+                      name="prixMin"
+                      required
+                      value={prixMin}
+                      onChange={(e) => {
+                        handleInputChange(e);
+                        setPrixMin(e.target.value);
+                      }}
+                    />
+                  </div>
 
-                <button type="submit" className="button button-block" onClick={handleEdit}>
-                  Save Changes
-                </button>
-              </form>
-            ) : (
-              <p>Loading...</p>
-            )}
+                  <button type="submit" className="button button-block" onClick={handleEdit}>
+                    Save Changes
+                  </button>
+                </form>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
+
   );
 };
 

@@ -32,7 +32,7 @@ public class EmailScheduler {
     }
 
 
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 20000)
     public void checkAndSendEmails() {
         List<Article> articles = articleService.getAllArticles();
 
